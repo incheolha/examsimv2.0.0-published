@@ -2,7 +2,7 @@ font-awesome@4.7.0
 (OFL-1.1 AND MIT)
 (OFL-1.1 AND MIT)
 
-ng-uikit-pro-standard@6.2.6
+ng-uikit-pro-standard@6.3.0
 SEE LICENSE IN <license.pdf>
 SEE LICENSE IN <license.pdf>
 
