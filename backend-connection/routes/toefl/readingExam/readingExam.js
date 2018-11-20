@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const jwt = require('jsonwebtoken');
-const saltKey = require('../../../middlewareAuthChecker/saltKey');
+const saltKey = require('../../../middlewar/saltKey');
 const ToeflReadingController = require('../../../controllers/toefl/readingExam/readingExam');
 
 // jwt를 이용한 인증방법 1-- query 방식을 사용하여 http  request 시 query값으로 token을 가지고 오는방식
@@ -18,7 +18,7 @@ router.use('/', (req, res, next) => {
         next();
     });
 });
- 
+
 router.get('/:toeflNo', ToeflReadingController.reading_getOne);
 router.post('/', ToeflReadingController.reading_create);
 router.patch('/', ToeflReadingController.reading_update);
