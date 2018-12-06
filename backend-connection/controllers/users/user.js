@@ -1,4 +1,8 @@
-const mongoose = require('mongoose');
+
+
+// Global httpURL export 설정
+const httpURL = require('../../GlobalConstantShare/gloabalHttpURL');
+
 const User = require('../../models/users/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -25,7 +29,7 @@ exports.user_get_all = (req, res, next) => {
                                 _id: doc._id,
                                 request:   {
                                     type: 'GET',
-                                    url: 'http://localhost:3000/user/' + doc._id
+                                    url: httpURL + '/user/' + doc._id
                                 }
                             };
                         })

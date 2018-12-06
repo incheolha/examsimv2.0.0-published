@@ -1,3 +1,6 @@
+// Global httpURL export 설정
+const httpURL = require('../../../GlobalConstantShare/gloabalHttpURL');
+
 const jwt = require('jsonwebtoken');
 const User = require('../../../models/users/userModel');
 const paypalKey = require('../paymentKeyContainers/paypalKeyContainer/paypalkeys');
@@ -34,8 +37,8 @@ exports.create_payment = (req, res, next) => {
                 "payment_method": "paypal"
             },
             "redirect_urls": {
-                "return_url": "https://examsimv100.herokuapp.com/paypal/executePayment",
-                "cancel_url": "https://examsimv100.herokuapp.com/paypal/cancelPayment"
+                "return_url": httpURL + '/paypal/executePayment',
+                "cancel_url": httpURL + '/paypal/cancelPayment'
             },
             "transactions": [{
                 "item_list": {
@@ -178,7 +181,7 @@ exports.execute_payment = (req, res, next) => {
 
                                                         user.save()
                                                             .then( userDoc => {
-                                                              return res.status(200).redirect('https://examsimv100.herokuapp.com/payment/result')
+                                                              return res.status(200).redirect(httpURL + '/payment/result')
                                                             })
 
                                         })

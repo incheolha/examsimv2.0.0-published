@@ -1,3 +1,5 @@
+const mongoDBURL = require('./GlobalConstantShare/globalMongoDBURL');
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,14 +9,14 @@ var bodyParser = require('body-parser');
 
 // connecting mongoose
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://heroku_x08l7024:6v3evmdgoui7j5ps9b8rglhgkj@ds243963.mlab.com:43963/heroku_x08l7024", { useNewUrlParser: true })
+
+mongoose.connect(mongoDBURL, { useNewUrlParser: true })
             .then( () => {
               console.log('mongo clouding connection is successful...');
             })
             .catch( () => {
               console.log( 'mongo clouding connection is failed..');
             });
-// mongoose.connect("mongodb://localhost:27017/examSimulator", { useNewUrlParser: true });
 
 var userRoutes = require('./routes/users/user');
 var registerRoutes = require('./routes/toefl/registerExam/registerExam');

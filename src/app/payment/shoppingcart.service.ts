@@ -1,3 +1,6 @@
+
+import { GlobalConstantShare } from '../Utility-shared/globalConstantShare';
+
 import { PaidToeflList } from './model/paidToeflLists.model';
 import { Injectable, OnInit } from '@angular/core';
 import { Http, Response, Headers} from '@angular/http';
@@ -13,7 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class ShoppingcartService {
 
-
+    urlConfig = GlobalConstantShare.httpUrl;
     shoppingCartLists: Shoppingcart[] = [];
     paidToeflLists: PaidToeflList[] = [];                              // 실제 shopping item을 저장하는 공간
     shoppingCartListAdded = new Subject<Shoppingcart[]>();
@@ -102,7 +105,7 @@ connectAuthShoppingCart() {
 
         const header = new Headers({'Content-type': 'application/json'});
 
-        this.http.post('https://examsimv100.herokuapp.com/shoppingcart/' + '?token=' + token, body, {headers: header})
+        this.http.post(this.urlConfig + '/shoppingcart/' + '?token=' + token, body, {headers: header})
                  .subscribe(
                               (res: Response) => {
                                   console.log(res);

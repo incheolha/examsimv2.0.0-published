@@ -1,8 +1,7 @@
-
+import { GlobalConstantShare } from '../Utility-shared/globalConstantShare';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { UtilityService } from './../Utility-shared/utility.service';
@@ -17,6 +16,7 @@ import { ProfileInfo } from './profile.model';
 @Injectable()
 export class AuthService {
 
+  urlConfig = GlobalConstantShare.httpUrl;     // 현재 설정ehls url 주소 설정
   authChange = new Subject<boolean>();
   teacherAuth = new Subject<boolean>();
 
@@ -38,8 +38,6 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router,
               private utilityService: UtilityService) {}
-
-
   signup(user: User) {
 
         this.utilityService.loadingStateChanged.next(true);
@@ -53,7 +51,7 @@ export class AuthService {
                           shoppingCartLists: Shoppingcart[],
                           paidToeflLists: PaidToeflList[]
                         }>
-                        ('https://examsimv100.herokuapp.com/user/signup', user)
+                        (this.urlConfig + '/user/signup', user)
 
                         .subscribe((result) => {
 
@@ -67,7 +65,8 @@ export class AuthService {
                                 this.shoppingCartLists.next(result.shoppingCartLists);
                                 this.paidToeflLists.next(result.paidToeflLists);
                                 this.router.navigate(['/']);
-                    });
+                    },
+                    error => { this.handleError( error ); });
   }
 
   login(user: User) {
@@ -83,7 +82,7 @@ export class AuthService {
                           shoppingCartLists: Shoppingcart[],
                           paidToeflLists: PaidToeflList[]
                         }>
-                        (' https://examsimv100.herokuapp.com/user/login', user)
+                        (this.urlConfig + '/user/login', user)
 
                         .subscribe((result) => {
                                 localStorage.setItem('token', result.token);
@@ -96,8 +95,16 @@ export class AuthService {
                                 this.shoppingCartLists.next(result.shoppingCartLists);
                                 this.paidToeflLists.next(result.paidToeflLists);
                                 this.router.navigate(['/']);
-                    });
+                    },
+                    error => { this.handleError( error ); });
               }
+
+  private handleError(error) {
+    console.log('에러 메세지', error);
+    this.authChange.next(false);
+    this.utilityService.loadingStateChanged.next(false);
+    return;
+  }
 
   private authSuccess(teacherAuth: string) {
     this.authChange.next(true);
@@ -117,12 +124,17 @@ export class AuthService {
   }
 
   logout() {
-              localStorage.clear();
+              localStorage.removeItem('token');
+              localStorage.removeItem('userId');
+              localStorage.removeItem('userName');
+              localStorage.removeItem('userEmail');
+
               this.authChange.next(false);                             // 사용자 인증 logout
               this.teacherAuth.next(false);                            // teacher permission 초기화
               this.isAuthenticated = false;                             // 인증 취소
               this.isteacherAuthenticated = false;                      // 관리자 선생님 인증 취소
 
+              this.profileInfoPassed.next(this.clearProfileInfoPassed);
               this.paidToeflLists.next(this.clearPaidToeflLists);            // paid ToeflList 초기화
               this.shoppingCartLists.next(this.clearShoppingCartLists);      // shopping cart list 초기화
 
@@ -145,8 +157,8 @@ export class AuthService {
   getProfileInfo() {
               console.log('get Info Profile check');
               this.profileInfo = new ProfileInfo(localStorage.getItem('userEmail'), localStorage.getItem('userName'));
-              this.profileInfoPassed.next(this.profileInfo);
-              return this.profileInfo;
+              console.log(this.profileInfo);
+  return this.profileInfo;
   }
 
 }

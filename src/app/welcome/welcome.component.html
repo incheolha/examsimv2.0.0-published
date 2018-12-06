@@ -161,97 +161,104 @@
   <h2 class="h1-responsive font-weight-bold text-center my-5">Current Toefl Exams</h2>
   <p class="grey-text text-center w-responsive mx-auto mb-5">Look at our best Toefl Exams for your success. Please try to select one of them to get your best results for your Toefl Scores</p>
 
+<div *ngIf="toefls">
   <div class="row">
       <div class="col-md-11 p-0 mx-auto">
-              <mdb-tabset #staticTabs [buttonClass]="'nav-tabs tabs-6 pills-secondary blue lighten-2'" [contentClass]="''">
+              <mdb-tabset #staticTabs [buttonClass]="'md-tabs tabs-6 pills-secondary blue lighten-2'" [contentClass]="''">
 
-                      <mdb-tab heading="All Exams">
-                          <div class="row">
-                              <div class="col-12">
-                                  <br>
-                                  <app-toefl-list
-                                                [toefls]="jointPaidToeflLists"
-                                                [numberOfPaginators]="numberOfPaginators"
-                                                [paginators]="paginators"
-                                                [isAuth]="isAuth"
-                                                [isTeacherAuth]="isTeacherAuth"></app-toefl-list>
-                              </div>
-                          </div>
-                      </mdb-tab>
-
-                      <mdb-tab heading="Beginners Exams">
-                          <div class="row">
-                              <div class="col-12">
-                                  <br>
-                                  <app-beginner-toefl-list
-                                                          [toefls]="beginnerToefls"
-                                                          [numberOfPaginators]="beginnerNumberOfPaginators"
-                                                          [paginators]="beginnerPaginators"
-                                                          [isAuth]="isAuth"
-                                                          [isTeacherAuth]="isTeacherAuth"></app-beginner-toefl-list>
-                              </div>
-                          </div>
-                      </mdb-tab>
-
-                      <mdb-tab heading="Basic Exams">
-                          <div class="row">
-                              <div class="col-12">
-                                  <br>
-                                  <app-basic-toefl-list
-                                                        [toefls]="basicToefls"
-                                                        [numberOfPaginators]="basicNumberOfPaginators"
-                                                        [paginators]="basicPaginators"
-                                                        [isAuth]="isAuth"
-                                                        [isTeacherAuth]="isTeacherAuth"></app-basic-toefl-list>
-                              </div>
-                          </div>
-                      </mdb-tab>
-
-                      <mdb-tab heading="Intermediate Exams">
-                          <div class="row">
-                              <div class="col-12">
-                                  <br>
-                                  <app-intermediate-toefl-list
-                                                              [toefls]="intermediateToefls"
-                                                              [numberOfPaginators]="interNumberOfPaginators"
-                                                              [paginators]="interPaginators"
-                                                              [isAuth]="isAuth"
-                                                              [isTeacherAuth]="isTeacherAuth"></app-intermediate-toefl-list>
-                              </div>
-                          </div>
-                      </mdb-tab>
-
-                      <mdb-tab heading="Advanced Exams">
-                          <div class="row">
-                              <div class="col-12">
-                                  <br>
-                                  <app-advance-toefl-list
-                                                        [toefls]="advancedToefls"
-                                                        [numberOfPaginators]="advNumberOfPaginators"
-                                                        [paginators]="advPaginators"
-                                                        [isAuth]="isAuth"
-                                                        [isTeacherAuth]="isTeacherAuth"></app-advance-toefl-list>
-                              </div>
-                          </div>
-                      </mdb-tab>
-
-                      <mdb-tab heading="Each Section Exams">
+                          <mdb-tab heading="All Exams">
                               <div class="row">
                                   <div class="col-12">
-                                      <br>
+
                                       <app-toefl-list
                                                     [toefls]="jointPaidToeflLists"
                                                     [numberOfPaginators]="numberOfPaginators"
                                                     [paginators]="paginators"
                                                     [isAuth]="isAuth"
                                                     [isTeacherAuth]="isTeacherAuth"></app-toefl-list>
-                                    </div>
+                                  </div>
                               </div>
+                          </mdb-tab>
+
+
+                          <mdb-tab heading="Beginners Exams">
+                              <div class="row">
+                                  <div class="col-12 ">
+
+                                      <app-beginner-toefl-list
+                                                              [toefls]="beginnerToefls"
+                                                              [numberOfPaginators]="beginnerNumberOfPaginators"
+                                                              [paginators]="beginnerPaginators"
+                                                              [isAuth]="isAuth"
+                                                              [isTeacherAuth]="isTeacherAuth"></app-beginner-toefl-list>
+                                  </div>
+                              </div>
+                          </mdb-tab>
+
+
+                          <mdb-tab heading="Basic Exams">
+                              <div class="row">
+                                  <div class="col-12">
+
+                                      <app-basic-toefl-list
+                                                            [toefls]="basicToefls"
+                                                            [numberOfPaginators]="basicNumberOfPaginators"
+                                                            [paginators]="basicPaginators"
+                                                            [isAuth]="isAuth"
+                                                            [isTeacherAuth]="isTeacherAuth"></app-basic-toefl-list>
+                                  </div>
+                              </div>
+                          </mdb-tab>
+
+
+                          <mdb-tab heading="Intermediate Exams">
+                              <div class="row">
+                                  <div class="col-12">
+
+                                      <app-intermediate-toefl-list
+                                                                  [toefls]="intermediateToefls"
+                                                                  [numberOfPaginators]="interNumberOfPaginators"
+                                                                  [paginators]="interPaginators"
+                                                                  [isAuth]="isAuth"
+                                                                  [isTeacherAuth]="isTeacherAuth"></app-intermediate-toefl-list>
+                                  </div>
+                              </div>
+                          </mdb-tab>
+
+
+                          <mdb-tab heading="Advanced Exams">
+                              <div class="row">
+                                  <div class="col-12">
+
+                                      <app-advance-toefl-list
+                                                            [toefls]="advancedToefls"
+                                                            [numberOfPaginators]="advNumberOfPaginators"
+                                                            [paginators]="advPaginators"
+                                                            [isAuth]="isAuth"
+                                                            [isTeacherAuth]="isTeacherAuth"></app-advance-toefl-list>
+                                  </div>
+                              </div>
+                          </mdb-tab>
+
+
+                          <mdb-tab heading="Each Section Exams">
+                                  <div class="row">
+                                      <div class="col-12">
+
+                                          <app-toefl-list
+                                                        [toefls]="jointPaidToeflLists"
+                                                        [numberOfPaginators]="numberOfPaginators"
+                                                        [paginators]="paginators"
+                                                        [isAuth]="isAuth"
+                                                        [isTeacherAuth]="isTeacherAuth"></app-toefl-list>
+                                        </div>
+                                  </div>
                           </mdb-tab>
 
               </mdb-tabset>
       </div>
   </div>
+</div>
 </section>
 
 <app-footer></app-footer>

@@ -1,16 +1,16 @@
+import { GlobalConstantShare } from '../../Utility-shared/globalConstantShare';
+
 import { ShoppingcartService } from './../shoppingcart.service';
 import { Payment } from './../model/payment.model';
 import { Injectable, OnInit} from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class PaypalPaymentService {
 
     payment: Payment;
-
+    urlConfig = GlobalConstantShare.httpUrl;     // url 실제 주소가 있는곳
     constructor(private http: Http,
                 private shoppingCartService: ShoppingcartService) {}
 
@@ -22,7 +22,7 @@ export class PaypalPaymentService {
         const body = JSON.stringify(payment);
 
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('https://examsimv100.herokuapp.com/paypal/createPayment', body, {headers: headers})
+        return this.http.post(this.urlConfig + '/paypal/createPayment', body, {headers: headers})
                         .subscribe(data => {
                             const paymentUrl = data.json();
                             console.log(paymentUrl.url);
@@ -34,7 +34,7 @@ export class PaypalPaymentService {
     getPaypalResult() {
         const token = localStorage.getItem('token');
         const header = new Headers({'Content-type': 'application/json'});
-        return this.http.get('https://examsimv100.herokuapp.com/paypal/paymentResult/' + '?token=' + token, {headers: header})
+        return this.http.get(this.urlConfig + '/paypal/paymentResult/' + '?token=' + token, {headers: header})
                     .subscribe(
                         (res: Response) => {
                             const data = res.json();

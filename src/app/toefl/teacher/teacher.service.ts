@@ -1,3 +1,5 @@
+import { GlobalConstantShare } from '../../Utility-shared/globalConstantShare';
+
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
@@ -15,6 +17,7 @@ export class RegisterToeflService {
 
   registerToeflExamChanged = new Subject<Toefl[]>();
 
+  urlConfig = GlobalConstantShare.httpUrl;    // 실제 url이 있는 위치
   profileInfo: ProfileInfo;
   lastToeflNo = 0;
 
@@ -30,7 +33,7 @@ export class RegisterToeflService {
 
     const token = localStorage.getItem('token');
 
-    this.http.get<{ message: string, toefls: Toefl[] }>('https://examsimv100.herokuapp.com/registerExam/' + '?token=' + token)
+    this.http.get<{ message: string, toefls: Toefl[] }>(this.urlConfig + '/registerExam/' + '?token=' + token)
                   .subscribe( (registerToefls) => {
                     console.log(registerToefls);
                     this.toefls = [];
@@ -70,7 +73,7 @@ export class RegisterToeflService {
 
   // getToeflLastNo() {
 
-  //   return this.http.get<{ message: string, toefls: Toefl[], lastToeflNo: number }>('https://examsimv100.herokuapp.com/showexam')
+  //   return this.http.get<{ message: string, toefls: Toefl[], lastToeflNo: number }>(this.urlConfig + '/showexam')
   //           .map ( ( data ) => {
   //             this.lastToeflNo = data.lastToeflNo + 1;
   //             return this.lastToeflNo;
@@ -92,7 +95,7 @@ export class RegisterToeflService {
     const token = localStorage.getItem('token');
 
     // tslint:disable-next-line:max-line-length
-    this.http.post<{ message: string, toefl: Toefl } >('https://examsimv100.herokuapp.com/registerExam/' + toeflNo + '?token=' + token, formData)
+    this.http.post<{ message: string, toefl: Toefl } >(this.urlConfig + '/registerExam/' + toeflNo + '?token=' + token, formData)
                     .subscribe( (savedToefl ) => {
                       console.log('추가되기 전 토플명단', this.toefls);
                       console.log('새로 추가된 토플시험', savedToefl);
@@ -120,7 +123,7 @@ export class RegisterToeflService {
     const token = localStorage.getItem('token');
 
     // tslint:disable-next-line:max-line-length
-    this.http.patch<{ message: string, toefl: Toefl } >('https://examsimv100.herokuapp.com/registerExam/' + toeflNo + '?token=' + token, formData)
+    this.http.patch<{ message: string, toefl: Toefl } >(this.urlConfig + '/registerExam/' + toeflNo + '?token=' + token, formData)
                     .subscribe(( updatedToefl ) => {
 
                       console.log( '새로 수정된 토플시험', updatedToefl.toefl);
@@ -145,7 +148,7 @@ export class RegisterToeflService {
 
     const token = localStorage.getItem('token');
 
-    this.http.delete<{ message: string, toefl: Toefl}>('https://examsimv100.herokuapp.com/registerExam/' + toeflNo + '?token=' + token)
+    this.http.delete<{ message: string, toefl: Toefl}>(this.urlConfig + '/registerExam/' + toeflNo + '?token=' + token)
                     .subscribe((deletedToefl) => {
 
                       console.log('삭제된 토플시험', deletedToefl );

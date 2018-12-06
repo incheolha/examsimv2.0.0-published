@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute, RouterLinkActive, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { StepperModel } from './stepper.model';
 import { UtilityService } from '../../../Utility-shared/utility.service';
 
@@ -21,12 +21,10 @@ export class StepperComponent implements OnInit {
     console.log(this.currentStep);
     console.log(this.currentStep.toeflNo);
 
-    
-
   }
 
   onMainHome() {
-  
+
     this.router.navigate(['/teacher']);
   }
   onToelfList() {
@@ -36,7 +34,7 @@ export class StepperComponent implements OnInit {
     this.router.navigate(['/teacher/' + this.currentStep.toeflNo]);
 
   }
-  
+
   onToelfMakeExam() {
     console.log('Reading Area stepper clicked');
     console.log(this.currentStep.toeflNo);

@@ -1,19 +1,18 @@
 import { PaidToeflList } from './../model/paidToeflLists.model';
-import { Injectable, OnInit} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { StripeModel } from '../model/stripeModel';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import {StripeService, Elements, Element as StripeElement, ElementsOptions } from 'ngx-stripe';
 import { Subject } from 'rxjs/Subject';
 import { Shoppingcart } from '../model/shoppingcart.model';
 import { UtilityService } from '../../Utility-shared/utility.service';
 import { ShoppingcartService } from '../shoppingcart.service';
 import { Router } from '@angular/router';
+import { GlobalConstantShare } from '../../Utility-shared/globalConstantShare';
 
 @Injectable()
 export class StripePaymentService {
 
+  urlConfig = GlobalConstantShare.httpUrl;
 
   shoppingCartLists = new Subject<Shoppingcart[]>();
   paidToeflLists = new Subject<PaidToeflList[]>();
@@ -26,7 +25,7 @@ export class StripePaymentService {
         const body = JSON.stringify(stripeCardInfo);
         const header = new Headers({'Content-Type': 'application/json'});
 
-      return this.http.post('https://examsimv100.herokuapp.com/stripepayment', body, {headers: header})
+      return this.http.post(this.urlConfig + '/stripepayment', body, {headers: header})
             .subscribe((res: Response) => {
                 const data = res.json();
 

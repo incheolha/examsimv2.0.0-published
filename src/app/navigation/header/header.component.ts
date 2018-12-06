@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     @Output() sidenavToggle = new EventEmitter<void>();
     @Input() isAuth: boolean;
     @Input() isteacherAuth: boolean;
-    @Input() userName: string;
 
 
 // 인증관련 Subscription 변수설정
@@ -27,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     teacherAuthSubscription: Subscription;
 
 // profile Info를 가지고 와서 화면 오른쪽 상단에 이름을 표시한다
+
    profileInfo: ProfileInfo;
 
 // shoppingcart에 관한 변수설정
@@ -48,6 +48,7 @@ constructor(private authService: AuthService,
         this.shoppingcartListCounter = 0;
       } else {
 
+        this.profileInfo = this.authService.getProfileInfo();
         if (!this.isteacherAuth) {
           this.shoppingcartListSubscription = this.shoppingcartService.shoppingCartListAdded
 

@@ -1,3 +1,6 @@
+// Global httpURL export 설정
+const httpURL = require('../../../GlobalConstantShare/gloabalHttpURL');
+
 const jwt = require('jsonwebtoken');
 const Toefl = require('../../../models/toefl/toeflModel');
 const User = require('../../../models/users/userModel');
@@ -91,8 +94,8 @@ exports.register_create = (req, res, next) => {
             console.log('req.files길이가 2인경우 오디오 파일명', temp_audio_filename);
 }
 
-    temp_image_url = 'https://examsimv100.herokuapp.com/uploads/' + temp_image_filename;
-    temp_audio_url = 'https://examsimv100.herokuapp.com/uploads/' + temp_audio_filename;
+    temp_image_url = httpURL + '/uploads/' + temp_image_filename;
+    temp_audio_url = httpURL + '/uploads/' + temp_audio_filename;
 
     console.log('this is the first point:'+temp_image_url);
     console.log('this is the second point: '+temp_audio_url);
@@ -202,14 +205,14 @@ exports.register_update = (req, res, next) => {
                 req.files[i].mimetype === 'image/gif' )
                 {
                 temp_image_filename = req.files[i].filename;
-                temp_image_url = 'https://examsimv100.herokuapp.com/uploads/' + temp_image_filename;
+                temp_image_url = httpURL + '/uploads/' + temp_image_filename;
 
             } else if (req.files[i].mimetype === 'audio/mp3' ||
                        req.files[i].mimetype === 'audio/wav' ||
                        req.files[i].mimetype === 'audio/ogg' )
                         {
                 temp_audio_filename = req.files[i].filename;
-                temp_audio_url = 'https://examsimv100.herokuapp.com/uploads/' + temp_audio_filename;
+                temp_audio_url = httpURL + '/uploads/' + temp_audio_filename;
             }
         }
         if (temp_image_url === '') {

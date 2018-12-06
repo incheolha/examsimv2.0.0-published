@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { UtilityService } from './Utility-shared/utility.service';
 import { MainNavModel } from './Utility-shared/mainNavChange.model';
 import { Subscription } from 'rxjs/Subscription';
+import { ProfileInfo } from './auth/profile.model';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   title = 'app';
 
+  profileInfo: ProfileInfo;
   mainNavHide = false;
   isAuth = false;
   isteacherAuth = false;
@@ -34,22 +36,20 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
       this.mainNavHide = navStatus.showMainNav;
       if (navStatus.checkLogoutOrNot) {               // logout상태가 호출되었으므로 모든것이 초기화됨
-        this.isAuth = false;
-        this.isteacherAuth = false;
-      } else if (!navStatus.isTeacherLogin) {
+
+                                        this.isAuth = false;
+                                        this.isteacherAuth = false;
+      } else if (!navStatus.isTeacherLogin) {              // 일반 사용자 로그인
+                                         this.isAuth = true;
+                                         this.isteacherAuth = false;
+
+
+      } else {                                        // login상태에서 홈버튼이 click한경우  teacher모드로 기존 토큰이 존재함
         this.isAuth = true;
-        this.isteacherAuth = false;
-
-        const profileInfo = this.authService.getProfileInfo();
-        this.userName = profileInfo.name;
-
-      } else {
-        this.isAuth = true;                            // login상태에서 홈버튼이 click한경우 이므로 기존 토큰이 존재함
         this.isteacherAuth = true;
 
-        const profileInfo = this.authService.getProfileInfo();
-        this.userName = profileInfo.name;
       }
+
     });
 
       this.router.routeReuseStrategy.shouldReuseRoute = function() {

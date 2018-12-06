@@ -20,8 +20,6 @@ export function canEnableToolbarOptions(value: string, toolbar: any): boolean {
 export function saveSelection(): any {
     if (window.getSelection) {
         const selected = window.getSelection();
-
-       
         console.log(selected.toString());
         if(selected.getRangeAt && selected.rangeCount) {
             return selected.getRangeAt(0);

@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Toefl } from '../models/toefl.model';
-import { RegisterToeflService } from './teacher.service';
 import { UtilityService } from './../../Utility-shared/utility.service';
 import { MainNavModel } from './../../Utility-shared/mainNavChange.model';
 
@@ -19,7 +16,7 @@ export class RegisterToeflComponent implements OnInit {
   ngOnInit() {
 
     this.mainNavModel = new MainNavModel(true, false);                // 이모드는 teacher 권한을 갖는 사람이 젒속하여 시험을 출제하는 모드임
-                                                                        
+
     this.utilityService.mainNavChanged.next(this.mainNavModel);
 
   }
