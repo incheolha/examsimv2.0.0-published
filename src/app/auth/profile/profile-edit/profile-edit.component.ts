@@ -6,6 +6,7 @@ import { PaidToeflList } from './../../../payment/model/paidToeflLists.model';
 import { ProfileInfo } from './../../profile.model';
 
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-edit',
@@ -23,7 +24,7 @@ export class ProfileEditComponent implements OnInit {
   totalAmount = 0;
 
   profileInfo: ProfileInfo;
-
+  profileInfoSubscription: Subscription;
   userName: string;
   paidToeflLists: PaidToeflList[] = [];
 
@@ -33,8 +34,10 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit() {
 
-          this.profileInfo = this.authService.getProfileInfo();
-
+         this.profileInfo =  this.authService.getProfileInfo1();
+          // this.profileInfoSubscription = this.authService.profileInfoPassed.subscribe((updatedProfileInfo: ProfileInfo) => {
+          //   this.profileInfo = updatedProfileInfo;
+          // });
           this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();
                   console.log(this.paidToeflLists);
                   if ( this.paidToeflLists.length !== 0 ) {

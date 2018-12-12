@@ -314,8 +314,8 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalConstantShare", function() { return GlobalConstantShare; });
 const GlobalConstantShare = {
-    httpUrl: 'https://examsimv100.herokuapp.com',
-    // httpUrl: 'http://localhost:3000',
+    //   httpUrl: 'https://examsimv100.herokuapp.com',
+    httpUrl: 'http://localhost:3000',
     price: 10
 };
 
@@ -469,7 +469,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 const APP_ROUTES = [
-    { path: '', component: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_2__["WelcomeComponent"] },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', component: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_2__["WelcomeComponent"] }
+    // { path: 'teacher', loadChildren: './toefl/teacher/teacher.module#ToeflTeacherModule'},
+    // { path: 'toeflexam', loadChildren: './toefl/toeflExam/toeflexam.module#ToeflExamModule'},
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -491,7 +494,7 @@ AppRoutingModule = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<!--Double navigation-->\n<header *ngIf=\"!mainNavHide\">\n    <!-- Sidebar navigation -->\n    <mdb-sidenav #sidenav class=\"sn-bg-1\" [fixed]=\"false\">\n       <app-sidenav-list></app-sidenav-list>\n    </mdb-sidenav>\n    <!--/. Sidebar navigation -->\n    <app-header [isAuth]=\"isAuth\" [isteacherAuth]=\"isteacherAuth\" (sidenavToggle)=\"sidenav.toggle()\"></app-header>\n\n</header>\n<router-outlet></router-outlet>\n\n"
+module.exports = "\n<!--Double navigation-->\n<header *ngIf=\"!mainNavHide\">\n    <!-- Sidebar navigation -->\n    <mdb-sidenav #sidenav class=\"sn-bg-1\" [fixed]=\"false\">\n       <app-sidenav-list></app-sidenav-list>\n    </mdb-sidenav>\n    <!--/. Sidebar navigation -->\n    <app-header [profileInfo] = 'profileInfo' [isAuth]=\"isAuth\" [isteacherAuth]=\"isteacherAuth\" (sidenavToggle)=\"sidenav.toggle()\"></app-header>\n</header>\n<router-outlet></router-outlet>\n\n"
 
 /***/ }),
 
@@ -543,12 +546,12 @@ let AppComponent = class AppComponent {
         this.mainNavHide = false;
         this.isAuth = false;
         this.isteacherAuth = false;
-        this.userName = '';
         this.val = 0;
     }
     ngOnInit() {
         this.utilitySubscription = this.utilityService.mainNavChanged.subscribe((navStatus) => {
             this.mainNavHide = navStatus.showMainNav;
+            console.log('main nav 상태점검', this.mainNavHide);
             if (navStatus.checkLogoutOrNot) {
                 this.isAuth = false;
                 this.isteacherAuth = false;
@@ -556,10 +559,12 @@ let AppComponent = class AppComponent {
             else if (!navStatus.isTeacherLogin) {
                 this.isAuth = true;
                 this.isteacherAuth = false;
+                this.profileInfo = this.authService.getProfileInfo1();
             }
             else {
                 this.isAuth = true;
                 this.isteacherAuth = true;
+                this.profileInfo = this.authService.getProfileInfo1();
             }
         });
         this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -957,7 +962,6 @@ let AuthService = class AuthService {
         this.isteacherAuthenticated = false;
         this.shoppingCartLists = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.paidToeflLists = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-        this.profileInfoPassed = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
     }
     signup(user) {
         this.utilityService.loadingStateChanged.next(true);
@@ -982,6 +986,7 @@ let AuthService = class AuthService {
             localStorage.setItem('userId', result.userId);
             localStorage.setItem('userName', result.userName);
             localStorage.setItem('userEmail', result.userEmail);
+            this.profileInfo = new _profile_model__WEBPACK_IMPORTED_MODULE_7__["ProfileInfo"](result.userEmail, result.userName);
             this.authSuccess(result.permissionTag);
             this.utilityService.loadingStateChanged.next(false);
             this.shoppingCartLists.next(result.shoppingCartLists);
@@ -994,6 +999,9 @@ let AuthService = class AuthService {
         this.authChange.next(false);
         this.utilityService.loadingStateChanged.next(false);
         return;
+    }
+    getProfileInfo1() {
+        return this.profileInfo;
     }
     authSuccess(teacherAuth) {
         this.authChange.next(true);
@@ -1020,7 +1028,6 @@ let AuthService = class AuthService {
         this.teacherAuth.next(false); // teacher permission 초기화
         this.isAuthenticated = false; // 인증 취소
         this.isteacherAuthenticated = false; // 관리자 선생님 인증 취소
-        this.profileInfoPassed.next(this.clearProfileInfoPassed);
         this.paidToeflLists.next(this.clearPaidToeflLists); // paid ToeflList 초기화
         this.shoppingCartLists.next(this.clearShoppingCartLists); // shopping cart list 초기화
         this.mainNavModel = new _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_6__["MainNavModel"](false, true); // 인증 clear
@@ -1036,9 +1043,9 @@ let AuthService = class AuthService {
     }
     getProfileInfo() {
         console.log('get Info Profile check');
-        this.profileInfo = new _profile_model__WEBPACK_IMPORTED_MODULE_7__["ProfileInfo"](localStorage.getItem('userEmail'), localStorage.getItem('userName'));
-        console.log(this.profileInfo);
-        return this.profileInfo;
+        this.profileInfo1 = new _profile_model__WEBPACK_IMPORTED_MODULE_7__["ProfileInfo"](localStorage.getItem('userEmail'), localStorage.getItem('userName'));
+        console.log('로컬 스토리지에 저장된 프로파일 정보', this.profileInfo1);
+        return this.profileInfo1;
     }
 };
 AuthService = __decorate([
@@ -1547,7 +1554,10 @@ let ProfileEditComponent = class ProfileEditComponent {
         this.paidToeflLists = [];
     }
     ngOnInit() {
-        this.profileInfo = this.authService.getProfileInfo();
+        this.profileInfo = this.authService.getProfileInfo1();
+        // this.profileInfoSubscription = this.authService.profileInfoPassed.subscribe((updatedProfileInfo: ProfileInfo) => {
+        //   this.profileInfo = updatedProfileInfo;
+        // });
         this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();
         console.log(this.paidToeflLists);
         if (this.paidToeflLists.length !== 0) {
@@ -2230,6 +2240,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../auth/auth.service */ "./src/app/auth/auth.service.ts");
 /* harmony import */ var _payment_shoppingcart_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../payment/shoppingcart.service */ "./src/app/payment/shoppingcart.service.ts");
+/* harmony import */ var _auth_profile_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auth/profile.model */ "./src/app/auth/profile.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2239,6 +2250,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2255,23 +2267,35 @@ let HeaderComponent = class HeaderComponent {
     ngOnInit() {
         // 인증관련 Subject설정
         this.authSubscription = this.authService.authChange.subscribe((authStatus) => {
+            // 로그인 여부 확인
             this.isAuth = authStatus;
+            console.log('header 인증상태 점검 from payment resuslt', this.isAuth);
             // shopping cart 설정영역
             if (!this.isAuth) {
                 this.shoppingcartLists = [];
                 this.shoppingcartListCounter = 0;
             }
             else {
-                this.profileInfo = this.authService.getProfileInfo();
+                // 로그인 시에만 사용자 프로파일 정보를 가져온다
+                console.log('인증상태는', this.isAuth);
+                console.log('teacher 인증상태는', this.isteacherAuth);
+                console.log('현재 프로파일 정보는', this.profileInfo);
                 if (!this.isteacherAuth) {
                     this.shoppingcartListSubscription = this.shoppingcartService.shoppingCartListAdded
                         .subscribe((shoppingcart) => {
+                        // tslint:disable-next-line:max-line-length
                         this.shoppingcartLists = shoppingcart.sort((a, b) => 0 - (a.examNo > b.examNo ? -1 : 1));
                         this.shoppingcartListCounter = this.shoppingcartLists.length;
                     });
-                    console.log('sjopping cart 확인기능');
+                    console.log('shopping cart 확인기능');
                     // 처음 angular가 접속하였을시 node server로 부터 인증된 user 정보에서 shopping cart 와 paidToeflLists 정보 가져오기
                     this.shoppingcartService.connectAuthShoppingCart();
+                    this.profileInfo = this.authService.getProfileInfo();
+                    console.log('로컬 스토리지 로 부터', this.profileInfo);
+                }
+                else {
+                    this.profileInfo = this.authService.getProfileInfo1();
+                    console.log('메모리 로 부터', this.profileInfo);
                 }
             }
         });
@@ -2315,6 +2339,10 @@ __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
     __metadata("design:type", Boolean)
 ], HeaderComponent.prototype, "isteacherAuth", void 0);
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+    __metadata("design:type", _auth_profile_model__WEBPACK_IMPORTED_MODULE_3__["ProfileInfo"])
+], HeaderComponent.prototype, "profileInfo", void 0);
 HeaderComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: 'app-header',
@@ -3711,7 +3739,7 @@ NotFoundComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<!--Double navigation-->\n<header>\n    <!-- Sidebar navigation -->\n    <mdb-sidenav #sidenav1 class=\"sn-bg-1\" [fixed]=\"false\">\n       <app-teacher-sidebar></app-teacher-sidebar>\n    </mdb-sidenav>\n    <!--/. Sidebar navigation -->\n    <app-teacher-nav-header (sidenavToggle1)=\"sidenav1.toggle()\"></app-teacher-nav-header>\n\n</header>\n\n<div class=\"fullscreen\">\n        <div class=\"row ml-2 mr-5\">\n        <div class=\"mx-auto col-md-5\">\n          <app-regist-toefl-list></app-regist-toefl-list>\n        </div>\n        <div class=\"mx-auto col-md-7\">\n            <router-outlet></router-outlet>\n        </div>\n      </div>\n</div>"
+module.exports = "\n<!--Double navigation-->\n<header>\n    <!-- Sidebar navigation -->\n    <mdb-sidenav #sidenav1 class=\"sn-bg-1\" [fixed]=\"false\">\n       <app-teacher-sidebar></app-teacher-sidebar>\n    </mdb-sidenav>\n    <!--/. Sidebar navigation -->\n    <app-teacher-nav-header (sidenavToggle1)=\"sidenav1.toggle()\"></app-teacher-nav-header>\n\n</header>\n\n<div class=\"fullscreen\">\n        <div class=\"row ml-2 mr-5\">\n        <div class=\"mx-auto col-md-5\">\n          <app-regist-toefl-list></app-regist-toefl-list>\n        </div>\n        <div class=\"mx-auto col-md-7\">\n            <router-outlet></router-outlet>\n        </div>\n      </div>\n</div>\n"
 
 /***/ }),
 
@@ -3739,6 +3767,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
 /* harmony import */ var _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Utility-shared/mainNavChange.model */ "./src/app/Utility-shared/mainNavChange.model.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3751,9 +3780,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 let RegisterToeflComponent = class RegisterToeflComponent {
-    constructor(utilityService) {
+    constructor(utilityService, route) {
         this.utilityService = utilityService;
+        this.route = route;
+        this.teacherName = '';
     }
     ngOnInit() {
         this.mainNavModel = new _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_2__["MainNavModel"](true, false); // 이모드는 teacher 권한을 갖는 사람이 젒속하여 시험을 출제하는 모드임
@@ -3766,7 +3798,8 @@ RegisterToeflComponent = __decorate([
         template: __webpack_require__(/*! ./register-toefl.component.html */ "./src/app/toefl/teacher/register-toefl.component.html"),
         styles: [__webpack_require__(/*! ./register-toefl.component.scss */ "./src/app/toefl/teacher/register-toefl.component.scss")]
     }),
-    __metadata("design:paramtypes", [_Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_1__["UtilityService"]])
+    __metadata("design:paramtypes", [_Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_1__["UtilityService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
 ], RegisterToeflComponent);
 
 
@@ -6172,7 +6205,7 @@ class StepperModel {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Navbar -->\n  <mdb-navbar SideClass=\"navbar navbar-light blue fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav\" [containerInside]=\"false\">\n\n    <!-- SideNav slide-out button -->\n        <navlinks class=\"navbar-container\">\n            <div class=\"float-left\">\n                <a (click)=\"onToggleSideNav()\" class=\"button-collapse hidden-nav-button-collapse\">\n                    <i class=\"fa fa-bars\"></i>\n                </a>\n            </div>\n        </navlinks>\n\n        <logo>\n                <div class=\"breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto\">\n                        <p> 2018.6.9</p>\n                    </div>\n\n\n                  <div class=\"ml-auto\">\n                      <h5>Teacher's Board</h5>\n                  </div>\n        </logo>\n\n        <navlinks>\n            <ul class=\"nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav\">\n\n                <li class=\"nav-item\">\n\n                    <a class=\"nav-link waves-light white-text\"\n                    (click)=\"goBackHome()\"\n                    mdbWavesEffect>\n                        <i class=\"fa home-o\"></i>\n                        <span class=\"clearfix d-none d-sm-inline-block\">Home</span>\n                    </a>\n                </li>\n\n                <li  class=\"nav-item\">\n                    <a class=\"nav-link waves-light white-text\" mdbWavesEffect>\n                        <i class=\"fa fa-envelope-o\"></i>\n                        <span class=\"clearfix d-none d-sm-inline-block\">Contact</span>\n                    </a>\n                </li>\n\n                <li class=\"nav-item dropdown btn-group\" dropdown>\n                    <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light white-text\" mdbWavesEffect>\n                        <i class=\"fa fa-user-circle-o\"></i>\n                        Profile\n                    </a>\n                    <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                        <a class=\"dropdown-item\"><i class=\"fa fa-user-circle-o\"></i>Edit</a>\n                        <a class=\"dropdown-item\" [routerLink]=\"['/auth/logout']\">LogOut</a>\n                    </div>\n                </li>\n\n            </ul>\n        </navlinks>\n  </mdb-navbar>\n\n"
+module.exports = "<!-- Navbar -->\n  <mdb-navbar SideClass=\"navbar navbar-light blue fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav\" [containerInside]=\"false\">\n\n    <!-- SideNav slide-out button -->\n        <navlinks class=\"navbar-container\">\n            <div class=\"float-left\">\n                <a (click)=\"onToggleSideNav()\" class=\"button-collapse hidden-nav-button-collapse\">\n                    <i class=\"fa fa-bars\"></i>\n                </a>\n            </div>\n        </navlinks>\n\n        <logo>\n                <div class=\"breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto\">\n                        <p> 2018.6.9</p>\n                    </div>\n\n\n                  <div class=\"ml-auto\">\n                      <h5>Teacher's Board</h5>\n                  </div>\n        </logo>\n\n        <navlinks>\n            <ul class=\"nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav\">\n\n                <li class=\"nav-item\">\n\n                    <a class=\"nav-link waves-light white-text\"\n                    (click)=\"goBackHome()\"\n                    mdbWavesEffect>\n                        <i class=\"fa home-o\"></i>\n                        <span class=\"clearfix d-none d-sm-inline-block\">Home</span>\n                    </a>\n                </li>\n\n                <li  class=\"nav-item\">\n                    <a class=\"nav-link waves-light white-text\" mdbWavesEffect>\n                        <i class=\"fa fa-envelope-o\"></i>\n                        <span class=\"clearfix d-none d-sm-inline-block\">Contact</span>\n                    </a>\n                </li>\n\n                <li class=\"nav-item dropdown btn-group\" dropdown>\n                    <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light white-text\" mdbWavesEffect>\n                        <i class=\"fa fa-user-circle-o\"></i>\n                        {{ this.profileInfo.name }}\n                    </a>\n                    <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                        <a class=\"dropdown-item\"><i class=\"fa fa-user-circle-o\"></i>Edit</a>\n                        <a class=\"dropdown-item\" [routerLink]=\"['/auth/logout']\">LogOut</a>\n                    </div>\n                </li>\n\n            </ul>\n        </navlinks>\n  </mdb-navbar>\n\n"
 
 /***/ }),
 
@@ -6201,6 +6234,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
 /* harmony import */ var _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../Utility-shared/mainNavChange.model */ "./src/app/Utility-shared/mainNavChange.model.ts");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../auth/auth.service */ "./src/app/auth/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6214,11 +6248,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 let TeacherNavHeaderComponent = class TeacherNavHeaderComponent {
-    constructor(router, utilityService) {
+    constructor(router, authService, utilityService) {
         this.router = router;
+        this.authService = authService;
         this.utilityService = utilityService;
         this.sidenavToggle1 = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+    }
+    ngOnInit() {
+        this.profileInfo = this.authService.getProfileInfo1();
     }
     goBackHome() {
         console.log('메인 홈페이지로 이등하는 기능');
@@ -6243,6 +6282,7 @@ TeacherNavHeaderComponent = __decorate([
         styles: [__webpack_require__(/*! ./teacher-nav-header.component.scss */ "./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.scss")]
     }),
     __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+        _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
         _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_2__["UtilityService"]])
 ], TeacherNavHeaderComponent);
 

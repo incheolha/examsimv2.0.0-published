@@ -4,9 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AuthenticationComponent } from './auth/authentication.component';
 import { NotFoundComponent } from './toefl/not-found/not-found.component';
+import { AppComponent } from './app.component';
 
 const APP_ROUTES: Routes = [
-   { path: '', component: WelcomeComponent  },
+   { path: '', redirectTo: '/home', pathMatch: 'full'},
+   { path: 'home', component: WelcomeComponent  }
    // { path: 'teacher', loadChildren: './toefl/teacher/teacher.module#ToeflTeacherModule'},
     // { path: 'toeflexam', loadChildren: './toefl/toeflExam/toeflexam.module#ToeflExamModule'},
 ];

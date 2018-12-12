@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { MainNavModel } from './mainNavChange.model';
 import { ToastrService } from 'ngx-toastr';
-
+import { ProfileInfo } from '../auth/profile.model';
 @Injectable()
 export class UtilityService {
 

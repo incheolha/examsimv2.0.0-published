@@ -23,6 +23,7 @@ export class AuthService {
   mainNavModel: MainNavModel;
 
   profileInfo: ProfileInfo;
+  profileInfo1: ProfileInfo;
 
   clearPaidToeflLists: PaidToeflList[] = [];
   clearShoppingCartLists: Shoppingcart[] = [];
@@ -33,7 +34,6 @@ export class AuthService {
 
   public shoppingCartLists = new Subject<Shoppingcart[]>();
   public paidToeflLists = new Subject<PaidToeflList[]>();
-  public profileInfoPassed = new Subject<ProfileInfo>();
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -89,7 +89,7 @@ export class AuthService {
                                 localStorage.setItem('userId', result.userId);
                                 localStorage.setItem('userName', result.userName);
                                 localStorage.setItem('userEmail', result.userEmail);
-
+                                this.profileInfo = new ProfileInfo(result.userEmail, result.userName);
                                 this.authSuccess(result.permissionTag);
                                 this.utilityService.loadingStateChanged.next(false);
                                 this.shoppingCartLists.next(result.shoppingCartLists);
@@ -106,6 +106,10 @@ export class AuthService {
     return;
   }
 
+
+  getProfileInfo1() {
+    return this.profileInfo;
+  }
   private authSuccess(teacherAuth: string) {
     this.authChange.next(true);
     console.log(this.authChange);
@@ -134,7 +138,7 @@ export class AuthService {
               this.isAuthenticated = false;                             // 인증 취소
               this.isteacherAuthenticated = false;                      // 관리자 선생님 인증 취소
 
-              this.profileInfoPassed.next(this.clearProfileInfoPassed);
+              this.profileInfo = new ProfileInfo(null, null);
               this.paidToeflLists.next(this.clearPaidToeflLists);            // paid ToeflList 초기화
               this.shoppingCartLists.next(this.clearShoppingCartLists);      // shopping cart list 초기화
 
@@ -156,9 +160,10 @@ export class AuthService {
 
   getProfileInfo() {
               console.log('get Info Profile check');
-              this.profileInfo = new ProfileInfo(localStorage.getItem('userEmail'), localStorage.getItem('userName'));
-              console.log(this.profileInfo);
-  return this.profileInfo;
+              this.profileInfo1 = new ProfileInfo(localStorage.getItem('userEmail'), localStorage.getItem('userName'));
+              console.log('로컬 스토리지에 저장된 프로파일 정보',this.profileInfo1);
+
+  return this.profileInfo1;
   }
 
 }

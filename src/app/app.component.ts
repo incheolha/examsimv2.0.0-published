@@ -13,13 +13,12 @@ import { ProfileInfo } from './auth/profile.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
-  title = 'app';
 
+  title = 'app';
   profileInfo: ProfileInfo;
   mainNavHide = false;
   isAuth = false;
   isteacherAuth = false;
-  userName = '';
   val = 0;
 
   utilitySubscription: Subscription;
@@ -30,11 +29,10 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
               private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
-
-
    this.utilitySubscription = this.utilityService.mainNavChanged.subscribe((navStatus: MainNavModel) => {
-
       this.mainNavHide = navStatus.showMainNav;
+      console.log('main nav 상태점검', this.mainNavHide);
+
       if (navStatus.checkLogoutOrNot) {               // logout상태가 호출되었으므로 모든것이 초기화됨
 
                                         this.isAuth = false;
@@ -42,12 +40,12 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
       } else if (!navStatus.isTeacherLogin) {              // 일반 사용자 로그인
                                          this.isAuth = true;
                                          this.isteacherAuth = false;
-
+                                         this.profileInfo = this.authService.getProfileInfo1();
 
       } else {                                        // login상태에서 홈버튼이 click한경우  teacher모드로 기존 토큰이 존재함
         this.isAuth = true;
         this.isteacherAuth = true;
-
+        this.profileInfo = this.authService.getProfileInfo1();
       }
 
     });
@@ -68,7 +66,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngOnDestroy() {
     this.utilitySubscription.unsubscribe();
-
   }
   ngAfterViewChecked() {
     this.changeDetector.detectChanges();
