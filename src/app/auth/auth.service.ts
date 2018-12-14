@@ -22,8 +22,8 @@ export class AuthService {
 
   mainNavModel: MainNavModel;
 
-  profileInfo: ProfileInfo;
-  profileInfo1: ProfileInfo;
+  profileInfo: ProfileInfo;               // 메인 header에 필요한 사용자 이름을 가조오기위한 모델
+  user: User;                             // 사용자에 관한 모든정보를 가져오기 위한 user 모델
 
   clearPaidToeflLists: PaidToeflList[] = [];
   clearShoppingCartLists: Shoppingcart[] = [];
@@ -44,9 +44,7 @@ export class AuthService {
         this.http.post
                       <{ message: string,
                           token: string,
-                          userId: string,
                           userName: string,
-                          userEmail: string,
                           permissionTag: string,
                           shoppingCartLists: Shoppingcart[],
                           paidToeflLists: PaidToeflList[]
@@ -56,9 +54,7 @@ export class AuthService {
                         .subscribe((result) => {
 
                                 localStorage.setItem('token', result.token);
-                                localStorage.setItem('userId', result.userId);
                                 localStorage.setItem('userName', result.userName);
-                                localStorage.setItem('userEmail', result.userEmail);
 
                                 this.authSuccess(result.permissionTag);
                                 this.utilityService.loadingStateChanged.next(false);
@@ -75,9 +71,7 @@ export class AuthService {
         this.http.post
                       <{ message: string,
                           token: string,
-                          userId: string,
                           userName: string,
-                          userEmail: string,
                           permissionTag: string,
                           shoppingCartLists: Shoppingcart[],
                           paidToeflLists: PaidToeflList[]
@@ -86,10 +80,7 @@ export class AuthService {
 
                         .subscribe((result) => {
                                 localStorage.setItem('token', result.token);
-                                localStorage.setItem('userId', result.userId);
                                 localStorage.setItem('userName', result.userName);
-                                localStorage.setItem('userEmail', result.userEmail);
-                                this.profileInfo = new ProfileInfo(result.userEmail, result.userName);
                                 this.authSuccess(result.permissionTag);
                                 this.utilityService.loadingStateChanged.next(false);
                                 this.shoppingCartLists.next(result.shoppingCartLists);
@@ -106,10 +97,6 @@ export class AuthService {
     return;
   }
 
-
-  getProfileInfo1() {
-    return this.profileInfo;
-  }
   private authSuccess(teacherAuth: string) {
     this.authChange.next(true);
     console.log(this.authChange);
@@ -129,9 +116,7 @@ export class AuthService {
 
   logout() {
               localStorage.removeItem('token');
-              localStorage.removeItem('userId');
               localStorage.removeItem('userName');
-              localStorage.removeItem('userEmail');
 
               this.authChange.next(false);                             // 사용자 인증 logout
               this.teacherAuth.next(false);                            // teacher permission 초기화
@@ -160,10 +145,26 @@ export class AuthService {
 
   getProfileInfo() {
               console.log('get Info Profile check');
-              this.profileInfo1 = new ProfileInfo(localStorage.getItem('userEmail'), localStorage.getItem('userName'));
-              console.log('로컬 스토리지에 저장된 프로파일 정보',this.profileInfo1);
-
-  return this.profileInfo1;
+              this.profileInfo = new ProfileInfo('', localStorage.getItem('userName'));
+  return this.profileInfo;
   }
 
+  getUserInfo() {
+
+    // 서버로 부터 모든 데이타를 가져오기 위해서는 반드시 현재 login한 userId와 token이 필요하다
+
+    const token = localStorage.getItem('token');
+    console.log('this is the app component mode');
+    this.http.get<{ user: User }>(this.urlConfig + '/user/getUserInfo/' + '?token=' + token)
+                  .subscribe( (getUser) => {
+                    console.log(getUser.user);
+                    this.user = getUser.user;
+                    return this.user;
+              },
+              (error) => console.log(error)                              // 나중에 이 error는 alert로 처리한다
+              );
+
+  return this.user;
+
+  }
 }

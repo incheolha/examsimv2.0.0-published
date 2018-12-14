@@ -16,7 +16,7 @@ exports.show_get_all = (req, res, next) =>{
         Toefl.find()      //exec() 모두 가져오기
                     .exec()
                     .then(toefls => {
-                        console.log(toefls)
+
                         res.status(200).json({
                             message: 'Toefl List 불러옴',
                             toefls: toefls
@@ -78,8 +78,6 @@ exports.show_payment_exam = (req, res, next) => {
                         paymentConsumer : user._id
                     });
                 }
-
-            console.log(payment);
 
             payment
                     .save()

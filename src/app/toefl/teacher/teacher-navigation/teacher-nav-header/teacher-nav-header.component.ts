@@ -24,11 +24,11 @@ export class TeacherNavHeaderComponent implements OnInit {
               private utilityService: UtilityService) { }
 
   ngOnInit() {
-      this.profileInfo = this.authService.getProfileInfo1();
+      this.profileInfo = this.authService.getProfileInfo();
   }
 
   goBackHome() {
-    console.log('메인 홈페이지로 이등하는 기능');
+
     this.utilityService.audioPlaySevice('', '0', false);           // audio를 초기화한다
     this.mainNavModel = new MainNavModel(false, false, true);      // 앞에것은 showNav값 이고 뒤에것은 logout이 아닌경우 즉 home button click시
     this.utilityService.mainNavChanged.next(this.mainNavModel);    // main 화면 navigation활성화

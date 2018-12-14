@@ -42,6 +42,24 @@ exports.user_get_all = (req, res, next) => {
                 });
 };
 
+exports.user_get_one = (req, res, next) => {
+
+  const decoded = jwt.decode(req.query.token);
+  console.log("decoded: " + decoded.user._id);
+
+  console.log('이것은 서버 점검영역이다');
+  User.findById(decoded.user._id)
+              .exec()
+              .then(user => {
+                console.log('실제로 찾은 사용자 정보', user);
+                  res.status(200).json({ user: user });
+              })
+              .catch(err => {
+                  console.log(err);
+                  res.status(500).json({error: err});
+              });
+};
+
 exports.user_signUp = (req, res, next) => {
   console.log('name is '+ req.body.name);
   console.log('email is '+ req.body.email);
@@ -82,10 +100,8 @@ exports.user_signUp = (req, res, next) => {
                                 token: token,
                                 permissionTag: user.permissionTag,
                                 userName: user.name,
-                                userEmail: user.email,
                                 shoppingCartLists : user.shoppingCartLists,
                                 paidToeflLists : user.paidToeflLists,
-                                userId: user._id
                             });
 
                             })
@@ -128,11 +144,10 @@ exports.user_login = (req, res, next) => {
                     token: token,
                     permissionTag: user.permissionTag,
                     userName: user.name,
-                    userEmail: user.email,
                     shoppingCartLists : user.shoppingCartLists,
                     paidToeflLists : user.paidToeflLists,
                     paymentId : user.paymentId,
-                    userId: user._id
+
                 });
             }
             res.status(401).json({
@@ -151,9 +166,11 @@ exports.user_login = (req, res, next) => {
 };
 
 exports.user_delete = (req, res, next) => {
-    const id = req.params.userId;
 
-    User.remove({_id:id})
+  const decoded = jwt.decode(req.query.token);
+  console.log("decoded: " + decoded.user._id);
+
+    User.remove({_id:decoded.user._id})
                             .exec()
                             .then(result => {
                                 res.status(200).json(

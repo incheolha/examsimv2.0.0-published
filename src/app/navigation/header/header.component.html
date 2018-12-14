@@ -113,7 +113,7 @@
                                   {{ this.profileInfo.name }}
                               </a>
                               <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
-                                  <a class="dropdown-item" [routerLink]="['/auth/profile']"><i class="fa fa-user-circle-o mr-1"></i>Profile</a>
+                                  <a class="dropdown-item" [routerLink]="['/auth/profile']"><i class="fa fa-user-circle-o mr-1"></i>Dashboard</a>
                                   <a *ngIf="!isteacherAuth" class="dropdown-item" [routerLink]="['/auth/orderHistory']"><i class="fa fa-info mr-1"></i>Purchase History</a>
                                   <a class="dropdown-item" [routerLink]="['/auth/logout']"><i class="fa fa-sign-out mr-1"></i>LogOut</a>
                               </div>

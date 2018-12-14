@@ -523,6 +523,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
+/*
+    이 mainNavChanged Subject은 주 nav menu를 활성화 시키는 역할을 수행한다
+    만일 main nav상태가 false이면 main nav가 활성화 되어 있고 만일 true이면
+    이 main nav는 hide되면서 상대적으로 teacher-nav-header가 활성화 되는 기능이다
+    이기능에서 navStatus가 MainNavModel을 사용하고 있으며
+    다음 3 가지 기능을 수행한다 1) showMainNav를 hide or not
+                          2) logout 점검,
+                          3) teacherLogin 점검
+    또한 로그인 후 사용자 이름을 가져올수 있는 profileInfo정보를 수행하며 특히
+    payment구현시 반드시 prfileInfo()가 localstorage에 저장된 userName을 가지고 와야
+    property 'name' not defined error 가 발생하자 않는다
+    이기능은 또한 routing 시 처음에는 곧바로 welcomComponent가 불러지므로 활성화 되지는 않지만
+    logout/isAuth/teacherLogin/mainNav가 변경되자 마자 작동되는 기능이므로
+    많은 시간을 소비한 곳이므로 잘 기억해두기 바란다
+*/
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -559,13 +574,13 @@ let AppComponent = class AppComponent {
             else if (!navStatus.isTeacherLogin) {
                 this.isAuth = true;
                 this.isteacherAuth = false;
-                this.profileInfo = this.authService.getProfileInfo1();
             }
             else {
                 this.isAuth = true;
                 this.isteacherAuth = true;
-                this.profileInfo = this.authService.getProfileInfo1();
             }
+            this.profileInfo = this.authService.getProfileInfo();
+            console.log(this.profileInfo);
         });
         this.router.routeReuseStrategy.shouldReuseRoute = function () {
             return false;
@@ -968,9 +983,7 @@ let AuthService = class AuthService {
         this.http.post(this.urlConfig + '/user/signup', user)
             .subscribe((result) => {
             localStorage.setItem('token', result.token);
-            localStorage.setItem('userId', result.userId);
             localStorage.setItem('userName', result.userName);
-            localStorage.setItem('userEmail', result.userEmail);
             this.authSuccess(result.permissionTag);
             this.utilityService.loadingStateChanged.next(false);
             this.shoppingCartLists.next(result.shoppingCartLists);
@@ -983,10 +996,7 @@ let AuthService = class AuthService {
         this.http.post(this.urlConfig + '/user/login', user)
             .subscribe((result) => {
             localStorage.setItem('token', result.token);
-            localStorage.setItem('userId', result.userId);
             localStorage.setItem('userName', result.userName);
-            localStorage.setItem('userEmail', result.userEmail);
-            this.profileInfo = new _profile_model__WEBPACK_IMPORTED_MODULE_7__["ProfileInfo"](result.userEmail, result.userName);
             this.authSuccess(result.permissionTag);
             this.utilityService.loadingStateChanged.next(false);
             this.shoppingCartLists.next(result.shoppingCartLists);
@@ -999,9 +1009,6 @@ let AuthService = class AuthService {
         this.authChange.next(false);
         this.utilityService.loadingStateChanged.next(false);
         return;
-    }
-    getProfileInfo1() {
-        return this.profileInfo;
     }
     authSuccess(teacherAuth) {
         this.authChange.next(true);
@@ -1021,13 +1028,12 @@ let AuthService = class AuthService {
     }
     logout() {
         localStorage.removeItem('token');
-        localStorage.removeItem('userId');
         localStorage.removeItem('userName');
-        localStorage.removeItem('userEmail');
         this.authChange.next(false); // 사용자 인증 logout
         this.teacherAuth.next(false); // teacher permission 초기화
         this.isAuthenticated = false; // 인증 취소
         this.isteacherAuthenticated = false; // 관리자 선생님 인증 취소
+        this.profileInfo = new _profile_model__WEBPACK_IMPORTED_MODULE_7__["ProfileInfo"](null, null);
         this.paidToeflLists.next(this.clearPaidToeflLists); // paid ToeflList 초기화
         this.shoppingCartLists.next(this.clearShoppingCartLists); // shopping cart list 초기화
         this.mainNavModel = new _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_6__["MainNavModel"](false, true); // 인증 clear
@@ -1043,9 +1049,20 @@ let AuthService = class AuthService {
     }
     getProfileInfo() {
         console.log('get Info Profile check');
-        this.profileInfo1 = new _profile_model__WEBPACK_IMPORTED_MODULE_7__["ProfileInfo"](localStorage.getItem('userEmail'), localStorage.getItem('userName'));
-        console.log('로컬 스토리지에 저장된 프로파일 정보', this.profileInfo1);
-        return this.profileInfo1;
+        this.profileInfo = new _profile_model__WEBPACK_IMPORTED_MODULE_7__["ProfileInfo"]('', localStorage.getItem('userName'));
+        return this.profileInfo;
+    }
+    getUserInfo() {
+        // 서버로 부터 모든 데이타를 가져오기 위해서는 반드시 현재 login한 userId와 token이 필요하다
+        const token = localStorage.getItem('token');
+        console.log('this is the app component mode');
+        return this.http.get(this.urlConfig + '/user/getUserInfo/' + '?token=' + token)
+            .map((getUser) => {
+            this.user = getUser.user;
+            console.log(this.user);
+            return this.user;
+        }, (error) => console.log(error) // 나중에 이 error는 alert로 처리한다
+        );
     }
 };
 AuthService = __decorate([
@@ -1311,7 +1328,7 @@ class ProfileInfo {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"row\">\n    <div class=\"col-md-11 mx-auto\">\n      <mdb-card class=\"testimonial-card\">\n        <div class=\"card-up indigo lighten-1\">\n        </div>\n        <div class=\"avatar mx-auto\">\n          <img src=\"https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg\" class=\"rounded-circle\">\n        </div>\n\n        <mdb-card-body>\n\n          <mdb-card-title>\n            <h4>{{ profileInfo.name }}</h4>\n          </mdb-card-title>\n          <hr>\n          <p>Email: {{ profileInfo.email }}</p>\n          <hr>\n          <p>Password 변경 부위</p>\n          <hr>\n          <p>Current Address 삽입부위</p>\n          <hr>\n          <p>Shipping Address 삽입부위</p>\n        </mdb-card-body>\n      </mdb-card>\n    </div>\n  </div>\n\n"
+module.exports = "\n<div class=\"row\">\n    <div class=\"col-md-11 mx-auto\">\n      <mdb-card class=\"testimonial-card\">\n        <div class=\"card-up indigo lighten-1\">\n        </div>\n        <div class=\"avatar mx-auto\">\n          <img src=\"https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg\" class=\"rounded-circle\">\n        </div>\n\n        <mdb-card-body>\n\n          <mdb-card-title>\n            <h4>{{ userInfo.name }}</h4>\n          </mdb-card-title>\n          <hr>\n          <p>Email: {{ userInfo.email }}</p>\n          <hr>\n          <p>Password 변경 부위</p>\n          <hr>\n          <p>Current Address 삽입부위</p>\n          <hr>\n          <p>Shipping Address 삽입부위</p>\n        </mdb-card-body>\n      </mdb-card>\n    </div>\n  </div>\n\n"
 
 /***/ }),
 
@@ -1337,7 +1354,7 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditUserProfileComponent", function() { return EditUserProfileComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _profile_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../profile.model */ "./src/app/auth/profile.model.ts");
+/* harmony import */ var _user_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../user.model */ "./src/app/auth/user.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1351,13 +1368,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 let EditUserProfileComponent = class EditUserProfileComponent {
     constructor() { }
-    ngOnInit() {
-    }
 };
 __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", _profile_model__WEBPACK_IMPORTED_MODULE_1__["ProfileInfo"])
-], EditUserProfileComponent.prototype, "profileInfo", void 0);
+    __metadata("design:type", _user_model__WEBPACK_IMPORTED_MODULE_1__["User"])
+], EditUserProfileComponent.prototype, "userInfo", void 0);
 EditUserProfileComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: 'app-edit-user-profile',
@@ -1500,7 +1515,7 @@ ExamHistoryComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"view\">\n\n        <div class=\"row t-1\">\n            <div class=\"col-md-11 p-0 mx-auto\">\n                    <mdb-tabset #staticTabs [buttonClass]=\"'nav-tabs tabs-6 pills-secondary blue lighten-2'\" [contentClass]=\"''\">\n\n                            <mdb-tab heading=\"Edit User Profile\">\n                                <div class=\"row\">\n                                    <div class=\"col-md-12\">\n                                        <br>\n                                        <app-edit-user-profile [profileInfo]=\"profileInfo\"></app-edit-user-profile>\n                                    </div>\n                                </div>\n                            </mdb-tab>\n\n                            <mdb-tab heading=\"Exam History\">\n                                <div class=\"row\">\n                                    <div class=\"col-md-12 mx-auto\">\n                                        <br>\n                                        <app-exam-history></app-exam-history>\n                                    </div>\n                                </div>\n                            </mdb-tab>\n\n                            <mdb-tab heading=\"Exam Analysis\">\n                                <div class=\"row\">\n                                    <div class=\"col-md-12 mx-auto\">\n                                        <br>\n                                       <app-exam-analysis></app-exam-analysis>\n                                    </div>\n                                </div>\n                            </mdb-tab>\n\n                            <mdb-tab heading=\"Exam Order Histroy\">\n                                <div class=\"row\">\n                                    <div class=\"col-md-12 mx-auto\">\n                                        <br>\n                                        <app-profile-order-history [paidToeflLists]=\"paidToeflLists\" [numberOfPaginators]=\"numberOfPaginators\" [paginators]=\"paginators\" [totalAmount]=\"totalAmount\"></app-profile-order-history>\n                                    </div>\n                                </div>\n                            </mdb-tab>\n\n                    </mdb-tabset>\n            </div>\n        </div>\n        <div class=\"row t-1\">\n          <div class=\"col-md-11 text-center mx-auto\">\n              <button mdbBtn type=\"button\" color=\"primary\" (click)=\"onReturn()\" mdbWavesEffect><mdb-icon icon=\"magic\" class=\"mr-1\"></mdb-icon>Confirmation</button>\n          </div>\n        </div>\n</div>\n"
+module.exports = "\n<div class=\"view\">\n\n        <div class=\"row t-1\">\n            <div class=\"col-md-11 p-0 mx-auto\">\n                    <mdb-tabset #staticTabs [buttonClass]=\"'md-tabs tabs-6 pills-secondary blue lighten-2'\" [contentClass]=\"''\">\n\n                            <mdb-tab heading=\"Edit User Profile\">\n                                <div class=\"row\">\n                                    <div class=\"col-md-12\">\n                                        <br>\n                                        <app-edit-user-profile [userInfo]=\"userInfo\"></app-edit-user-profile>\n                                    </div>\n                                </div>\n                            </mdb-tab>\n\n                            <mdb-tab heading=\"Exam History\">\n                                <div class=\"row\">\n                                    <div class=\"col-md-12 mx-auto\">\n                                        <br>\n                                        <app-exam-history></app-exam-history>\n                                    </div>\n                                </div>\n                            </mdb-tab>\n\n                            <mdb-tab heading=\"Exam Analysis\">\n                                <div class=\"row\">\n                                    <div class=\"col-md-12 mx-auto\">\n                                        <br>\n                                       <app-exam-analysis></app-exam-analysis>\n                                    </div>\n                                </div>\n                            </mdb-tab>\n\n                            <mdb-tab heading=\"Exam Order Histroy\">\n                                <div class=\"row\">\n                                    <div class=\"col-md-12 mx-auto\">\n                                        <br>\n                                        <app-profile-order-history [paidToeflLists]=\"paidToeflLists\" [numberOfPaginators]=\"numberOfPaginators\" [paginators]=\"paginators\" [totalAmount]=\"totalAmount\"></app-profile-order-history>\n                                    </div>\n                                </div>\n                            </mdb-tab>\n\n                    </mdb-tabset>\n            </div>\n        </div>\n        <div class=\"row t-1\">\n          <div class=\"col-md-11 text-center mx-auto\">\n              <button mdbBtn type=\"button\" color=\"primary\" (click)=\"onReturn()\" mdbWavesEffect><mdb-icon icon=\"magic\" class=\"mr-1\"></mdb-icon>Confirmation</button>\n          </div>\n        </div>\n</div>\n"
 
 /***/ }),
 
@@ -1554,12 +1569,9 @@ let ProfileEditComponent = class ProfileEditComponent {
         this.paidToeflLists = [];
     }
     ngOnInit() {
-        this.profileInfo = this.authService.getProfileInfo1();
-        // this.profileInfoSubscription = this.authService.profileInfoPassed.subscribe((updatedProfileInfo: ProfileInfo) => {
-        //   this.profileInfo = updatedProfileInfo;
-        // });
+        //         this.userInfo =  this.authService.getUserInfo();      // 실제 사용자 정보를 획득한다
+        console.log(this.userInfo);
         this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();
-        console.log(this.paidToeflLists);
         if (this.paidToeflLists.length !== 0) {
             for (const paidToeflitem of this.paidToeflLists) {
                 this.totalAmount += paidToeflitem.examPrice;
@@ -2212,7 +2224,7 @@ FooterComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Navbar -->\n<mdb-navbar SideClass=\"navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav\" [containerInside]=\"false\">\n\n  <!-- SideNav slide-out button -->\n                  <navlinks class=\"navbar-container\">\n                      <div class=\"float-left\">\n                          <a (click)=\"onToggleSideNav()\" class=\"button-collapse hidden-nav-button-collapse\">\n                              <i class=\"fa fa-bars\"></i>\n                          </a>\n                      </div>\n                  </navlinks>\n\n  <!-- Breadcrumb-->\n                  <logo>\n\n                      <div class=\"breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto\">\n                          <p>Total Examinations for People </p>\n                      </div>\n                  </logo>\n\n  <!-- 가로 진열하는 각종 navbar menu를 구성하는 영역 -->\n        <navlinks>\n                <ul class=\"nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav\">\n\n\n      <!-- 시험출제자 모드로 로그인 하였을시 활성화 시킨다 -->\n                          <li *ngIf=\"isteacherAuth\" class=\"nav-item\">\n\n                              <a class=\"nav-link border border-light rounded waves-light\"\n                              [routerLink]=\"['/teacher']\"\n                              mdbWavesEffect>\n                                  <i class=\"fa fa-pencil-square-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Examination</span>\n                              </a>\n                          </li>\n\n      <!-- Contact Navbar 시작 -->\n                          <li  class=\"nav-item\">\n                              <a class=\"nav-link waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-envelope-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Contact</span>\n                              </a>\n                          </li>\n\n      <!-- Support Navbar 시작 -->\n                          <li  class=\"nav-item\">\n                              <a class=\"nav-link waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-comments-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Support</span>\n                              </a>\n                          </li>\n\n      <!-- shopping cart dropdown menu시작 -->\n\n                          <li *ngIf=\"!isteacherAuth && isAuth\" class=\"nav-item dropdown btn-group\" dropdown >\n\n\n                                <a dropdownToggle type=\"button\" aria-hidden=\"true\"\n                                    class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                        <i class=\"fa  fa-shopping-bag fa-lg\" aria-hidden=\"true\"></i>\n                                        <span class=\"counter\">  {{ shoppingcartListCounter }} </span>\n                                </a>\n                                                <div *ngIf=\"shoppingcartListCounter != 0\" class=\"dropdown-menu dropdown-primary dropdown-menu-right text-center\"  role=\"menu\" >\n                                                            <table class=\"table\">\n                                                                <thead>\n                                                                  <tr>\n                                                                    <th colspan=\"1\">No</th>\n                                                                    <th colspan=\"1\">Level</th>\n                                                                    <th colspan=\"1\">Price</th>\n                                                                    <th colspan=\"1\">Remove</th>\n                                                                  </tr>\n                                                                </thead>\n                                                                <tbody>\n\n                                                                  <tr *ngFor=\"let shoppingcartItem of shoppingcartLists\">\n\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examNo}}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examLevel}}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examPrice | currency : \"USD\" }}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"shoppingcartItemDelete(shoppingcartItem)\">\n                                                                            <span aria-hidden=\"true\">&times;</span>\n                                                                        </button>\n                                                                    </td>\n                                                                  </tr>\n                                                                </tbody>\n                                                             </table>\n                                                              <div class=\"dropdown-divider\"></div>\n                                                              <button mdbBtn type=\"button\" color=\"indigo\" rounded=\"true\" outline=\"true\" size=\"sm\"\n                                                                      (click)=\"goShoppingListCheckOut()\" mdbWavesEffect>\n                                                                      <mdb-icon icon=\"credit-card\" class=\"mr-1\"></mdb-icon>\n                                                                      CheckOut\n                                                              </button>\n                                                              <button mdbBtn class=\"mr-1\" type=\"button\" color=\"indigo\" rounded=\"true\" outline=\"true\" size=\"sm\"\n                                                              (click)=\"goShoppingListSave()\" mdbWavesEffect>\n                                                              <mdb-icon icon=\"credit-card\" class=\"mr-1\"></mdb-icon>\n                                                              Save\n                                                      </button>\n\n                                                </div>\n                          </li>\n\n      <!-- 사용자 profile dropdopw menu -->\n                          <li *ngIf=\"isAuth\" class=\"nav-item dropdown btn-group\" dropdown>\n                              <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-user-circle-o\"></i>\n                                  {{ this.profileInfo.name }}\n                              </a>\n                              <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                                  <a class=\"dropdown-item\" [routerLink]=\"['/auth/profile']\"><i class=\"fa fa-user-circle-o mr-1\"></i>Profile</a>\n                                  <a *ngIf=\"!isteacherAuth\" class=\"dropdown-item\" [routerLink]=\"['/auth/orderHistory']\"><i class=\"fa fa-info mr-1\"></i>Purchase History</a>\n                                  <a class=\"dropdown-item\" [routerLink]=\"['/auth/logout']\"><i class=\"fa fa-sign-out mr-1\"></i>LogOut</a>\n                              </div>\n                          </li>\n\n      <!-- 사용자 login/signup dropdown menu  -->\n                          <li *ngIf=\"!isAuth\" class=\"nav-item dropdown btn-group\" dropdown>\n                              <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-smile-o\"></i>\n                                  LogIn\n                              </a>\n                              <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                                <a class=\"dropdown-item\" [routerLink]=\"['/auth/login']\">\n                                  <i class=\"fa fa-sign-in\"></i>\n                                  LogIn</a>\n                                <a class=\"dropdown-item\" [routerLink]=\"['/auth/signup']\">\n                                  <i class=\"fa fa-registered\"></i>\n                                  SignUp</a>\n                            </div>\n                          </li>\n\n                </ul>\n        </navlinks>\n    </mdb-navbar>\n\n"
+module.exports = "<!-- Navbar -->\n<mdb-navbar SideClass=\"navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav\" [containerInside]=\"false\">\n\n  <!-- SideNav slide-out button -->\n                  <navlinks class=\"navbar-container\">\n                      <div class=\"float-left\">\n                          <a (click)=\"onToggleSideNav()\" class=\"button-collapse hidden-nav-button-collapse\">\n                              <i class=\"fa fa-bars\"></i>\n                          </a>\n                      </div>\n                  </navlinks>\n\n  <!-- Breadcrumb-->\n                  <logo>\n\n                      <div class=\"breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto\">\n                          <p>Total Examinations for People </p>\n                      </div>\n                  </logo>\n\n  <!-- 가로 진열하는 각종 navbar menu를 구성하는 영역 -->\n        <navlinks>\n                <ul class=\"nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav\">\n\n\n      <!-- 시험출제자 모드로 로그인 하였을시 활성화 시킨다 -->\n                          <li *ngIf=\"isteacherAuth\" class=\"nav-item\">\n\n                              <a class=\"nav-link border border-light rounded waves-light\"\n                              [routerLink]=\"['/teacher']\"\n                              mdbWavesEffect>\n                                  <i class=\"fa fa-pencil-square-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Examination</span>\n                              </a>\n                          </li>\n\n      <!-- Contact Navbar 시작 -->\n                          <li  class=\"nav-item\">\n                              <a class=\"nav-link waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-envelope-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Contact</span>\n                              </a>\n                          </li>\n\n      <!-- Support Navbar 시작 -->\n                          <li  class=\"nav-item\">\n                              <a class=\"nav-link waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-comments-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Support</span>\n                              </a>\n                          </li>\n\n      <!-- shopping cart dropdown menu시작 -->\n\n                          <li *ngIf=\"!isteacherAuth && isAuth\" class=\"nav-item dropdown btn-group\" dropdown >\n\n\n                                <a dropdownToggle type=\"button\" aria-hidden=\"true\"\n                                    class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                        <i class=\"fa  fa-shopping-bag fa-lg\" aria-hidden=\"true\"></i>\n                                        <span class=\"counter\">  {{ shoppingcartListCounter }} </span>\n                                </a>\n                                                <div *ngIf=\"shoppingcartListCounter != 0\" class=\"dropdown-menu dropdown-primary dropdown-menu-right text-center\"  role=\"menu\" >\n                                                            <table class=\"table\">\n                                                                <thead>\n                                                                  <tr>\n                                                                    <th colspan=\"1\">No</th>\n                                                                    <th colspan=\"1\">Level</th>\n                                                                    <th colspan=\"1\">Price</th>\n                                                                    <th colspan=\"1\">Remove</th>\n                                                                  </tr>\n                                                                </thead>\n                                                                <tbody>\n\n                                                                  <tr *ngFor=\"let shoppingcartItem of shoppingcartLists\">\n\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examNo}}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examLevel}}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examPrice | currency : \"USD\" }}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"shoppingcartItemDelete(shoppingcartItem)\">\n                                                                            <span aria-hidden=\"true\">&times;</span>\n                                                                        </button>\n                                                                    </td>\n                                                                  </tr>\n                                                                </tbody>\n                                                             </table>\n                                                              <div class=\"dropdown-divider\"></div>\n                                                              <button mdbBtn type=\"button\" color=\"indigo\" rounded=\"true\" outline=\"true\" size=\"sm\"\n                                                                      (click)=\"goShoppingListCheckOut()\" mdbWavesEffect>\n                                                                      <mdb-icon icon=\"credit-card\" class=\"mr-1\"></mdb-icon>\n                                                                      CheckOut\n                                                              </button>\n                                                              <button mdbBtn class=\"mr-1\" type=\"button\" color=\"indigo\" rounded=\"true\" outline=\"true\" size=\"sm\"\n                                                              (click)=\"goShoppingListSave()\" mdbWavesEffect>\n                                                              <mdb-icon icon=\"credit-card\" class=\"mr-1\"></mdb-icon>\n                                                              Save\n                                                      </button>\n\n                                                </div>\n                          </li>\n\n      <!-- 사용자 profile dropdopw menu -->\n                          <li *ngIf=\"isAuth\" class=\"nav-item dropdown btn-group\" dropdown>\n                              <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-user-circle-o\"></i>\n                                  {{ this.profileInfo.name }}\n                              </a>\n                              <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                                  <button class=\"dropdown-item\" (click)=\"onDashboard()\"><i class=\"fa fa-user-circle-o mr-1\"></i>Dashboard</button>\n                                  <a *ngIf=\"!isteacherAuth\" class=\"dropdown-item\" [routerLink]=\"['/auth/orderHistory']\"><i class=\"fa fa-info mr-1\"></i>Purchase History</a>\n                                  <a class=\"dropdown-item\" [routerLink]=\"['/auth/logout']\"><i class=\"fa fa-sign-out mr-1\"></i>LogOut</a>\n                              </div>\n                          </li>\n\n      <!-- 사용자 login/signup dropdown menu  -->\n                          <li *ngIf=\"!isAuth\" class=\"nav-item dropdown btn-group\" dropdown>\n                              <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-smile-o\"></i>\n                                  LogIn\n                              </a>\n                              <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                                <a class=\"dropdown-item\" [routerLink]=\"['/auth/login']\">\n                                  <i class=\"fa fa-sign-in\"></i>\n                                  LogIn</a>\n                                <a class=\"dropdown-item\" [routerLink]=\"['/auth/signup']\">\n                                  <i class=\"fa fa-registered\"></i>\n                                  SignUp</a>\n                            </div>\n                          </li>\n\n                </ul>\n        </navlinks>\n    </mdb-navbar>\n\n"
 
 /***/ }),
 
@@ -2241,6 +2253,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../auth/auth.service */ "./src/app/auth/auth.service.ts");
 /* harmony import */ var _payment_shoppingcart_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../payment/shoppingcart.service */ "./src/app/payment/shoppingcart.service.ts");
 /* harmony import */ var _auth_profile_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auth/profile.model */ "./src/app/auth/profile.model.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2254,9 +2267,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 let HeaderComponent = class HeaderComponent {
-    constructor(authService, shoppingcartService) {
+    constructor(authService, router, shoppingcartService) {
         this.authService = authService;
+        this.router = router;
         this.shoppingcartService = shoppingcartService;
         // 상단 navBar와 sideMenu와 관련한 변수설정
         this.sidenavToggle = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
@@ -2269,17 +2284,20 @@ let HeaderComponent = class HeaderComponent {
         this.authSubscription = this.authService.authChange.subscribe((authStatus) => {
             // 로그인 여부 확인
             this.isAuth = authStatus;
-            console.log('header 인증상태 점검 from payment resuslt', this.isAuth);
-            // shopping cart 설정영역
+            // 로그인이 되어 있지 않으면 shoppingcartLists를 초기화한다
             if (!this.isAuth) {
                 this.shoppingcartLists = [];
                 this.shoppingcartListCounter = 0;
             }
             else {
-                // 로그인 시에만 사용자 프로파일 정보를 가져온다
-                console.log('인증상태는', this.isAuth);
-                console.log('teacher 인증상태는', this.isteacherAuth);
-                console.log('현재 프로파일 정보는', this.profileInfo);
+                // 사용자 프로파일중 이름을 가져온다
+                this.profileInfo = this.authService.getProfileInfo();
+                console.log('로컬 스토리지 로 부터', this.profileInfo);
+                // 시험출제자 선생님 인증관련 영역
+                this.teacherAuthSubscription = this.authService.teacherAuth.subscribe((teacherStatus) => {
+                    this.isteacherAuth = teacherStatus;
+                });
+                // 로그인이 되어 있고 teacher mode가 아니면 shopping cart를 활성화 시킨다
                 if (!this.isteacherAuth) {
                     this.shoppingcartListSubscription = this.shoppingcartService.shoppingCartListAdded
                         .subscribe((shoppingcart) => {
@@ -2287,21 +2305,10 @@ let HeaderComponent = class HeaderComponent {
                         this.shoppingcartLists = shoppingcart.sort((a, b) => 0 - (a.examNo > b.examNo ? -1 : 1));
                         this.shoppingcartListCounter = this.shoppingcartLists.length;
                     });
-                    console.log('shopping cart 확인기능');
                     // 처음 angular가 접속하였을시 node server로 부터 인증된 user 정보에서 shopping cart 와 paidToeflLists 정보 가져오기
                     this.shoppingcartService.connectAuthShoppingCart();
-                    this.profileInfo = this.authService.getProfileInfo();
-                    console.log('로컬 스토리지 로 부터', this.profileInfo);
-                }
-                else {
-                    this.profileInfo = this.authService.getProfileInfo1();
-                    console.log('메모리 로 부터', this.profileInfo);
                 }
             }
-        });
-        // 시험출제자 선생님 인증관련 영역
-        this.teacherAuthSubscription = this.authService.teacherAuth.subscribe((teacherStatus) => {
-            this.isteacherAuth = teacherStatus;
         });
     }
     // 유저가 헤더부분에 있는 쇼핑목록을 지웠을때 실행됨.
@@ -2318,6 +2325,15 @@ let HeaderComponent = class HeaderComponent {
     }
     onToggleSideNav() {
         this.sidenavToggle.emit();
+    }
+    onDashboard() {
+        console.log('dash board click');
+        this.authService.getUserInfo().subscribe((user) => {
+            this.userInfo = user;
+            console.log(this.userInfo);
+        });
+        this.router.navigate(['/auth/profile']);
+        console.log(this.userInfo);
     }
     ngOnDestroy() {
         this.authSubscription.unsubscribe();
@@ -2350,6 +2366,7 @@ HeaderComponent = __decorate([
         styles: [__webpack_require__(/*! ./header.component.scss */ "./src/app/navigation/header/header.component.scss")]
     }),
     __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
         _payment_shoppingcart_service__WEBPACK_IMPORTED_MODULE_2__["ShoppingcartService"]])
 ], HeaderComponent);
 
@@ -6257,10 +6274,9 @@ let TeacherNavHeaderComponent = class TeacherNavHeaderComponent {
         this.sidenavToggle1 = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     ngOnInit() {
-        this.profileInfo = this.authService.getProfileInfo1();
+        this.profileInfo = this.authService.getProfileInfo();
     }
     goBackHome() {
-        console.log('메인 홈페이지로 이등하는 기능');
         this.utilityService.audioPlaySevice('', '0', false); // audio를 초기화한다
         this.mainNavModel = new _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_3__["MainNavModel"](false, false, true); // 앞에것은 showNav값 이고 뒤에것은 logout이 아닌경우 즉 home button click시
         this.utilityService.mainNavChanged.next(this.mainNavModel); // main 화면 navigation활성화

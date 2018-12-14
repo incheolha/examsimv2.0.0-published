@@ -3,10 +3,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { ShoppingcartService } from '../../../payment/shoppingcart.service';
 import { PaidToeflList } from './../../../payment/model/paidToeflLists.model';
-import { ProfileInfo } from './../../profile.model';
 
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { User } from '../../user.model';
 
 @Component({
   selector: 'app-profile-edit',
@@ -16,6 +15,8 @@ import { Subscription } from 'rxjs';
 export class ProfileEditComponent implements OnInit {
 
 
+  userInfo: User;
+
   itemsPerPage = 3;
   numberOfPaginators: number;
   paginators: Array<any> = [];
@@ -23,9 +24,6 @@ export class ProfileEditComponent implements OnInit {
   currentDate = new Date();
   totalAmount = 0;
 
-  profileInfo: ProfileInfo;
-  profileInfoSubscription: Subscription;
-  userName: string;
   paidToeflLists: PaidToeflList[] = [];
 
   constructor(private authService: AuthService,
@@ -33,13 +31,7 @@ export class ProfileEditComponent implements OnInit {
               private shoppingCartService: ShoppingcartService) { }
 
   ngOnInit() {
-
-         this.profileInfo =  this.authService.getProfileInfo1();
-          // this.profileInfoSubscription = this.authService.profileInfoPassed.subscribe((updatedProfileInfo: ProfileInfo) => {
-          //   this.profileInfo = updatedProfileInfo;
-          // });
-          this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();
-                  console.log(this.paidToeflLists);
+         this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();
                   if ( this.paidToeflLists.length !== 0 ) {
                     for (const paidToeflitem of this.paidToeflLists) {
                       this.totalAmount += paidToeflitem.examPrice;
