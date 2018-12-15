@@ -227,7 +227,8 @@ exports.payment_get_result = (req, res, next) => {
         console.log(user.paidToeflLists);
 
           return res.status(200).json( {
-            payPalResult: user.paidToeflLists
+            payPalResult: user.paidToeflLists,
+            paypalUserInfo: user
           } )
 
       }

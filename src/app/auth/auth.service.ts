@@ -1,5 +1,5 @@
 import { GlobalConstantShare } from '../Utility-shared/globalConstantShare';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
@@ -11,6 +11,8 @@ import { User } from './user.model';
 import { Shoppingcart } from '../payment/model/shoppingcart.model';
 import { PaidToeflList } from '../payment/model/paidToeflLists.model';
 import { ProfileInfo } from './profile.model';
+import { Subscription } from 'rxjs/Subscription';
+import { ShoppingcartService } from '../payment/shoppingcart.service';
 
 
 @Injectable()
@@ -34,6 +36,7 @@ export class AuthService {
 
   public shoppingCartLists = new Subject<Shoppingcart[]>();
   public paidToeflLists = new Subject<PaidToeflList[]>();
+  public userInfoList = new Subject<User>();
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -87,6 +90,7 @@ export class AuthService {
                                 this.authSuccess(result.user.permissionTag);
                                 this.utilityService.loadingStateChanged.next(false);
                                 this.shoppingCartLists.next(result.user.shoppingCartLists);
+                                this.userInfoList.next(result.user);
                                 this.paidToeflLists.next(result.user.paidToeflLists);
                                 this.router.navigate(['/']);
                     },
@@ -153,6 +157,7 @@ export class AuthService {
   }
 
   getUserInfo() {
-  return this.user;
+    return this.user;
   }
+
 }

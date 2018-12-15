@@ -108,7 +108,8 @@ exports.stripe_payment = (req, res, next) => {
                                                                                     return res.status(201).json({
                                                                                             message: 'paidToeflList are successfully updated',
                                                                                             paidToeflLists: result.paidToeflLists,
-                                                                                            shoppingCartLists: result.shoppingCartLists
+                                                                                            shoppingCartLists: result.shoppingCartLists,
+                                                                                            stripeUserInfo: result
                                                                                             })
                                                                             })
                                                                             .catch(err =>{

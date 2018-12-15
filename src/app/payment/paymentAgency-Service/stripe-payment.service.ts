@@ -8,6 +8,7 @@ import { UtilityService } from '../../Utility-shared/utility.service';
 import { ShoppingcartService } from '../shoppingcart.service';
 import { Router } from '@angular/router';
 import { GlobalConstantShare } from '../../Utility-shared/globalConstantShare';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable()
 export class StripePaymentService {
@@ -18,6 +19,7 @@ export class StripePaymentService {
   paidToeflLists = new Subject<PaidToeflList[]>();
     constructor(private http: Http,
                 private router: Router,
+                private authService: AuthService,
                 private shoppingCartService: ShoppingcartService,
                 private utilityService: UtilityService) {}
 
@@ -30,7 +32,7 @@ export class StripePaymentService {
                 const data = res.json();
 
                 this.utilityService.successToast('결제가 성공적으로 완료되었습니다. 감사합니다', '결제 공지사항');
-                const reInitSuccess = this.shoppingCartService.reInitialShoppingCartLists(data.paidToeflLists);
+                const reInitSuccess = this.shoppingCartService.reInitialShoppingCartLists(data.paidToeflLists, data.stripeUserInfo);
                 if (reInitSuccess) {
                   this.router.navigate(['/']);
                 }

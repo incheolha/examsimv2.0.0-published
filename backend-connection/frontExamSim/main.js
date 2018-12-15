@@ -977,6 +977,7 @@ let AuthService = class AuthService {
         this.isteacherAuthenticated = false;
         this.shoppingCartLists = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.paidToeflLists = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
+        this.userInfoList = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
     }
     signup(user) {
         this.utilityService.loadingStateChanged.next(true);
@@ -1001,6 +1002,7 @@ let AuthService = class AuthService {
             this.authSuccess(result.user.permissionTag);
             this.utilityService.loadingStateChanged.next(false);
             this.shoppingCartLists.next(result.user.shoppingCartLists);
+            this.userInfoList.next(result.user);
             this.paidToeflLists.next(result.user.paidToeflLists);
             this.router.navigate(['/']);
         }, error => { this.handleError(error); });
@@ -1554,6 +1556,7 @@ let ProfileEditComponent = class ProfileEditComponent {
         this.authService = authService;
         this.router = router;
         this.shoppingCartService = shoppingCartService;
+        this.userInfo = null;
         this.itemsPerPage = 3;
         this.paginators = [];
         this.currentDate = new Date();
@@ -1562,6 +1565,11 @@ let ProfileEditComponent = class ProfileEditComponent {
     }
     ngOnInit() {
         this.userInfo = this.authService.getUserInfo(); // 로그인한 사용자 정보 가저오기
+        console.log('처음 시동시 사용자 정보', this.userInfo);
+        if (!this.userInfo) {
+            this.userInfo = this.shoppingCartService.getUserInfoListFromShoppingCartService();
+            console.log('결재후 다시 되돌아 온 사용자 정보', this.userInfo);
+        }
         this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();
         if (this.paidToeflLists.length !== 0) {
             for (const paidToeflitem of this.paidToeflLists) {
@@ -3005,6 +3013,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm2015/http.js");
 /* harmony import */ var rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/Observable */ "./node_modules/rxjs-compat/_esm2015/Observable.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../auth/auth.service */ "./src/app/auth/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3019,9 +3028,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 let PaypalPaymentService = class PaypalPaymentService {
-    constructor(http, shoppingCartService) {
+    constructor(http, authService, shoppingCartService) {
         this.http = http;
+        this.authService = authService;
         this.shoppingCartService = shoppingCartService;
         this.urlConfig = _Utility_shared_globalConstantShare__WEBPACK_IMPORTED_MODULE_0__["GlobalConstantShare"].httpUrl; // url 실제 주소가 있는곳
     }
@@ -3039,11 +3050,14 @@ let PaypalPaymentService = class PaypalPaymentService {
     }
     getPaypalResult() {
         const token = localStorage.getItem('token');
+        const userInfo = this.authService.getUserInfo();
+        console.log(userInfo);
         const header = new _angular_http__WEBPACK_IMPORTED_MODULE_3__["Headers"]({ 'Content-type': 'application/json' });
         return this.http.get(this.urlConfig + '/paypal/paymentResult/' + '?token=' + token, { headers: header })
             .subscribe((res) => {
             const data = res.json();
-            const reInitSuccess = this.shoppingCartService.reInitialShoppingCartLists(data.payPalResult);
+            // tslint:disable-next-line:max-line-length
+            const reInitSuccess = this.shoppingCartService.reInitialShoppingCartLists(data.payPalResult, data.paypalUserInfo);
         });
     }
     handleErrors(error) {
@@ -3055,6 +3069,7 @@ let PaypalPaymentService = class PaypalPaymentService {
 PaypalPaymentService = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
     __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_3__["Http"],
+        _auth_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"],
         _shoppingcart_service__WEBPACK_IMPORTED_MODULE_1__["ShoppingcartService"]])
 ], PaypalPaymentService);
 
@@ -3079,6 +3094,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shoppingcart_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shoppingcart.service */ "./src/app/payment/shoppingcart.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _Utility_shared_globalConstantShare__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Utility-shared/globalConstantShare */ "./src/app/Utility-shared/globalConstantShare.ts");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../auth/auth.service */ "./src/app/auth/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3095,10 +3111,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 let StripePaymentService = class StripePaymentService {
-    constructor(http, router, shoppingCartService, utilityService) {
+    constructor(http, router, authService, shoppingCartService, utilityService) {
         this.http = http;
         this.router = router;
+        this.authService = authService;
         this.shoppingCartService = shoppingCartService;
         this.utilityService = utilityService;
         this.urlConfig = _Utility_shared_globalConstantShare__WEBPACK_IMPORTED_MODULE_6__["GlobalConstantShare"].httpUrl;
@@ -3112,7 +3130,7 @@ let StripePaymentService = class StripePaymentService {
             .subscribe((res) => {
             const data = res.json();
             this.utilityService.successToast('결제가 성공적으로 완료되었습니다. 감사합니다', '결제 공지사항');
-            const reInitSuccess = this.shoppingCartService.reInitialShoppingCartLists(data.paidToeflLists);
+            const reInitSuccess = this.shoppingCartService.reInitialShoppingCartLists(data.paidToeflLists, data.stripeUserInfo);
             if (reInitSuccess) {
                 this.router.navigate(['/']);
             }
@@ -3123,6 +3141,7 @@ StripePaymentService = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
     __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"],
         _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+        _auth_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"],
         _shoppingcart_service__WEBPACK_IMPORTED_MODULE_4__["ShoppingcartService"],
         _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__["UtilityService"]])
 ], StripePaymentService);
@@ -3175,6 +3194,7 @@ let ShoppingcartService = class ShoppingcartService {
         this.paidToeflLists = []; // 실제 shopping item을 저장하는 공간
         this.shoppingCartListAdded = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.paidToeflListAdded = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
+        this.userInfoListUpdated = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.paypalCheck = false;
     }
     // 사용자가 인증을 하였을시 자동으로 이 method를 이용하여 User에 저장된 shoppingCartList를 가저온다
@@ -3211,12 +3231,14 @@ let ShoppingcartService = class ShoppingcartService {
         this.shoppingCartListAdded.next(this.shoppingCartLists); // update된 shopping list를 header로 보냄
     }
     // payPal and Stripe 결재후 shoppingcartlist와 paidToeflLists를 updated하는 모드
-    reInitialShoppingCartLists(paidToeflLists) {
+    reInitialShoppingCartLists(paidToeflLists, userInfo) {
         console.log(paidToeflLists);
+        console.log(userInfo);
         this.shoppingCartLists = [];
         this.paidToeflLists = paidToeflLists;
-        this.shoppingCartListAdded.next(this.shoppingCartLists);
-        this.paidToeflListAdded.next(paidToeflLists);
+        this.userInfo = userInfo;
+        this.shoppingCartListAdded.next(this.shoppingCartLists); // shopping cart를 초기화로 updated시킬때 사용
+        this.paidToeflListAdded.next(paidToeflLists); // welcomeComponent를 updated할대 사용하는 Subject
         return true;
     }
     getShoppingCartLists() {
@@ -3225,6 +3247,10 @@ let ShoppingcartService = class ShoppingcartService {
     getPaidToefltLists() {
         console.log(this.paidToeflLists);
         return this.paidToeflLists;
+    }
+    getUserInfoListFromShoppingCartService() {
+        console.log(this.userInfo);
+        return this.userInfo;
     }
     goCheckOut() {
         this.router.navigate(['/payment/shoppingcart']);

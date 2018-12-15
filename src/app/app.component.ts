@@ -21,6 +21,7 @@ import { UtilityService } from './Utility-shared/utility.service';
 import { MainNavModel } from './Utility-shared/mainNavChange.model';
 import { Subscription } from 'rxjs/Subscription';
 import { ProfileInfo } from './auth/profile.model';
+import { User } from './auth/user.model';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   title = 'app';
   profileInfo: ProfileInfo;
+  userInfo: User;
   mainNavHide = false;
   isAuth = false;
   isteacherAuth = false;
@@ -63,6 +65,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
               this.isteacherAuth = true;
             }
             this.profileInfo = this.authService.getProfileInfo();
+
             console.log(this.profileInfo);
           });
 

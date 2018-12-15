@@ -11,7 +11,7 @@ import { Shoppingcart } from './model/shoppingcart.model';
 import { AuthService } from '../auth/auth.service';
 import { UtilityService } from '../Utility-shared/utility.service';
 import { Subscription } from 'rxjs/Subscription';
-
+import { User } from '../auth/user.model';
 @Injectable()
 
 export class ShoppingcartService {
@@ -21,12 +21,16 @@ export class ShoppingcartService {
     paidToeflLists: PaidToeflList[] = [];                              // 실제 shopping item을 저장하는 공간
     shoppingCartListAdded = new Subject<Shoppingcart[]>();
     paidToeflListAdded = new Subject<PaidToeflList[]>();
+    userInfoListUpdated = new Subject<User>();
     currentCart: Shoppingcart;
 
     paypalCheck = false;
 
+    userInfo: User;
+
     paidToeflListSubscription: Subscription;
     serverCartListSubscription: Subscription;
+    userInfoSubscription: Subscription;
 
     constructor (
         private http: Http,
@@ -46,6 +50,7 @@ connectAuthShoppingCart() {
                                           this.paidToeflLists = paidToeflLists;
                                           this.paidToeflListAdded.next(this.paidToeflLists);
       });
+
 }
 
 // 사용자가 로그인이 완료된 시점에서만 작동하며 welcome.component->tabset->장바구니를 클릭하였을시 작동됨
@@ -76,12 +81,14 @@ connectAuthShoppingCart() {
       }
 
   // payPal and Stripe 결재후 shoppingcartlist와 paidToeflLists를 updated하는 모드
-      reInitialShoppingCartLists(paidToeflLists) {
+      reInitialShoppingCartLists(paidToeflLists, userInfo) {
               console.log(paidToeflLists);
+              console.log(userInfo);
               this.shoppingCartLists = [];
               this.paidToeflLists = paidToeflLists;
-              this.shoppingCartListAdded.next(this.shoppingCartLists);
-              this.paidToeflListAdded.next(paidToeflLists);
+              this.userInfo = userInfo;
+              this.shoppingCartListAdded.next(this.shoppingCartLists);   // shopping cart를 초기화로 updated시킬때 사용
+              this.paidToeflListAdded.next(paidToeflLists);              // welcomeComponent를 updated할대 사용하는 Subject
               return true;
       }
 
@@ -95,6 +102,10 @@ connectAuthShoppingCart() {
         return this.paidToeflLists;
       }
 
+      getUserInfoListFromShoppingCartService() {
+        console.log(this.userInfo);
+        return this.userInfo;
+      }
       goCheckOut() {
         this.router.navigate(['/payment/shoppingcart']);
       }

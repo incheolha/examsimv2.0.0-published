@@ -5,6 +5,7 @@ import { Payment } from './../model/payment.model';
 import { Injectable, OnInit} from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable()
 export class PaypalPaymentService {
@@ -12,6 +13,7 @@ export class PaypalPaymentService {
     payment: Payment;
     urlConfig = GlobalConstantShare.httpUrl;     // url 실제 주소가 있는곳
     constructor(private http: Http,
+                private authService: AuthService,
                 private shoppingCartService: ShoppingcartService) {}
 
 
@@ -33,12 +35,15 @@ export class PaypalPaymentService {
 
     getPaypalResult() {
         const token = localStorage.getItem('token');
+        const userInfo = this.authService.getUserInfo();
+        console.log(userInfo);
         const header = new Headers({'Content-type': 'application/json'});
         return this.http.get(this.urlConfig + '/paypal/paymentResult/' + '?token=' + token, {headers: header})
                     .subscribe(
                         (res: Response) => {
                             const data = res.json();
-                            const reInitSuccess = this.shoppingCartService.reInitialShoppingCartLists(data.payPalResult);
+                            // tslint:disable-next-line:max-line-length
+                            const reInitSuccess = this.shoppingCartService.reInitialShoppingCartLists(data.payPalResult, data.paypalUserInfo);
                         }
                     );
     }
