@@ -31,6 +31,8 @@ export class ProfileEditComponent implements OnInit {
               private shoppingCartService: ShoppingcartService) { }
 
   ngOnInit() {
+         this.userInfo = this.authService.getUserInfo();    // 로그인한 사용자 정보 가저오기
+
          this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();
                   if ( this.paidToeflLists.length !== 0 ) {
                     for (const paidToeflitem of this.paidToeflLists) {

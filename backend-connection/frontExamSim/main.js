@@ -983,11 +983,11 @@ let AuthService = class AuthService {
         this.http.post(this.urlConfig + '/user/signup', user)
             .subscribe((result) => {
             localStorage.setItem('token', result.token);
-            localStorage.setItem('userName', result.userName);
-            this.authSuccess(result.permissionTag);
+            localStorage.setItem('userName', result.user.name);
+            this.authSuccess(result.user.permissionTag);
             this.utilityService.loadingStateChanged.next(false);
-            this.shoppingCartLists.next(result.shoppingCartLists);
-            this.paidToeflLists.next(result.paidToeflLists);
+            this.shoppingCartLists.next(result.user.shoppingCartLists);
+            this.paidToeflLists.next(result.user.paidToeflLists);
             this.router.navigate(['/']);
         }, error => { this.handleError(error); });
     }
@@ -996,11 +996,12 @@ let AuthService = class AuthService {
         this.http.post(this.urlConfig + '/user/login', user)
             .subscribe((result) => {
             localStorage.setItem('token', result.token);
-            localStorage.setItem('userName', result.userName);
-            this.authSuccess(result.permissionTag);
+            localStorage.setItem('userName', result.user.name);
+            this.user = result.user;
+            this.authSuccess(result.user.permissionTag);
             this.utilityService.loadingStateChanged.next(false);
-            this.shoppingCartLists.next(result.shoppingCartLists);
-            this.paidToeflLists.next(result.paidToeflLists);
+            this.shoppingCartLists.next(result.user.shoppingCartLists);
+            this.paidToeflLists.next(result.user.paidToeflLists);
             this.router.navigate(['/']);
         }, error => { this.handleError(error); });
     }
@@ -1053,16 +1054,7 @@ let AuthService = class AuthService {
         return this.profileInfo;
     }
     getUserInfo() {
-        // 서버로 부터 모든 데이타를 가져오기 위해서는 반드시 현재 login한 userId와 token이 필요하다
-        const token = localStorage.getItem('token');
-        console.log('this is the app component mode');
-        return this.http.get(this.urlConfig + '/user/getUserInfo/' + '?token=' + token)
-            .map((getUser) => {
-            this.user = getUser.user;
-            console.log(this.user);
-            return this.user;
-        }, (error) => console.log(error) // 나중에 이 error는 alert로 처리한다
-        );
+        return this.user;
     }
 };
 AuthService = __decorate([
@@ -1569,8 +1561,7 @@ let ProfileEditComponent = class ProfileEditComponent {
         this.paidToeflLists = [];
     }
     ngOnInit() {
-        //         this.userInfo =  this.authService.getUserInfo();      // 실제 사용자 정보를 획득한다
-        console.log(this.userInfo);
+        this.userInfo = this.authService.getUserInfo(); // 로그인한 사용자 정보 가저오기
         this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();
         if (this.paidToeflLists.length !== 0) {
             for (const paidToeflitem of this.paidToeflLists) {
@@ -2004,13 +1995,18 @@ SignupComponent = __decorate([
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "User", function() { return User; });
 class User {
-    constructor(email, password, name, permissionTag, created_at, update_at, provider, authToken, facebook, google) {
+    constructor(email, password, name, permissionTag, created_at, update_at, toeflId, paymentId, paidToeflLists, shoppingCartLists, wishLists, provider, authToken, facebook, google) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.permissionTag = permissionTag;
         this.created_at = created_at;
         this.update_at = update_at;
+        this.toeflId = toeflId;
+        this.paymentId = paymentId;
+        this.paidToeflLists = paidToeflLists;
+        this.shoppingCartLists = shoppingCartLists;
+        this.wishLists = wishLists;
         this.provider = provider;
         this.authToken = authToken;
         this.facebook = facebook;
@@ -2224,7 +2220,7 @@ FooterComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Navbar -->\n<mdb-navbar SideClass=\"navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav\" [containerInside]=\"false\">\n\n  <!-- SideNav slide-out button -->\n                  <navlinks class=\"navbar-container\">\n                      <div class=\"float-left\">\n                          <a (click)=\"onToggleSideNav()\" class=\"button-collapse hidden-nav-button-collapse\">\n                              <i class=\"fa fa-bars\"></i>\n                          </a>\n                      </div>\n                  </navlinks>\n\n  <!-- Breadcrumb-->\n                  <logo>\n\n                      <div class=\"breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto\">\n                          <p>Total Examinations for People </p>\n                      </div>\n                  </logo>\n\n  <!-- 가로 진열하는 각종 navbar menu를 구성하는 영역 -->\n        <navlinks>\n                <ul class=\"nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav\">\n\n\n      <!-- 시험출제자 모드로 로그인 하였을시 활성화 시킨다 -->\n                          <li *ngIf=\"isteacherAuth\" class=\"nav-item\">\n\n                              <a class=\"nav-link border border-light rounded waves-light\"\n                              [routerLink]=\"['/teacher']\"\n                              mdbWavesEffect>\n                                  <i class=\"fa fa-pencil-square-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Examination</span>\n                              </a>\n                          </li>\n\n      <!-- Contact Navbar 시작 -->\n                          <li  class=\"nav-item\">\n                              <a class=\"nav-link waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-envelope-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Contact</span>\n                              </a>\n                          </li>\n\n      <!-- Support Navbar 시작 -->\n                          <li  class=\"nav-item\">\n                              <a class=\"nav-link waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-comments-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Support</span>\n                              </a>\n                          </li>\n\n      <!-- shopping cart dropdown menu시작 -->\n\n                          <li *ngIf=\"!isteacherAuth && isAuth\" class=\"nav-item dropdown btn-group\" dropdown >\n\n\n                                <a dropdownToggle type=\"button\" aria-hidden=\"true\"\n                                    class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                        <i class=\"fa  fa-shopping-bag fa-lg\" aria-hidden=\"true\"></i>\n                                        <span class=\"counter\">  {{ shoppingcartListCounter }} </span>\n                                </a>\n                                                <div *ngIf=\"shoppingcartListCounter != 0\" class=\"dropdown-menu dropdown-primary dropdown-menu-right text-center\"  role=\"menu\" >\n                                                            <table class=\"table\">\n                                                                <thead>\n                                                                  <tr>\n                                                                    <th colspan=\"1\">No</th>\n                                                                    <th colspan=\"1\">Level</th>\n                                                                    <th colspan=\"1\">Price</th>\n                                                                    <th colspan=\"1\">Remove</th>\n                                                                  </tr>\n                                                                </thead>\n                                                                <tbody>\n\n                                                                  <tr *ngFor=\"let shoppingcartItem of shoppingcartLists\">\n\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examNo}}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examLevel}}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examPrice | currency : \"USD\" }}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"shoppingcartItemDelete(shoppingcartItem)\">\n                                                                            <span aria-hidden=\"true\">&times;</span>\n                                                                        </button>\n                                                                    </td>\n                                                                  </tr>\n                                                                </tbody>\n                                                             </table>\n                                                              <div class=\"dropdown-divider\"></div>\n                                                              <button mdbBtn type=\"button\" color=\"indigo\" rounded=\"true\" outline=\"true\" size=\"sm\"\n                                                                      (click)=\"goShoppingListCheckOut()\" mdbWavesEffect>\n                                                                      <mdb-icon icon=\"credit-card\" class=\"mr-1\"></mdb-icon>\n                                                                      CheckOut\n                                                              </button>\n                                                              <button mdbBtn class=\"mr-1\" type=\"button\" color=\"indigo\" rounded=\"true\" outline=\"true\" size=\"sm\"\n                                                              (click)=\"goShoppingListSave()\" mdbWavesEffect>\n                                                              <mdb-icon icon=\"credit-card\" class=\"mr-1\"></mdb-icon>\n                                                              Save\n                                                      </button>\n\n                                                </div>\n                          </li>\n\n      <!-- 사용자 profile dropdopw menu -->\n                          <li *ngIf=\"isAuth\" class=\"nav-item dropdown btn-group\" dropdown>\n                              <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-user-circle-o\"></i>\n                                  {{ this.profileInfo.name }}\n                              </a>\n                              <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                                  <button class=\"dropdown-item\" (click)=\"onDashboard()\"><i class=\"fa fa-user-circle-o mr-1\"></i>Dashboard</button>\n                                  <a *ngIf=\"!isteacherAuth\" class=\"dropdown-item\" [routerLink]=\"['/auth/orderHistory']\"><i class=\"fa fa-info mr-1\"></i>Purchase History</a>\n                                  <a class=\"dropdown-item\" [routerLink]=\"['/auth/logout']\"><i class=\"fa fa-sign-out mr-1\"></i>LogOut</a>\n                              </div>\n                          </li>\n\n      <!-- 사용자 login/signup dropdown menu  -->\n                          <li *ngIf=\"!isAuth\" class=\"nav-item dropdown btn-group\" dropdown>\n                              <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-smile-o\"></i>\n                                  LogIn\n                              </a>\n                              <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                                <a class=\"dropdown-item\" [routerLink]=\"['/auth/login']\">\n                                  <i class=\"fa fa-sign-in\"></i>\n                                  LogIn</a>\n                                <a class=\"dropdown-item\" [routerLink]=\"['/auth/signup']\">\n                                  <i class=\"fa fa-registered\"></i>\n                                  SignUp</a>\n                            </div>\n                          </li>\n\n                </ul>\n        </navlinks>\n    </mdb-navbar>\n\n"
+module.exports = "<!-- Navbar -->\n<mdb-navbar SideClass=\"navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav\" [containerInside]=\"false\">\n\n  <!-- SideNav slide-out button -->\n                  <navlinks class=\"navbar-container\">\n                      <div class=\"float-left\">\n                          <a (click)=\"onToggleSideNav()\" class=\"button-collapse hidden-nav-button-collapse\">\n                              <i class=\"fa fa-bars\"></i>\n                          </a>\n                      </div>\n                  </navlinks>\n\n  <!-- Breadcrumb-->\n                  <logo>\n\n                      <div class=\"breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto\">\n                          <p>Total Examinations for People </p>\n                      </div>\n                  </logo>\n\n  <!-- 가로 진열하는 각종 navbar menu를 구성하는 영역 -->\n        <navlinks>\n                <ul class=\"nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav\">\n\n\n      <!-- 시험출제자 모드로 로그인 하였을시 활성화 시킨다 -->\n                          <li *ngIf=\"isteacherAuth\" class=\"nav-item\">\n\n                              <a class=\"nav-link border border-light rounded waves-light\"\n                              [routerLink]=\"['/teacher']\"\n                              mdbWavesEffect>\n                                  <i class=\"fa fa-pencil-square-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Examination</span>\n                              </a>\n                          </li>\n\n      <!-- Contact Navbar 시작 -->\n                          <li  class=\"nav-item\">\n                              <a class=\"nav-link waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-envelope-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Contact</span>\n                              </a>\n                          </li>\n\n      <!-- Support Navbar 시작 -->\n                          <li  class=\"nav-item\">\n                              <a class=\"nav-link waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-comments-o\"></i>\n                                  <span class=\"clearfix d-none d-sm-inline-block\">Support</span>\n                              </a>\n                          </li>\n\n      <!-- shopping cart dropdown menu시작 -->\n\n                          <li *ngIf=\"!isteacherAuth && isAuth\" class=\"nav-item dropdown btn-group\" dropdown >\n\n\n                                <a dropdownToggle type=\"button\" aria-hidden=\"true\"\n                                    class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                        <i class=\"fa  fa-shopping-bag fa-lg\" aria-hidden=\"true\"></i>\n                                        <span class=\"counter\">  {{ shoppingcartListCounter }} </span>\n                                </a>\n                                                <div *ngIf=\"shoppingcartListCounter != 0\" class=\"dropdown-menu dropdown-primary dropdown-menu-right text-center\"  role=\"menu\" >\n                                                            <table class=\"table\">\n                                                                <thead>\n                                                                  <tr>\n                                                                    <th colspan=\"1\">No</th>\n                                                                    <th colspan=\"1\">Level</th>\n                                                                    <th colspan=\"1\">Price</th>\n                                                                    <th colspan=\"1\">Remove</th>\n                                                                  </tr>\n                                                                </thead>\n                                                                <tbody>\n\n                                                                  <tr *ngFor=\"let shoppingcartItem of shoppingcartLists\">\n\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examNo}}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examLevel}}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        {{shoppingcartItem.examPrice | currency : \"USD\" }}\n                                                                    </td>\n                                                                    <td colspan=\"1\">\n                                                                        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"shoppingcartItemDelete(shoppingcartItem)\">\n                                                                            <span aria-hidden=\"true\">&times;</span>\n                                                                        </button>\n                                                                    </td>\n                                                                  </tr>\n                                                                </tbody>\n                                                             </table>\n                                                              <div class=\"dropdown-divider\"></div>\n                                                              <button mdbBtn type=\"button\" color=\"indigo\" rounded=\"true\" outline=\"true\" size=\"sm\"\n                                                                      (click)=\"goShoppingListCheckOut()\" mdbWavesEffect>\n                                                                      <mdb-icon icon=\"credit-card\" class=\"mr-1\"></mdb-icon>\n                                                                      CheckOut\n                                                              </button>\n                                                              <button mdbBtn class=\"mr-1\" type=\"button\" color=\"indigo\" rounded=\"true\" outline=\"true\" size=\"sm\"\n                                                              (click)=\"goShoppingListSave()\" mdbWavesEffect>\n                                                              <mdb-icon icon=\"credit-card\" class=\"mr-1\"></mdb-icon>\n                                                              Save\n                                                      </button>\n\n                                                </div>\n                          </li>\n\n      <!-- 사용자 profile dropdopw menu -->\n                          <li *ngIf=\"isAuth\" class=\"nav-item dropdown btn-group\" dropdown>\n                              <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-user-circle-o\"></i>\n                                  {{ this.profileInfo.name }}\n                              </a>\n                              <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                                  <a class=\"dropdown-item\" [routerLink]=\"['/auth/profile']\"><i class=\"fa fa-user-circle-o mr-1\"></i>Dashboard</a>\n                                  <a *ngIf=\"!isteacherAuth\" class=\"dropdown-item\" [routerLink]=\"['/auth/orderHistory']\"><i class=\"fa fa-info mr-1\"></i>Purchase History</a>\n                                  <a class=\"dropdown-item\" [routerLink]=\"['/auth/logout']\"><i class=\"fa fa-sign-out mr-1\"></i>LogOut</a>\n                              </div>\n                          </li>\n\n      <!-- 사용자 login/signup dropdown menu  -->\n                          <li *ngIf=\"!isAuth\" class=\"nav-item dropdown btn-group\" dropdown>\n                              <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light\" mdbWavesEffect>\n                                  <i class=\"fa fa-smile-o\"></i>\n                                  LogIn\n                              </a>\n                              <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                                <a class=\"dropdown-item\" [routerLink]=\"['/auth/login']\">\n                                  <i class=\"fa fa-sign-in\"></i>\n                                  LogIn</a>\n                                <a class=\"dropdown-item\" [routerLink]=\"['/auth/signup']\">\n                                  <i class=\"fa fa-registered\"></i>\n                                  SignUp</a>\n                            </div>\n                          </li>\n\n                </ul>\n        </navlinks>\n    </mdb-navbar>\n\n"
 
 /***/ }),
 
@@ -2253,7 +2249,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../auth/auth.service */ "./src/app/auth/auth.service.ts");
 /* harmony import */ var _payment_shoppingcart_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../payment/shoppingcart.service */ "./src/app/payment/shoppingcart.service.ts");
 /* harmony import */ var _auth_profile_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auth/profile.model */ "./src/app/auth/profile.model.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2267,11 +2262,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 let HeaderComponent = class HeaderComponent {
-    constructor(authService, router, shoppingcartService) {
+    constructor(authService, shoppingcartService) {
         this.authService = authService;
-        this.router = router;
         this.shoppingcartService = shoppingcartService;
         // 상단 navBar와 sideMenu와 관련한 변수설정
         this.sidenavToggle = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
@@ -2326,15 +2319,6 @@ let HeaderComponent = class HeaderComponent {
     onToggleSideNav() {
         this.sidenavToggle.emit();
     }
-    onDashboard() {
-        console.log('dash board click');
-        this.authService.getUserInfo().subscribe((user) => {
-            this.userInfo = user;
-            console.log(this.userInfo);
-        });
-        this.router.navigate(['/auth/profile']);
-        console.log(this.userInfo);
-    }
     ngOnDestroy() {
         this.authSubscription.unsubscribe();
         if (!this.isteacherAuth) {
@@ -2366,7 +2350,6 @@ HeaderComponent = __decorate([
         styles: [__webpack_require__(/*! ./header.component.scss */ "./src/app/navigation/header/header.component.scss")]
     }),
     __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
         _payment_shoppingcart_service__WEBPACK_IMPORTED_MODULE_2__["ShoppingcartService"]])
 ], HeaderComponent);
 

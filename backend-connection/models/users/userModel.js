@@ -33,7 +33,7 @@ const userSchema = mongoose.Schema({
     provider: {type: String, 'default':''},
     authToken: {type: String, 'default':''},
     facebook: {},
-    google: {},
+    google: {}
 });
 
 module.exports = mongoose.model('User', userSchema);

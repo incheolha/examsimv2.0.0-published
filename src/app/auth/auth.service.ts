@@ -44,22 +44,23 @@ export class AuthService {
         this.http.post
                       <{ message: string,
                           token: string,
-                          userName: string,
-                          permissionTag: string,
-                          shoppingCartLists: Shoppingcart[],
-                          paidToeflLists: PaidToeflList[]
+                          user: User
+                          // userName: string,
+                          // permissionTag: string,
+                          // shoppingCartLists: Shoppingcart[],
+                          // paidToeflLists: PaidToeflList[]
                         }>
                         (this.urlConfig + '/user/signup', user)
 
                         .subscribe((result) => {
 
                                 localStorage.setItem('token', result.token);
-                                localStorage.setItem('userName', result.userName);
+                                localStorage.setItem('userName', result.user.name);
 
-                                this.authSuccess(result.permissionTag);
+                                this.authSuccess(result.user.permissionTag);
                                 this.utilityService.loadingStateChanged.next(false);
-                                this.shoppingCartLists.next(result.shoppingCartLists);
-                                this.paidToeflLists.next(result.paidToeflLists);
+                                this.shoppingCartLists.next(result.user.shoppingCartLists);
+                                this.paidToeflLists.next(result.user.paidToeflLists);
                                 this.router.navigate(['/']);
                     },
                     error => { this.handleError( error ); });
@@ -71,20 +72,22 @@ export class AuthService {
         this.http.post
                       <{ message: string,
                           token: string,
-                          userName: string,
-                          permissionTag: string,
-                          shoppingCartLists: Shoppingcart[],
-                          paidToeflLists: PaidToeflList[]
+                          user: User
+                          // userName: string,
+                          // permissionTag: string,
+                          // shoppingCartLists: Shoppingcart[],
+                          // paidToeflLists: PaidToeflList[]
                         }>
                         (this.urlConfig + '/user/login', user)
 
                         .subscribe((result) => {
                                 localStorage.setItem('token', result.token);
-                                localStorage.setItem('userName', result.userName);
-                                this.authSuccess(result.permissionTag);
+                                localStorage.setItem('userName', result.user.name);
+                                this.user = result.user;
+                                this.authSuccess(result.user.permissionTag);
                                 this.utilityService.loadingStateChanged.next(false);
-                                this.shoppingCartLists.next(result.shoppingCartLists);
-                                this.paidToeflLists.next(result.paidToeflLists);
+                                this.shoppingCartLists.next(result.user.shoppingCartLists);
+                                this.paidToeflLists.next(result.user.paidToeflLists);
                                 this.router.navigate(['/']);
                     },
                     error => { this.handleError( error ); });
@@ -150,21 +153,6 @@ export class AuthService {
   }
 
   getUserInfo() {
-
-    // 서버로 부터 모든 데이타를 가져오기 위해서는 반드시 현재 login한 userId와 token이 필요하다
-
-    const token = localStorage.getItem('token');
-    console.log('this is the app component mode');
-    this.http.get<{ user: User }>(this.urlConfig + '/user/getUserInfo/' + '?token=' + token)
-                  .subscribe( (getUser) => {
-                    console.log(getUser.user);
-                    this.user = getUser.user;
-                    return this.user;
-              },
-              (error) => console.log(error)                              // 나중에 이 error는 alert로 처리한다
-              );
-
   return this.user;
-
   }
 }

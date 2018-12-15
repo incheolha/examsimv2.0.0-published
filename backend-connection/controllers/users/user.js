@@ -98,10 +98,11 @@ exports.user_signUp = (req, res, next) => {
                                return res.status(200).json({
                                 message: 'user are saved successfully',
                                 token: token,
-                                permissionTag: user.permissionTag,
-                                userName: user.name,
-                                shoppingCartLists : user.shoppingCartLists,
-                                paidToeflLists : user.paidToeflLists,
+                                user: user
+                                // permissionTag: user.permissionTag,
+                                // userName: user.name,
+                                // shoppingCartLists : user.shoppingCartLists,
+                                // paidToeflLists : user.paidToeflLists,
                             });
 
                             })
@@ -142,11 +143,12 @@ exports.user_login = (req, res, next) => {
                 return res.status(200).json({
                     message: 'Auth successful',
                     token: token,
-                    permissionTag: user.permissionTag,
-                    userName: user.name,
-                    shoppingCartLists : user.shoppingCartLists,
-                    paidToeflLists : user.paidToeflLists,
-                    paymentId : user.paymentId,
+                    user: user
+                    // permissionTag: user.permissionTag,
+                    // userName: user.name,
+                    // shoppingCartLists : user.shoppingCartLists,
+                    // paidToeflLists : user.paidToeflLists,
+                    // paymentId : user.paymentId,
 
                 });
             }
@@ -175,6 +177,7 @@ exports.user_delete = (req, res, next) => {
                             .then(result => {
                                 res.status(200).json(
                                     {
+                                        title: 'User has been deleted',
                                         message: 'User deleted'
                                     }
                                 );
