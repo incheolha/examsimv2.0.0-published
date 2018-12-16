@@ -16,8 +16,10 @@ import { Subscription } from 'rxjs/Subscription';
 export class ProfileEditComponent implements OnInit {
 
 
-  userInfo: User = null;
+  userName: string = null;
+  userInfo: User;
   userInfoSubscription: Subscription;
+
   itemsPerPage = 3;
   numberOfPaginators: number;
   paginators: Array<any> = [];
@@ -34,9 +36,13 @@ export class ProfileEditComponent implements OnInit {
   ngOnInit() {
           this.userInfo = this.authService.getUserInfo();        // 로그인한 사용자 정보 가저오기
           console.log('처음 시동시 사용자 정보', this.userInfo);
+
           if (!this.userInfo) {
            this.userInfo = this.shoppingCartService.getUserInfoListFromShoppingCartService();
-            console.log('결재후 다시 되돌아 온 사용자 정보', this.userInfo);
+           this.userName = this.userInfo.name;
+            console.log('결재후 다시 되돌아 온 사용자 정보', this.userInfo.name);
+          } else {
+            this.userName = this.userInfo.name;
           }
 
          this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();

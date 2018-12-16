@@ -22,6 +22,7 @@ import { MainNavModel } from './Utility-shared/mainNavChange.model';
 import { Subscription } from 'rxjs/Subscription';
 import { ProfileInfo } from './auth/profile.model';
 import { User } from './auth/user.model';
+import { ShoppingcartService } from './payment/shoppingcart.service';
 
 @Component({
   selector: 'app-root',
@@ -31,8 +32,9 @@ import { User } from './auth/user.model';
 export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   title = 'app';
-  profileInfo: ProfileInfo;
   userInfo: User;
+
+  userName = '';
   mainNavHide = false;
   isAuth = false;
   isteacherAuth = false;
@@ -43,6 +45,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   constructor(private utilityService: UtilityService,
               private authService: AuthService,
               private router: Router,
+              private shoppingCartService: ShoppingcartService,
               private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -64,9 +67,9 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
               this.isAuth = true;
               this.isteacherAuth = true;
             }
-            this.profileInfo = this.authService.getProfileInfo();
 
-            console.log(this.profileInfo);
+            this.userName = this.authService.getUserName();
+
           });
 
           this.router.routeReuseStrategy.shouldReuseRoute = function() {

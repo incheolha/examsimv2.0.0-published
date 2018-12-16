@@ -24,7 +24,7 @@ export class AuthService {
 
   mainNavModel: MainNavModel;
 
-  profileInfo: ProfileInfo;               // 메인 header에 필요한 사용자 이름을 가조오기위한 모델
+  userName: string;             // 메인 header에 필요한 사용자 이름을 가조오기위한 모델
   user: User;                             // 사용자에 관한 모든정보를 가져오기 위한 user 모델
 
   clearPaidToeflLists: PaidToeflList[] = [];
@@ -59,7 +59,7 @@ export class AuthService {
 
                                 localStorage.setItem('token', result.token);
                                 localStorage.setItem('userName', result.user.name);
-
+                                this.user = result.user;
                                 this.authSuccess(result.user.permissionTag);
                                 this.utilityService.loadingStateChanged.next(false);
                                 this.shoppingCartLists.next(result.user.shoppingCartLists);
@@ -130,7 +130,6 @@ export class AuthService {
               this.isAuthenticated = false;                             // 인증 취소
               this.isteacherAuthenticated = false;                      // 관리자 선생님 인증 취소
 
-              this.profileInfo = new ProfileInfo(null, null);
               this.paidToeflLists.next(this.clearPaidToeflLists);            // paid ToeflList 초기화
               this.shoppingCartLists.next(this.clearShoppingCartLists);      // shopping cart list 초기화
 
@@ -150,10 +149,10 @@ export class AuthService {
               return this.isteacherAuthenticated;                            // 선생님 관리자 모드인 경우 장바구니버튼과 purchase버튼을 보여주지 않을목적으로 설정됨
   }
 
-  getProfileInfo() {
-              console.log('get Info Profile check');
-              this.profileInfo = new ProfileInfo('', localStorage.getItem('userName'));
-  return this.profileInfo;
+  getUserName() {
+              console.log('현재 사용자 정보');
+              this.userName = localStorage.getItem('userName');
+  return this.userName;
   }
 
   getUserInfo() {

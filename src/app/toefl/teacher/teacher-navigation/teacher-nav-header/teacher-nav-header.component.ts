@@ -5,6 +5,7 @@ import { UtilityService } from '../../../../Utility-shared/utility.service';
 import { MainNavModel } from './../../../../Utility-shared/mainNavChange.model';
 import { ProfileInfo } from '../../../../auth/profile.model';
 import { AuthService } from '../../../../auth/auth.service';
+import { User } from '../../../../auth/user.model';
 
 @Component({
   selector: 'app-teacher-nav-header',
@@ -15,7 +16,7 @@ import { AuthService } from '../../../../auth/auth.service';
 export class TeacherNavHeaderComponent implements OnInit {
 
   mainNavModel: MainNavModel;
-  profileInfo: ProfileInfo;
+  userName: string;
 
   @Output() sidenavToggle1 = new EventEmitter<void>();
 
@@ -24,7 +25,7 @@ export class TeacherNavHeaderComponent implements OnInit {
               private utilityService: UtilityService) { }
 
   ngOnInit() {
-      this.profileInfo = this.authService.getProfileInfo();
+      this.userName = this.authService.getUserName();
   }
 
   goBackHome() {

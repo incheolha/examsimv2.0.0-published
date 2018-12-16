@@ -6,7 +6,7 @@
        <app-sidenav-list></app-sidenav-list>
     </mdb-sidenav>
     <!--/. Sidebar navigation -->
-    <app-header [profileInfo] = 'profileInfo' [isAuth]="isAuth" [isteacherAuth]="isteacherAuth" (sidenavToggle)="sidenav.toggle()"></app-header>
+    <app-header [userName]= 'userName' [isAuth]="isAuth" [isteacherAuth]="isteacherAuth" (sidenavToggle)="sidenav.toggle()"></app-header>
 </header>
 <router-outlet></router-outlet>
 

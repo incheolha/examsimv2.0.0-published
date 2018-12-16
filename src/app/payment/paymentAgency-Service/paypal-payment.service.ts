@@ -35,8 +35,6 @@ export class PaypalPaymentService {
 
     getPaypalResult() {
         const token = localStorage.getItem('token');
-        const userInfo = this.authService.getUserInfo();
-        console.log(userInfo);
         const header = new Headers({'Content-type': 'application/json'});
         return this.http.get(this.urlConfig + '/paypal/paymentResult/' + '?token=' + token, {headers: header})
                     .subscribe(

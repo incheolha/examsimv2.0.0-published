@@ -23,12 +23,12 @@ export class PaymentNotificationComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log('this is a init result page');
+        this.payPalService.getPaypalResult();
         this.mainNavModel = new MainNavModel(false, false, false);
         this.utilityService.mainNavChanged.next(this.mainNavModel);    // main 화면 navigation활성화
         this.authService.authChange.next(true);                         // header component에 영향을 주는 authChange값
         this.authService.isAuthenticated = true;
         this.router.navigate(['/']);
-        this.payPalService.getPaypalResult();
 
   }
 
