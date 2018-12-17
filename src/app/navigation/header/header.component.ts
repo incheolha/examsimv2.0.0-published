@@ -46,27 +46,25 @@ constructor(private authService: AuthService,
 
                         console.log('인증후 현재 사용자 정보', this.userName);
 
-                            // 시험출제자 선생님 인증관련 영역
-                          this.teacherAuthSubscription = this.authService.teacherAuth.subscribe((teacherStatus: boolean) => {
-                                                         this.isteacherAuth = teacherStatus;
+                        // 로그인이 되어 있고 teacher mode가 아니면 shopping cart를 활성화 시킨다
+                        if (!this.isteacherAuth) {
+                          this.shoppingcartListSubscription = this.shoppingcartService.shoppingCartListAdded
+                                                            .subscribe((shoppingcart: Shoppingcart[]) => {
+                                                            // tslint:disable-next-line:max-line-length
+                                                            this.shoppingcartLists = shoppingcart.sort((a, b) => 0 - (a.examNo > b.examNo ? -1 : 1));
+                                                            // tslint:disable-next-line:max-line-length
+                                                            this.shoppingcartListCounter = this.shoppingcartLists.length;
 
-                                                // 로그인이 되어 있고 teacher mode가 아니면 shopping cart를 활성화 시킨다
-                                                if (!this.isteacherAuth) {
-                                                  this.shoppingcartListSubscription = this.shoppingcartService.shoppingCartListAdded
-                                                                                    .subscribe((shoppingcart: Shoppingcart[]) => {
-                                                                                    // tslint:disable-next-line:max-line-length
-                                                                                    this.shoppingcartLists = shoppingcart.sort((a, b) => 0 - (a.examNo > b.examNo ? -1 : 1));
-                                                                                    // tslint:disable-next-line:max-line-length
-                                                                                    this.shoppingcartListCounter = this.shoppingcartLists.length;
+                                                          });
+                          // 처음 angular가 접속하였을시 node server로 부터 인증된 user 정보에서 shopping cart 와 paidToeflLists 정보 가져오기
+                              this.shoppingcartService.connectAuthShoppingCart();
+                          }
 
-                                                                                  });
-                                                  // 처음 angular가 접속하였을시 node server로 부터 인증된 user 정보에서 shopping cart 와 paidToeflLists 정보 가져오기
-                                                     this.shoppingcartService.connectAuthShoppingCart();
-                                                 }
-
-
-                                              });
                       }
+                            // 시험출제자 선생님 인증관련 영역
+                            this.teacherAuthSubscription = this.authService.teacherAuth.subscribe((teacherStatus: boolean) => {
+                              this.isteacherAuth = teacherStatus;
+                   });
 
     });
 

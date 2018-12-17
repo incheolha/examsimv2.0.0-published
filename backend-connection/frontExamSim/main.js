@@ -1548,6 +1548,7 @@ let ProfileEditComponent = class ProfileEditComponent {
     ngOnInit() {
         this.userInfo = this.authService.getUserInfo(); // 로그인한 사용자 정보 가저오기
         console.log('처음 시동시 사용자 정보', this.userInfo);
+        // 만일 userInfo가 없으면 paypal이나 stripe에서 결재후 사용자 정보를 받아야함
         if (!this.userInfo) {
             this.userInfo = this.shoppingCartService.getUserInfoListFromShoppingCartService();
             this.userName = this.userInfo.name;
@@ -2278,23 +2279,23 @@ let HeaderComponent = class HeaderComponent {
                 // 사용자 프로파일중 이름을 가져온다
                 this.userName = this.authService.getUserName();
                 console.log('인증후 현재 사용자 정보', this.userName);
-                // 시험출제자 선생님 인증관련 영역
-                this.teacherAuthSubscription = this.authService.teacherAuth.subscribe((teacherStatus) => {
-                    this.isteacherAuth = teacherStatus;
-                    // 로그인이 되어 있고 teacher mode가 아니면 shopping cart를 활성화 시킨다
-                    if (!this.isteacherAuth) {
-                        this.shoppingcartListSubscription = this.shoppingcartService.shoppingCartListAdded
-                            .subscribe((shoppingcart) => {
-                            // tslint:disable-next-line:max-line-length
-                            this.shoppingcartLists = shoppingcart.sort((a, b) => 0 - (a.examNo > b.examNo ? -1 : 1));
-                            // tslint:disable-next-line:max-line-length
-                            this.shoppingcartListCounter = this.shoppingcartLists.length;
-                        });
-                        // 처음 angular가 접속하였을시 node server로 부터 인증된 user 정보에서 shopping cart 와 paidToeflLists 정보 가져오기
-                        this.shoppingcartService.connectAuthShoppingCart();
-                    }
-                });
+                // 로그인이 되어 있고 teacher mode가 아니면 shopping cart를 활성화 시킨다
+                if (!this.isteacherAuth) {
+                    this.shoppingcartListSubscription = this.shoppingcartService.shoppingCartListAdded
+                        .subscribe((shoppingcart) => {
+                        // tslint:disable-next-line:max-line-length
+                        this.shoppingcartLists = shoppingcart.sort((a, b) => 0 - (a.examNo > b.examNo ? -1 : 1));
+                        // tslint:disable-next-line:max-line-length
+                        this.shoppingcartListCounter = this.shoppingcartLists.length;
+                    });
+                    // 처음 angular가 접속하였을시 node server로 부터 인증된 user 정보에서 shopping cart 와 paidToeflLists 정보 가져오기
+                    this.shoppingcartService.connectAuthShoppingCart();
+                }
             }
+            // 시험출제자 선생님 인증관련 영역
+            this.teacherAuthSubscription = this.authService.teacherAuth.subscribe((teacherStatus) => {
+                this.isteacherAuth = teacherStatus;
+            });
         });
     }
     // 유저가 헤더부분에 있는 쇼핑목록을 지웠을때 실행됨.
@@ -3196,6 +3197,8 @@ let ShoppingcartService = class ShoppingcartService {
         const findShoppingItem = this.shoppingCartLists.filter((shoppingCart) => {
             return shoppingCart.examNo === newShoppingCartItem.examNo;
         });
+        console.log('새로운 쇼핑카트 아이템', newShoppingCartItem);
+        console.log('현재 쇼핑 카트안에서 추가된 쇼핑 카트내에 존재하지 않으면 0 이고 새로운 카트에 리스트를 추가한다');
         if (findShoppingItem.length === 0) {
             console.log('new item listed on Shoppingcart.');
             this.shoppingCartLists.push(newShoppingCartItem);

@@ -60,6 +60,8 @@ connectAuthShoppingCart() {
                                return shoppingCart.examNo === newShoppingCartItem.examNo;
                                } );
 
+      console.log('새로운 쇼핑카트 아이템', newShoppingCartItem );
+      console.log('현재 쇼핑 카트안에서 추가된 쇼핑 카트내에 존재하지 않으면 0 이고 새로운 카트에 리스트를 추가한다');
       if (findShoppingItem.length === 0) {
         console.log('new item listed on Shoppingcart.');
         this.shoppingCartLists.push(newShoppingCartItem);
