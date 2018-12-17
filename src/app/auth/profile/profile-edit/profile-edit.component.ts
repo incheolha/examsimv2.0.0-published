@@ -37,12 +37,13 @@ export class ProfileEditComponent implements OnInit {
           this.userInfo = this.authService.getUserInfo();        // 로그인한 사용자 정보 가저오기
           console.log('처음 시동시 사용자 정보', this.userInfo);
 
+// 만일 userInfo가 없으면 paypal이나 stripe에서 결재후 사용자 정보를 받아야함
           if (!this.userInfo) {
-           this.userInfo = this.shoppingCartService.getUserInfoListFromShoppingCartService();
-           this.userName = this.userInfo.name;
-            console.log('결재후 다시 되돌아 온 사용자 정보', this.userInfo.name);
+               this.userInfo = this.shoppingCartService.getUserInfoListFromShoppingCartService();
+               this.userName = this.userInfo.name;
+               console.log('결재후 다시 되돌아 온 사용자 정보', this.userInfo.name);
           } else {
-            this.userName = this.userInfo.name;
+               this.userName = this.userInfo.name;
           }
 
          this.paidToeflLists = this.shoppingCartService.getPaidToefltLists();
