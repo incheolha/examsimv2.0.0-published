@@ -1,10 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UtilityService } from './../../Utility-shared/utility.service';
 import { MainNavModel } from './../../Utility-shared/mainNavChange.model';
-import { ActivatedRoute } from '@angular/router';
-import { ProfileInfo } from '../../auth/profile.model';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-register-toefl',
@@ -15,8 +11,7 @@ export class RegisterToeflComponent implements OnInit {
 
   mainNavModel: MainNavModel;
   teacherName = '';
-  constructor(private utilityService: UtilityService,
-              private route: ActivatedRoute) { }
+  constructor(private utilityService: UtilityService) { }
 
   ngOnInit() {
 

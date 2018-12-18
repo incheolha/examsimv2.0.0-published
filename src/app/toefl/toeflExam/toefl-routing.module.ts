@@ -9,7 +9,6 @@ import { ToeflExamComponent } from './toefl-exam.component';
 
 export const toeflExamRoutes: Routes = [
  { path: 'toeflexam', component: ToeflExamComponent, children: [
-
  ]}
 ];
 
@@ -18,4 +17,6 @@ export const toeflExamRoutes: Routes = [
   exports: [RouterModule]
 })
 export class ToeflExamRoutingModule {}
-
+export const toeflExamRoutingComponents = [
+                                            ToeflExamComponent
+                                          ];

@@ -1,38 +1,29 @@
+// angular module
 import { CommonModule } from '@angular/common';
-
 import { NgModule } from '@angular/core';
-
-import { AuthenticationComponent } from './authentication.component';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { SignupComponent } from './signup/signup.component';
-
-
+// MDBootstrap module
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 
-import { AuthRoutingModule } from './auth-routing.module';
+// authRoutingMOdule
+import { AuthRoutingModule, authRoutingComponents } from './auth-routing.module';
+// 제 3자가 제공한 toaster module
 import { ToastModule } from 'ng-uikit-pro-standard';
+// 모든 component module에서 공통으로 사용하는 모들
 import { SharedModule } from './../shared/shared.module';
-import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
-import { ProfileOrderHistoryComponent } from './profile/profile-edit/profile-order-history/profile-order-history.component';
+
+// 컴포넌트는 만들어 졌으나 아직 코딩이 안된 모듈
 import { EditUserProfileComponent } from './profile/profile-edit/edit-user-profile/edit-user-profile.component';
 import { ExamHistoryComponent } from './profile/profile-edit/exam-history/exam-history.component';
 import { ExamAnalysisComponent } from './profile/profile-edit/exam-analysis/exam-analysis.component';
-import { PurchasedHistoryComponent } from './profile/purchased-history/purchased-history.component';
+import { ProfileOrderHistoryComponent } from './profile/profile-edit/profile-order-history/profile-order-history.component';
 
 @NgModule({
   declarations: [
-                  AuthenticationComponent,
-                  LoginComponent,
-                  LogoutComponent,
-                  SignupComponent,
-                  ProfileEditComponent,
-                  ProfileOrderHistoryComponent,
+                  authRoutingComponents,
                   EditUserProfileComponent,
                   ExamHistoryComponent,
                   ExamAnalysisComponent,
-                  PurchasedHistoryComponent,
-
+                  ProfileOrderHistoryComponent
                 ],
   imports: [
             CommonModule,

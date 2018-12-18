@@ -285,21 +285,33 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
   !*** ./src/$$_lazy_route_resource lazy namespace object ***!
   \**********************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncaught exception popping up in devtools
-	return Promise.resolve().then(function() {
-		var e = new Error('Cannot find module "' + req + '".');
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
+var map = {
+	"./toefl/teacher/teacher.module": [
+		"./src/app/toefl/teacher/teacher.module.ts",
+		"toefl-teacher-teacher-module"
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids) {
+		return Promise.resolve().then(function() {
+			var e = new Error('Cannot find module "' + req + '".');
+			e.code = 'MODULE_NOT_FOUND';
+			throw e;
+		});
+	}
+	return __webpack_require__.e(ids[1]).then(function() {
+		var module = __webpack_require__(ids[0]);
+		return module;
 	});
 }
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
+module.exports = webpackAsyncContext;
 
 /***/ }),
 
@@ -450,39 +462,112 @@ UtilityService = __decorate([
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
   \***************************************/
-/*! exports provided: AppRoutingModule */
+/*! exports provided: AppRoutingModule, appRoutingComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appRoutingComponent", function() { return appRoutingComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./welcome/welcome.component */ "./src/app/welcome/welcome.component.ts");
+/* harmony import */ var _navigation_header_header_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./navigation/header/header.component */ "./src/app/navigation/header/header.component.ts");
+/* harmony import */ var _navigation_sidenav_list_sidenav_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navigation/sidenav-list/sidenav-list.component */ "./src/app/navigation/sidenav-list/sidenav-list.component.ts");
+/* harmony import */ var _navigation_footer_footer_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navigation/footer/footer.component */ "./src/app/navigation/footer/footer.component.ts");
+/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
+/* harmony import */ var _shared_pipe_collection_shorten_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./shared/pipe-collection/shorten.pipe */ "./src/app/shared/pipe-collection/shorten.pipe.ts");
+/* harmony import */ var _toefl_toeflExam_toefl_list_toefl_list_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./toefl/toeflExam/toefl-list/toefl-list.component */ "./src/app/toefl/toeflExam/toefl-list/toefl-list.component.ts");
+/* harmony import */ var _toefl_toeflExam_basic_toefl_list_basic_toefl_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./toefl/toeflExam/basic-toefl-list/basic-toefl-list.component */ "./src/app/toefl/toeflExam/basic-toefl-list/basic-toefl-list.component.ts");
+/* harmony import */ var _toefl_toeflExam_intermediate_toefl_list_intermediate_toefl_list_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./toefl/toeflExam/intermediate-toefl-list/intermediate-toefl-list.component */ "./src/app/toefl/toeflExam/intermediate-toefl-list/intermediate-toefl-list.component.ts");
+/* harmony import */ var _toefl_toeflExam_advance_toefl_list_advance_toefl_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./toefl/toeflExam/advance-toefl-list/advance-toefl-list.component */ "./src/app/toefl/toeflExam/advance-toefl-list/advance-toefl-list.component.ts");
+/* harmony import */ var _toefl_toeflExam_beginner_toefl_list_beginner_toefl_list_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./toefl/toeflExam/beginner-toefl-list/beginner-toefl-list.component */ "./src/app/toefl/toeflExam/beginner-toefl-list/beginner-toefl-list.component.ts");
+/* harmony import */ var _toefl_toeflExam_event_toefl_list_event_toefl_list_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./toefl/toeflExam/event-toefl-list/event-toefl-list.component */ "./src/app/toefl/toeflExam/event-toefl-list/event-toefl-list.component.ts");
+/* harmony import */ var _payment_payment_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./payment/payment.component */ "./src/app/payment/payment.component.ts");
+/* harmony import */ var _payment_shoppingcart_shoppingcart_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./payment/shoppingcart/shoppingcart.component */ "./src/app/payment/shoppingcart/shoppingcart.component.ts");
+/* harmony import */ var _payment_payment_checkout_payment_proceed_payment_proceed_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./payment/payment-checkout/payment-proceed/payment-proceed.component */ "./src/app/payment/payment-checkout/payment-proceed/payment-proceed.component.ts");
+/* harmony import */ var _payment_payment_checkout_payment_notification_payment_notification_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./payment/payment-checkout/payment-notification/payment-notification.component */ "./src/app/payment/payment-checkout/payment-notification/payment-notification.component.ts");
+/* harmony import */ var _payment_shoppingcart_order_summary_order_summary_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./payment/shoppingcart/order-summary/order-summary.component */ "./src/app/payment/shoppingcart/order-summary/order-summary.component.ts");
+/* harmony import */ var _payment_payment_checkout_payment_order_summary_payment_order_summary_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./payment/payment-checkout/payment-order-summary/payment-order-summary.component */ "./src/app/payment/payment-checkout/payment-order-summary/payment-order-summary.component.ts");
+/* harmony import */ var _auth_auth_guard__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./auth/auth.guard */ "./src/app/auth/auth.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+// angular module
 
 
+// header side footer component
+
+
+
+
+// page not found 관련 component
+
+// 각종 pipe 규정
+
+// MDTabset으로 구성된 components
+
+
+
+
+
+
+// payment module 관련 component -- RouterModule.forChild는 한개박에 작동이 안되므로
+// auth module애 forChild모드를 적용하면 payment module이 적용이 되지만 page-not-found가 작동 안됨
+
+
+
+
+
+
+// 주소창에 아무거나 입력하면 무조건 auth.guard를 작동하여 인증모드로 강제로 forward하는 기능
 
 const APP_ROUTES = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_2__["WelcomeComponent"] }
-    // { path: 'teacher', loadChildren: './toefl/teacher/teacher.module#ToeflTeacherModule'},
-    // { path: 'toeflexam', loadChildren: './toefl/toeflExam/toeflexam.module#ToeflExamModule'},
+    { path: 'home', component: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_2__["WelcomeComponent"] },
+    { path: 'payment', component: _payment_payment_component__WEBPACK_IMPORTED_MODULE_14__["PaymentComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_20__["AuthGuard"]], children: [
+            { path: 'shoppingcart', component: _payment_shoppingcart_shoppingcart_component__WEBPACK_IMPORTED_MODULE_15__["ShoppingcartComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_20__["AuthGuard"]] },
+            { path: 'checkout/:totalAmount', component: _payment_payment_checkout_payment_proceed_payment_proceed_component__WEBPACK_IMPORTED_MODULE_16__["PaymentProceedComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_20__["AuthGuard"]] },
+            { path: 'result', component: _payment_payment_checkout_payment_notification_payment_notification_component__WEBPACK_IMPORTED_MODULE_17__["PaymentNotificationComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_20__["AuthGuard"]] }
+        ]
+    },
+    { path: 'teacher', loadChildren: './toefl/teacher/teacher.module#ToeflTeacherModule' },
+    { path: '**', component: _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_6__["NotFoundComponent"] }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
 AppRoutingModule = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(APP_ROUTES)],
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(APP_ROUTES, {
+                preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"]
+            })],
         exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
     })
 ], AppRoutingModule);
 
+const appRoutingComponent = [
+    _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_2__["WelcomeComponent"],
+    _navigation_header_header_component__WEBPACK_IMPORTED_MODULE_3__["HeaderComponent"],
+    _navigation_sidenav_list_sidenav_list_component__WEBPACK_IMPORTED_MODULE_4__["SidenavListComponent"],
+    _toefl_toeflExam_event_toefl_list_event_toefl_list_component__WEBPACK_IMPORTED_MODULE_13__["EventToeflListComponent"],
+    _toefl_toeflExam_toefl_list_toefl_list_component__WEBPACK_IMPORTED_MODULE_8__["ToeflListComponent"],
+    _toefl_toeflExam_beginner_toefl_list_beginner_toefl_list_component__WEBPACK_IMPORTED_MODULE_12__["BeginnerToeflListComponent"],
+    _toefl_toeflExam_basic_toefl_list_basic_toefl_list_component__WEBPACK_IMPORTED_MODULE_9__["BasicToeflListComponent"],
+    _toefl_toeflExam_intermediate_toefl_list_intermediate_toefl_list_component__WEBPACK_IMPORTED_MODULE_10__["IntermediateToeflListComponent"],
+    _toefl_toeflExam_advance_toefl_list_advance_toefl_list_component__WEBPACK_IMPORTED_MODULE_11__["AdvanceToeflListComponent"],
+    _navigation_footer_footer_component__WEBPACK_IMPORTED_MODULE_5__["FooterComponent"],
+    _shared_pipe_collection_shorten_pipe__WEBPACK_IMPORTED_MODULE_7__["ShortenPipe"],
+    _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_6__["NotFoundComponent"],
+    _payment_payment_component__WEBPACK_IMPORTED_MODULE_14__["PaymentComponent"],
+    _payment_shoppingcart_shoppingcart_component__WEBPACK_IMPORTED_MODULE_15__["ShoppingcartComponent"],
+    _payment_payment_checkout_payment_proceed_payment_proceed_component__WEBPACK_IMPORTED_MODULE_16__["PaymentProceedComponent"],
+    _payment_payment_checkout_payment_notification_payment_notification_component__WEBPACK_IMPORTED_MODULE_17__["PaymentNotificationComponent"],
+    _payment_shoppingcart_order_summary_order_summary_component__WEBPACK_IMPORTED_MODULE_18__["OrderSummaryComponent"],
+    _payment_payment_checkout_payment_order_summary_payment_order_summary_component__WEBPACK_IMPORTED_MODULE_19__["PaymentOrderSummaryComponent"],
+];
 
 
 /***/ }),
@@ -635,64 +720,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng-uikit-pro-standard */ "./node_modules/ng-uikit-pro-standard/esm2015/ng-uikit-pro-standard.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm2015/http.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./auth/auth.service */ "./src/app/auth/auth.service.ts");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
-/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./welcome/welcome.component */ "./src/app/welcome/welcome.component.ts");
-/* harmony import */ var _navigation_header_header_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./navigation/header/header.component */ "./src/app/navigation/header/header.component.ts");
-/* harmony import */ var _navigation_sidenav_list_sidenav_list_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./navigation/sidenav-list/sidenav-list.component */ "./src/app/navigation/sidenav-list/sidenav-list.component.ts");
-/* harmony import */ var _toefl_teacher_teacher_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./toefl/teacher/teacher.module */ "./src/app/toefl/teacher/teacher.module.ts");
-/* harmony import */ var _toefl_toeflExam_toeflexam_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./toefl/toeflExam/toeflexam.module */ "./src/app/toefl/toeflExam/toeflexam.module.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _auth_auth_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./auth/auth.module */ "./src/app/auth/auth.module.ts");
-/* harmony import */ var _toefl_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./toefl/not-found/not-found.component */ "./src/app/toefl/not-found/not-found.component.ts");
-/* harmony import */ var _navigation_footer_footer_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./navigation/footer/footer.component */ "./src/app/navigation/footer/footer.component.ts");
-/* harmony import */ var _payment_payment_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./payment/payment.module */ "./src/app/payment/payment.module.ts");
-/* harmony import */ var _toefl_toeflExam_toefl_list_toefl_list_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./toefl/toeflExam/toefl-list/toefl-list.component */ "./src/app/toefl/toeflExam/toefl-list/toefl-list.component.ts");
-/* harmony import */ var _toefl_toeflExam_basic_toefl_list_basic_toefl_list_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./toefl/toeflExam/basic-toefl-list/basic-toefl-list.component */ "./src/app/toefl/toeflExam/basic-toefl-list/basic-toefl-list.component.ts");
-/* harmony import */ var _toefl_toeflExam_intermediate_toefl_list_intermediate_toefl_list_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./toefl/toeflExam/intermediate-toefl-list/intermediate-toefl-list.component */ "./src/app/toefl/toeflExam/intermediate-toefl-list/intermediate-toefl-list.component.ts");
-/* harmony import */ var _toefl_toeflExam_advance_toefl_list_advance_toefl_list_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./toefl/toeflExam/advance-toefl-list/advance-toefl-list.component */ "./src/app/toefl/toeflExam/advance-toefl-list/advance-toefl-list.component.ts");
-/* harmony import */ var _toefl_toeflExam_beginner_toefl_list_beginner_toefl_list_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./toefl/toeflExam/beginner-toefl-list/beginner-toefl-list.component */ "./src/app/toefl/toeflExam/beginner-toefl-list/beginner-toefl-list.component.ts");
-/* harmony import */ var _toefl_toeflExam_event_toefl_list_event_toefl_list_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./toefl/toeflExam/event-toefl-list/event-toefl-list.component */ "./src/app/toefl/toeflExam/event-toefl-list/event-toefl-list.component.ts");
-/* harmony import */ var _shared_pipe_collection_shorten_pipe__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./shared/pipe-collection/shorten.pipe */ "./src/app/shared/pipe-collection/shorten.pipe.ts");
-/* harmony import */ var _error_interceptor__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./error-interceptor */ "./src/app/error-interceptor.ts");
-/* harmony import */ var _error_error_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./error/error.component */ "./src/app/error/error.component.ts");
+/* harmony import */ var ngx_stripe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-stripe */ "./node_modules/ngx-stripe/esm2015/ngx-stripe.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm2015/http.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _toefl_toeflExam_toeflexam_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./toefl/toeflExam/toeflexam.module */ "./src/app/toefl/toeflExam/toeflexam.module.ts");
+/* harmony import */ var _auth_auth_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./auth/auth.module */ "./src/app/auth/auth.module.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
+/* harmony import */ var _error_error_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./error/error.component */ "./src/app/error/error.component.ts");
+/* harmony import */ var _error_interceptor__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./error-interceptor */ "./src/app/error-interceptor.ts");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
+/* harmony import */ var _payment_shoppingcart_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./payment/shoppingcart.service */ "./src/app/payment/shoppingcart.service.ts");
+/* harmony import */ var _payment_paymentAgency_Service_paypal_payment_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./payment/paymentAgency-Service/paypal-payment.service */ "./src/app/payment/paymentAgency-Service/paypal-payment.service.ts");
+/* harmony import */ var _payment_paymentAgency_Service_stripe_payment_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./payment/paymentAgency-Service/stripe-payment.service */ "./src/app/payment/paymentAgency-Service/stripe-payment.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+// anglar 순수 modules
 
 
 
+// MDBBootstrap모들
+
+
+// 제 3자에서 제공하는 모듈
 
 
 
+// http Module
 
 
+// component 모듈
+
+// routing 모둘
+
+// 사용자 정의 모듈
 
 
+// 유틸리티 모듈
+
+// error관련 모둘
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 각종 서비스 모듈
 
 
 
@@ -703,43 +778,36 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
-            _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_12__["WelcomeComponent"],
-            _navigation_header_header_component__WEBPACK_IMPORTED_MODULE_13__["HeaderComponent"],
-            _navigation_sidenav_list_sidenav_list_component__WEBPACK_IMPORTED_MODULE_14__["SidenavListComponent"],
-            _toefl_not_found_not_found_component__WEBPACK_IMPORTED_MODULE_19__["NotFoundComponent"],
-            _toefl_toeflExam_toefl_list_toefl_list_component__WEBPACK_IMPORTED_MODULE_22__["ToeflListComponent"],
-            _toefl_toeflExam_beginner_toefl_list_beginner_toefl_list_component__WEBPACK_IMPORTED_MODULE_26__["BeginnerToeflListComponent"],
-            _toefl_toeflExam_basic_toefl_list_basic_toefl_list_component__WEBPACK_IMPORTED_MODULE_23__["BasicToeflListComponent"],
-            _toefl_toeflExam_intermediate_toefl_list_intermediate_toefl_list_component__WEBPACK_IMPORTED_MODULE_24__["IntermediateToeflListComponent"],
-            _toefl_toeflExam_advance_toefl_list_advance_toefl_list_component__WEBPACK_IMPORTED_MODULE_25__["AdvanceToeflListComponent"],
-            _navigation_footer_footer_component__WEBPACK_IMPORTED_MODULE_20__["FooterComponent"],
-            _toefl_toeflExam_event_toefl_list_event_toefl_list_component__WEBPACK_IMPORTED_MODULE_27__["EventToeflListComponent"],
-            _shared_pipe_collection_shorten_pipe__WEBPACK_IMPORTED_MODULE_28__["ShortenPipe"],
-            _error_error_component__WEBPACK_IMPORTED_MODULE_30__["ErrorComponent"]
+            _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
+            _error_error_component__WEBPACK_IMPORTED_MODULE_14__["ErrorComponent"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_10__["appRoutingComponent"],
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_1__["BrowserAnimationsModule"],
-            _angular_http__WEBPACK_IMPORTED_MODULE_6__["HttpModule"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"],
-            _auth_auth_module__WEBPACK_IMPORTED_MODULE_18__["AuthModule"],
-            _toefl_teacher_teacher_module__WEBPACK_IMPORTED_MODULE_15__["ToeflTeacherModule"],
-            _toefl_toeflExam_toeflexam_module__WEBPACK_IMPORTED_MODULE_16__["ToeflExamModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_17__["AppRoutingModule"],
-            _shared_shared_module__WEBPACK_IMPORTED_MODULE_11__["SharedModule"],
-            _payment_payment_module__WEBPACK_IMPORTED_MODULE_21__["PaymentModule"],
+            _angular_http__WEBPACK_IMPORTED_MODULE_7__["HttpModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"],
+            _auth_auth_module__WEBPACK_IMPORTED_MODULE_12__["AuthModule"],
+            _toefl_toeflExam_toeflexam_module__WEBPACK_IMPORTED_MODULE_11__["ToeflExamModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_10__["AppRoutingModule"],
+            _shared_shared_module__WEBPACK_IMPORTED_MODULE_13__["SharedModule"],
+            ngx_stripe__WEBPACK_IMPORTED_MODULE_6__["NgxStripeModule"].forRoot('pk_test_erzDoCmLOPEP1n4tLjvtT7Y2'),
             ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrModule"].forRoot(),
             ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_3__["MDBBootstrapModulesPro"].forRoot(),
             _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"]
         ],
         schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["NO_ERRORS_SCHEMA"]],
         providers: [
-            ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_3__["MDBSpinningPreloader"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_9__["AuthService"], _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_10__["UtilityService"],
-            { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"], useClass: _error_interceptor__WEBPACK_IMPORTED_MODULE_29__["ErrorInterceptor"], multi: true }
+            ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_3__["MDBSpinningPreloader"],
+            _auth_auth_service__WEBPACK_IMPORTED_MODULE_16__["AuthService"],
+            _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_17__["UtilityService"],
+            _payment_shoppingcart_service__WEBPACK_IMPORTED_MODULE_18__["ShoppingcartService"],
+            _payment_paymentAgency_Service_paypal_payment_service__WEBPACK_IMPORTED_MODULE_19__["PaypalPaymentService"],
+            _payment_paymentAgency_Service_stripe_payment_service__WEBPACK_IMPORTED_MODULE_20__["StripePaymentService"],
+            { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HTTP_INTERCEPTORS"], useClass: _error_interceptor__WEBPACK_IMPORTED_MODULE_15__["ErrorInterceptor"], multi: true }
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]],
-        entryComponents: [_error_error_component__WEBPACK_IMPORTED_MODULE_30__["ErrorComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]],
+        entryComponents: [_error_error_component__WEBPACK_IMPORTED_MODULE_14__["ErrorComponent"]]
     })
 ], AppModule);
 
@@ -751,31 +819,35 @@ AppModule = __decorate([
 /*!*********************************************!*\
   !*** ./src/app/auth/auth-routing.module.ts ***!
   \*********************************************/
-/*! exports provided: authRoutes, AuthRoutingModule */
+/*! exports provided: authRoutes, AuthRoutingModule, authRoutingComponents */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authRoutes", function() { return authRoutes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthRoutingModule", function() { return AuthRoutingModule; });
-/* harmony import */ var _authentication_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./authentication.component */ "./src/app/auth/authentication.component.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _signup_signup_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.component */ "./src/app/auth/login/login.component.ts");
-/* harmony import */ var _logout_logout_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./logout/logout.component */ "./src/app/auth/logout/logout.component.ts");
-/* harmony import */ var _profile_profile_edit_profile_edit_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./profile/profile-edit/profile-edit.component */ "./src/app/auth/profile/profile-edit/profile-edit.component.ts");
-/* harmony import */ var _profile_purchased_history_purchased_history_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./profile/purchased-history/purchased-history.component */ "./src/app/auth/profile/purchased-history/purchased-history.component.ts");
-/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth/auth.guard.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authRoutingComponents", function() { return authRoutingComponents; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth/auth.guard.ts");
+/* harmony import */ var _authentication_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./authentication.component */ "./src/app/auth/authentication.component.ts");
+/* harmony import */ var _signup_signup_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login/login.component */ "./src/app/auth/login/login.component.ts");
+/* harmony import */ var _logout_logout_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./logout/logout.component */ "./src/app/auth/logout/logout.component.ts");
+/* harmony import */ var _profile_profile_edit_profile_edit_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./profile/profile-edit/profile-edit.component */ "./src/app/auth/profile/profile-edit/profile-edit.component.ts");
+/* harmony import */ var _profile_purchased_history_purchased_history_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile/purchased-history/purchased-history.component */ "./src/app/auth/profile/purchased-history/purchased-history.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+// angular module
 
 
+// 보안 module
 
+// routing component module
 
 
 
@@ -783,24 +855,32 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 const authRoutes = [
-    { path: 'auth', component: _authentication_component__WEBPACK_IMPORTED_MODULE_0__["AuthenticationComponent"], children: [
-            { path: 'signup', component: _signup_signup_component__WEBPACK_IMPORTED_MODULE_3__["SignupComponent"] },
-            { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"] },
-            { path: 'profile', component: _profile_profile_edit_profile_edit_component__WEBPACK_IMPORTED_MODULE_6__["ProfileEditComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] },
-            { path: 'orderHistory', component: _profile_purchased_history_purchased_history_component__WEBPACK_IMPORTED_MODULE_7__["PurchasedHistoryComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] },
-            { path: 'logout', component: _logout_logout_component__WEBPACK_IMPORTED_MODULE_5__["LogoutComponent"] }
-        ] },
+    { path: 'auth', component: _authentication_component__WEBPACK_IMPORTED_MODULE_3__["AuthenticationComponent"], children: [
+            { path: 'signup', component: _signup_signup_component__WEBPACK_IMPORTED_MODULE_4__["SignupComponent"] },
+            { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"] },
+            { path: 'profile', component: _profile_profile_edit_profile_edit_component__WEBPACK_IMPORTED_MODULE_7__["ProfileEditComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]] },
+            { path: 'orderHistory', component: _profile_purchased_history_purchased_history_component__WEBPACK_IMPORTED_MODULE_8__["PurchasedHistoryComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]] },
+            { path: 'logout', component: _logout_logout_component__WEBPACK_IMPORTED_MODULE_6__["LogoutComponent"] }
+        ] }
 ];
 let AuthRoutingModule = class AuthRoutingModule {
 };
 AuthRoutingModule = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(authRoutes)],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
-        providers: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]]
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(authRoutes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]],
+        providers: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     })
 ], AuthRoutingModule);
 
+const authRoutingComponents = [
+    _authentication_component__WEBPACK_IMPORTED_MODULE_3__["AuthenticationComponent"],
+    _signup_signup_component__WEBPACK_IMPORTED_MODULE_4__["SignupComponent"],
+    _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"],
+    _profile_profile_edit_profile_edit_component__WEBPACK_IMPORTED_MODULE_7__["ProfileEditComponent"],
+    _profile_purchased_history_purchased_history_component__WEBPACK_IMPORTED_MODULE_8__["PurchasedHistoryComponent"],
+    _logout_logout_component__WEBPACK_IMPORTED_MODULE_6__["LogoutComponent"]
+];
 
 
 /***/ }),
@@ -866,37 +946,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthModule", function() { return AuthModule; });
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _authentication_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./authentication.component */ "./src/app/auth/authentication.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login/login.component */ "./src/app/auth/login/login.component.ts");
-/* harmony import */ var _logout_logout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./logout/logout.component */ "./src/app/auth/logout/logout.component.ts");
-/* harmony import */ var _signup_signup_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./signup/signup.component */ "./src/app/auth/signup/signup.component.ts");
-/* harmony import */ var ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ng-uikit-pro-standard */ "./node_modules/ng-uikit-pro-standard/esm2015/ng-uikit-pro-standard.js");
-/* harmony import */ var _auth_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth-routing.module */ "./src/app/auth/auth-routing.module.ts");
-/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../shared/shared.module */ "./src/app/shared/shared.module.ts");
-/* harmony import */ var _profile_profile_edit_profile_edit_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./profile/profile-edit/profile-edit.component */ "./src/app/auth/profile/profile-edit/profile-edit.component.ts");
-/* harmony import */ var _profile_profile_edit_profile_order_history_profile_order_history_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./profile/profile-edit/profile-order-history/profile-order-history.component */ "./src/app/auth/profile/profile-edit/profile-order-history/profile-order-history.component.ts");
-/* harmony import */ var _profile_profile_edit_edit_user_profile_edit_user_profile_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./profile/profile-edit/edit-user-profile/edit-user-profile.component */ "./src/app/auth/profile/profile-edit/edit-user-profile/edit-user-profile.component.ts");
-/* harmony import */ var _profile_profile_edit_exam_history_exam_history_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./profile/profile-edit/exam-history/exam-history.component */ "./src/app/auth/profile/profile-edit/exam-history/exam-history.component.ts");
-/* harmony import */ var _profile_profile_edit_exam_analysis_exam_analysis_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./profile/profile-edit/exam-analysis/exam-analysis.component */ "./src/app/auth/profile/profile-edit/exam-analysis/exam-analysis.component.ts");
-/* harmony import */ var _profile_purchased_history_purchased_history_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./profile/purchased-history/purchased-history.component */ "./src/app/auth/profile/purchased-history/purchased-history.component.ts");
+/* harmony import */ var ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng-uikit-pro-standard */ "./node_modules/ng-uikit-pro-standard/esm2015/ng-uikit-pro-standard.js");
+/* harmony import */ var _auth_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth-routing.module */ "./src/app/auth/auth-routing.module.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../shared/shared.module */ "./src/app/shared/shared.module.ts");
+/* harmony import */ var _profile_profile_edit_edit_user_profile_edit_user_profile_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/profile-edit/edit-user-profile/edit-user-profile.component */ "./src/app/auth/profile/profile-edit/edit-user-profile/edit-user-profile.component.ts");
+/* harmony import */ var _profile_profile_edit_exam_history_exam_history_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./profile/profile-edit/exam-history/exam-history.component */ "./src/app/auth/profile/profile-edit/exam-history/exam-history.component.ts");
+/* harmony import */ var _profile_profile_edit_exam_analysis_exam_analysis_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./profile/profile-edit/exam-analysis/exam-analysis.component */ "./src/app/auth/profile/profile-edit/exam-analysis/exam-analysis.component.ts");
+/* harmony import */ var _profile_profile_edit_profile_order_history_profile_order_history_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile/profile-edit/profile-order-history/profile-order-history.component */ "./src/app/auth/profile/profile-edit/profile-order-history/profile-order-history.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+// angular module
 
 
+// MDBootstrap module
 
+// authRoutingMOdule
 
+// 제 3자가 제공한 toaster module
 
+// 모든 component module에서 공통으로 사용하는 모들
 
-
-
-
-
-
-
+// 컴포넌트는 만들어 졌으나 아직 코딩이 안된 모듈
 
 
 
@@ -906,23 +980,18 @@ let AuthModule = class AuthModule {
 AuthModule = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [
-            _authentication_component__WEBPACK_IMPORTED_MODULE_2__["AuthenticationComponent"],
-            _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"],
-            _logout_logout_component__WEBPACK_IMPORTED_MODULE_4__["LogoutComponent"],
-            _signup_signup_component__WEBPACK_IMPORTED_MODULE_5__["SignupComponent"],
-            _profile_profile_edit_profile_edit_component__WEBPACK_IMPORTED_MODULE_9__["ProfileEditComponent"],
-            _profile_profile_edit_profile_order_history_profile_order_history_component__WEBPACK_IMPORTED_MODULE_10__["ProfileOrderHistoryComponent"],
-            _profile_profile_edit_edit_user_profile_edit_user_profile_component__WEBPACK_IMPORTED_MODULE_11__["EditUserProfileComponent"],
-            _profile_profile_edit_exam_history_exam_history_component__WEBPACK_IMPORTED_MODULE_12__["ExamHistoryComponent"],
-            _profile_profile_edit_exam_analysis_exam_analysis_component__WEBPACK_IMPORTED_MODULE_13__["ExamAnalysisComponent"],
-            _profile_purchased_history_purchased_history_component__WEBPACK_IMPORTED_MODULE_14__["PurchasedHistoryComponent"],
+            _auth_routing_module__WEBPACK_IMPORTED_MODULE_3__["authRoutingComponents"],
+            _profile_profile_edit_edit_user_profile_edit_user_profile_component__WEBPACK_IMPORTED_MODULE_5__["EditUserProfileComponent"],
+            _profile_profile_edit_exam_history_exam_history_component__WEBPACK_IMPORTED_MODULE_6__["ExamHistoryComponent"],
+            _profile_profile_edit_exam_analysis_exam_analysis_component__WEBPACK_IMPORTED_MODULE_7__["ExamAnalysisComponent"],
+            _profile_profile_edit_profile_order_history_profile_order_history_component__WEBPACK_IMPORTED_MODULE_8__["ProfileOrderHistoryComponent"]
         ],
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
-            _shared_shared_module__WEBPACK_IMPORTED_MODULE_8__["SharedModule"],
-            ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_6__["MDBBootstrapModulesPro"].forRoot(),
-            ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_6__["ToastModule"].forRoot(),
-            _auth_routing_module__WEBPACK_IMPORTED_MODULE_7__["AuthRoutingModule"]
+            _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"],
+            ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_2__["MDBBootstrapModulesPro"].forRoot(),
+            ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_2__["ToastModule"].forRoot(),
+            _auth_routing_module__WEBPACK_IMPORTED_MODULE_3__["AuthRoutingModule"]
         ]
     })
 ], AuthModule);
@@ -2405,6 +2474,82 @@ SidenavListComponent = __decorate([
 
 /***/ }),
 
+/***/ "./src/app/not-found/not-found.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/not-found/not-found.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div mdbModal #basicModal=\"mdbModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myBasicModalLabel\"\n  aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"basicModal.hide()\">\n          <span aria-hidden=\"true\">×</span>\n        </button>\n        <h4 class=\"modal-title w-100\" id=\"myModalLabel\">Page Not Found</h4>\n      </div>\n      <div class=\"modal-body\">\n        Can not find out a Page.......\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary waves-light\" aria-label=\"OK\" (click)=\"goBackToHome()\" mdbWavesEffect>Close</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/not-found/not-found.component.scss":
+/*!****************************************************!*\
+  !*** ./src/app/not-found/not-found.component.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/not-found/not-found.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/not-found/not-found.component.ts ***!
+  \**************************************************/
+/*! exports provided: NotFoundComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotFoundComponent", function() { return NotFoundComponent; });
+/* harmony import */ var ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ng-uikit-pro-standard */ "./node_modules/ng-uikit-pro-standard/esm2015/ng-uikit-pro-standard.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+let NotFoundComponent = class NotFoundComponent {
+    constructor(router) {
+        this.router = router;
+    }
+    ngAfterViewInit() {
+        this.basicModal.show();
+    }
+    goBackToHome() {
+        this.basicModal.hide();
+        this.router.navigate(['/']);
+    }
+};
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('basicModal'),
+    __metadata("design:type", ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_0__["ModalDirective"])
+], NotFoundComponent.prototype, "basicModal", void 0);
+NotFoundComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-not-found',
+        template: __webpack_require__(/*! ./not-found.component.html */ "./src/app/not-found/not-found.component.html"),
+        styles: [__webpack_require__(/*! ./not-found.component.scss */ "./src/app/not-found/not-found.component.scss")]
+    }),
+    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+], NotFoundComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/payment/model/payment.model.ts":
 /*!************************************************!*\
   !*** ./src/app/payment/model/payment.model.ts ***!
@@ -2819,57 +2964,6 @@ PaymentProceedComponent = __decorate([
 
 /***/ }),
 
-/***/ "./src/app/payment/payment-routing.module.ts":
-/*!***************************************************!*\
-  !*** ./src/app/payment/payment-routing.module.ts ***!
-  \***************************************************/
-/*! exports provided: paymentRoutes, PaymentRoutingModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentRoutes", function() { return paymentRoutes; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaymentRoutingModule", function() { return PaymentRoutingModule; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _shoppingcart_shoppingcart_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shoppingcart/shoppingcart.component */ "./src/app/payment/shoppingcart/shoppingcart.component.ts");
-/* harmony import */ var _payment_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./payment.component */ "./src/app/payment/payment.component.ts");
-/* harmony import */ var _payment_checkout_payment_proceed_payment_proceed_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./payment-checkout/payment-proceed/payment-proceed.component */ "./src/app/payment/payment-checkout/payment-proceed/payment-proceed.component.ts");
-/* harmony import */ var _payment_checkout_payment_notification_payment_notification_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./payment-checkout/payment-notification/payment-notification.component */ "./src/app/payment/payment-checkout/payment-notification/payment-notification.component.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-const paymentRoutes = [
-    {
-        path: 'payment', component: _payment_component__WEBPACK_IMPORTED_MODULE_3__["PaymentComponent"], children: [
-            { path: 'shoppingcart', component: _shoppingcart_shoppingcart_component__WEBPACK_IMPORTED_MODULE_2__["ShoppingcartComponent"] },
-            { path: 'checkout/:totalAmount', component: _payment_checkout_payment_proceed_payment_proceed_component__WEBPACK_IMPORTED_MODULE_4__["PaymentProceedComponent"] },
-            { path: 'result', component: _payment_checkout_payment_notification_payment_notification_component__WEBPACK_IMPORTED_MODULE_5__["PaymentNotificationComponent"] }
-        ]
-    }
-];
-let PaymentRoutingModule = class PaymentRoutingModule {
-};
-PaymentRoutingModule = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(paymentRoutes)],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
-    })
-], PaymentRoutingModule);
-
-
-
-/***/ }),
-
 /***/ "./src/app/payment/payment.component.ts":
 /*!**********************************************!*\
   !*** ./src/app/payment/payment.component.ts ***!
@@ -2904,81 +2998,6 @@ PaymentComponent = __decorate([
     }),
     __metadata("design:paramtypes", [])
 ], PaymentComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/payment/payment.module.ts":
-/*!*******************************************!*\
-  !*** ./src/app/payment/payment.module.ts ***!
-  \*******************************************/
-/*! exports provided: PaymentModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaymentModule", function() { return PaymentModule; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ng-uikit-pro-standard */ "./node_modules/ng-uikit-pro-standard/esm2015/ng-uikit-pro-standard.js");
-/* harmony import */ var _payment_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./payment-routing.module */ "./src/app/payment/payment-routing.module.ts");
-/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/shared/shared.module.ts");
-/* harmony import */ var _shoppingcart_shoppingcart_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shoppingcart/shoppingcart.component */ "./src/app/payment/shoppingcart/shoppingcart.component.ts");
-/* harmony import */ var _shoppingcart_order_summary_order_summary_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shoppingcart/order-summary/order-summary.component */ "./src/app/payment/shoppingcart/order-summary/order-summary.component.ts");
-/* harmony import */ var _payment_checkout_payment_order_summary_payment_order_summary_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./payment-checkout/payment-order-summary/payment-order-summary.component */ "./src/app/payment/payment-checkout/payment-order-summary/payment-order-summary.component.ts");
-/* harmony import */ var _payment_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./payment.component */ "./src/app/payment/payment.component.ts");
-/* harmony import */ var _payment_checkout_payment_proceed_payment_proceed_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./payment-checkout/payment-proceed/payment-proceed.component */ "./src/app/payment/payment-checkout/payment-proceed/payment-proceed.component.ts");
-/* harmony import */ var _payment_checkout_payment_notification_payment_notification_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./payment-checkout/payment-notification/payment-notification.component */ "./src/app/payment/payment-checkout/payment-notification/payment-notification.component.ts");
-/* harmony import */ var _shoppingcart_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shoppingcart.service */ "./src/app/payment/shoppingcart.service.ts");
-/* harmony import */ var _paymentAgency_Service_paypal_payment_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./paymentAgency-Service/paypal-payment.service */ "./src/app/payment/paymentAgency-Service/paypal-payment.service.ts");
-/* harmony import */ var _paymentAgency_Service_stripe_payment_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./paymentAgency-Service/stripe-payment.service */ "./src/app/payment/paymentAgency-Service/stripe-payment.service.ts");
-/* harmony import */ var ngx_stripe__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ngx-stripe */ "./node_modules/ngx-stripe/esm2015/ngx-stripe.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-//  shopping cart routing은 한 페이지로 구성되있으므로 payment routing에
-//  종속시킨다.
-
-
-
-
-
-
-
-
-
-
-
-
-// For MDB Angular Pro
-let PaymentModule = class PaymentModule {
-};
-PaymentModule = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-        declarations: [
-            _payment_component__WEBPACK_IMPORTED_MODULE_7__["PaymentComponent"],
-            _shoppingcart_shoppingcart_component__WEBPACK_IMPORTED_MODULE_4__["ShoppingcartComponent"],
-            _shoppingcart_order_summary_order_summary_component__WEBPACK_IMPORTED_MODULE_5__["OrderSummaryComponent"],
-            _payment_checkout_payment_proceed_payment_proceed_component__WEBPACK_IMPORTED_MODULE_8__["PaymentProceedComponent"],
-            _payment_checkout_payment_order_summary_payment_order_summary_component__WEBPACK_IMPORTED_MODULE_6__["PaymentOrderSummaryComponent"],
-            _payment_checkout_payment_notification_payment_notification_component__WEBPACK_IMPORTED_MODULE_9__["PaymentNotificationComponent"]
-        ],
-        imports: [
-            _payment_routing_module__WEBPACK_IMPORTED_MODULE_2__["PaymentRoutingModule"],
-            _shared_shared_module__WEBPACK_IMPORTED_MODULE_3__["SharedModule"],
-            ngx_stripe__WEBPACK_IMPORTED_MODULE_13__["NgxStripeModule"].forRoot('pk_test_erzDoCmLOPEP1n4tLjvtT7Y2'),
-            ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_1__["MDBBootstrapModulesPro"].forRoot()
-        ],
-        providers: [_shoppingcart_service__WEBPACK_IMPORTED_MODULE_10__["ShoppingcartService"],
-            _paymentAgency_Service_paypal_payment_service__WEBPACK_IMPORTED_MODULE_11__["PaypalPaymentService"],
-            _paymentAgency_Service_stripe_payment_service__WEBPACK_IMPORTED_MODULE_12__["StripePaymentService"]]
-    })
-], PaymentModule);
 
 
 
@@ -3428,42 +3447,6 @@ ShoppingcartComponent = __decorate([
 
 /***/ }),
 
-/***/ "./src/app/shared/pipe-collection/shorten.pipe.1.ts":
-/*!**********************************************************!*\
-  !*** ./src/app/shared/pipe-collection/shorten.pipe.1.ts ***!
-  \**********************************************************/
-/*! exports provided: ShortenPipe1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShortenPipe1", function() { return ShortenPipe1; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-let ShortenPipe1 = class ShortenPipe1 {
-    transform(value, limit) {
-        if (value.length > limit) {
-            return value.substr(0, limit) + ' ...';
-        }
-        return value;
-    }
-};
-ShortenPipe1 = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
-        name: 'shorten1'
-    })
-], ShortenPipe1);
-
-
-
-/***/ }),
-
 /***/ "./src/app/shared/pipe-collection/shorten.pipe.ts":
 /*!********************************************************!*\
   !*** ./src/app/shared/pipe-collection/shorten.pipe.ts ***!
@@ -3547,56 +3530,6 @@ SharedModule = __decorate([
 
 /***/ }),
 
-/***/ "./src/app/toefl/models/default.data.model.ts":
-/*!****************************************************!*\
-  !*** ./src/app/toefl/models/default.data.model.ts ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ([
-    {
-        // toefl main general description 
-        desc: `Soon technology will provide smart cars: cars that virtually drive themselves. A computer in the car determines the speed and route to the desired destination. The computer is in continuous contact with a global positioning system and other technologies that will provide extremely accurate information about the location of the car, other cars on the road, congestion, accidents, and so forth. The human driver will be little more than a passenger. Smart cars promise to make driving safer, quicker, and less expensive.
-        First of all, smart cars will prevent many accidents, thereby saving lives. The cars will be equipped with a variety of sensors that very accurately detect cars and other obstacles in their path, and they will have automatic programs that control braking and turning to avoid collisions. Given the hundreds of accidents that occur on highways daily, it is clear that humans do a poor job of avoiding accidents and that computer control would be a great improvement.
-        Second, with the wide use of smart cars, traffic problems will practically disappear. These computer-controlled cars can follow each other closely, even at high speeds. This ability will result in increased highway speeds. Today commuting by car can take hours a day. So the increased speed of smart cars will be a great benefit, welcomed by the many people who commute by car.
-        Finally, smart cars will bring a reduction in the costs of driving. Because smart cars are programmed to drive the most direct routes, car owners will have to spend less money on repairs and replacement parts. Expensive items such as brakes, tires, and transmissions will last much longer in smart cars than in other cars.`
-    },
-    {
-        // reading general description
-        desc: `Soon technology will provide smart cars: cars that virtually drive themselves. A computer in the car determines the speed and route to the desired destination. The computer is in continuous contact with a global positioning system and other technologies that will provide extremely accurate information about the location of the car, other cars on the road, congestion, accidents, and so forth. The human driver will be little more than a passenger. Smart cars promise to make driving safer, quicker, and less expensive.
-        First of all, smart cars will prevent many accidents, thereby saving lives. The cars will be equipped with a variety of sensors that very accurately detect cars and other obstacles in their path, and they will have automatic programs that control braking and turning to avoid collisions. Given the hundreds of accidents that occur on highways daily, it is clear that humans do a poor job of avoiding accidents and that computer control would be a great improvement.
-        Second, with the wide use of smart cars, traffic problems will practically disappear. These computer-controlled cars can follow each other closely, even at high speeds. This ability will result in increased highway speeds. Today commuting by car can take hours a day. So the increased speed of smart cars will be a great benefit, welcomed by the many people who commute by car.
-        Finally, smart cars will bring a reduction in the costs of driving. Because smart cars are programmed to drive the most direct routes, car owners will have to spend less money on repairs and replacement parts. Expensive items such as brakes, tires, and transmissions will last much longer in smart cars than in other cars.`
-    },
-    {
-        // listening general description
-        desc: `Soon technology will provide smart cars: cars that virtually drive themselves. A computer in the car determines the speed and route to the desired destination. The computer is in continuous contact with a global positioning system and other technologies that will provide extremely accurate information about the location of the car, other cars on the road, congestion, accidents, and so forth. The human driver will be little more than a passenger. Smart cars promise to make driving safer, quicker, and less expensive.
-        First of all, smart cars will prevent many accidents, thereby saving lives. The cars will be equipped with a variety of sensors that very accurately detect cars and other obstacles in their path, and they will have automatic programs that control braking and turning to avoid collisions. Given the hundreds of accidents that occur on highways daily, it is clear that humans do a poor job of avoiding accidents and that computer control would be a great improvement.
-        Second, with the wide use of smart cars, traffic problems will practically disappear. These computer-controlled cars can follow each other closely, even at high speeds. This ability will result in increased highway speeds. Today commuting by car can take hours a day. So the increased speed of smart cars will be a great benefit, welcomed by the many people who commute by car.
-        Finally, smart cars will bring a reduction in the costs of driving. Because smart cars are programmed to drive the most direct routes, car owners will have to spend less money on repairs and replacement parts. Expensive items such as brakes, tires, and transmissions will last much longer in smart cars than in other cars.`
-    },
-    {
-        // writing general description
-        desc: `Soon technology will provide smart cars: cars that virtually drive themselves. A computer in the car determines the speed and route to the desired destination. The computer is in continuous contact with a global positioning system and other technologies that will provide extremely accurate information about the location of the car, other cars on the road, congestion, accidents, and so forth. The human driver will be little more than a passenger. Smart cars promise to make driving safer, quicker, and less expensive.
-        First of all, smart cars will prevent many accidents, thereby saving lives. The cars will be equipped with a variety of sensors that very accurately detect cars and other obstacles in their path, and they will have automatic programs that control braking and turning to avoid collisions. Given the hundreds of accidents that occur on highways daily, it is clear that humans do a poor job of avoiding accidents and that computer control would be a great improvement.
-        Second, with the wide use of smart cars, traffic problems will practically disappear. These computer-controlled cars can follow each other closely, even at high speeds. This ability will result in increased highway speeds. Today commuting by car can take hours a day. So the increased speed of smart cars will be a great benefit, welcomed by the many people who commute by car.
-        Finally, smart cars will bring a reduction in the costs of driving. Because smart cars are programmed to drive the most direct routes, car owners will have to spend less money on repairs and replacement parts. Expensive items such as brakes, tires, and transmissions will last much longer in smart cars than in other cars.`
-    },
-    {
-        // speaking general description
-        desc: `Soon technology will provide smart cars: cars that virtually drive themselves. A computer in the car determines the speed and route to the desired destination. The computer is in continuous contact with a global positioning system and other technologies that will provide extremely accurate information about the location of the car, other cars on the road, congestion, accidents, and so forth. The human driver will be little more than a passenger. Smart cars promise to make driving safer, quicker, and less expensive.
-        First of all, smart cars will prevent many accidents, thereby saving lives. The cars will be equipped with a variety of sensors that very accurately detect cars and other obstacles in their path, and they will have automatic programs that control braking and turning to avoid collisions. Given the hundreds of accidents that occur on highways daily, it is clear that humans do a poor job of avoiding accidents and that computer control would be a great improvement.
-        Second, with the wide use of smart cars, traffic problems will practically disappear. These computer-controlled cars can follow each other closely, even at high speeds. This ability will result in increased highway speeds. Today commuting by car can take hours a day. So the increased speed of smart cars will be a great benefit, welcomed by the many people who commute by car.
-        Finally, smart cars will bring a reduction in the costs of driving. Because smart cars are programmed to drive the most direct routes, car owners will have to spend less money on repairs and replacement parts. Expensive items such as brakes, tires, and transmissions will last much longer in smart cars than in other cars.`
-    }
-]);
-
-
-/***/ }),
-
 /***/ "./src/app/toefl/models/join-paidtoefl-toefl.model.ts":
 /*!************************************************************!*\
   !*** ./src/app/toefl/models/join-paidtoefl-toefl.model.ts ***!
@@ -3616,3098 +3549,6 @@ class JoinPaidToefl {
         this.paidToeflYesOrNo = paidToeflYesOrNo;
     }
 }
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/models/reading.model.ts":
-/*!***********************************************!*\
-  !*** ./src/app/toefl/models/reading.model.ts ***!
-  \***********************************************/
-/*! exports provided: Reading */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reading", function() { return Reading; });
-class Reading {
-    constructor(toeflNo, readingCreatedDate, section1Title, section1Script, section1Problem, section2Title, section2Script, section2Problem, section3Title, section3Script, section3Problem, section4Title, section4Script, section4Problem) {
-        this.toeflNo = toeflNo;
-        this.readingCreatedDate = readingCreatedDate;
-        this.section1Title = section1Title;
-        this.section1Script = section1Script;
-        this.section1Problem = section1Problem;
-        this.section2Title = section2Title;
-        this.section2Script = section2Script;
-        this.section2Problem = section2Problem;
-        this.section3Title = section3Title;
-        this.section3Script = section3Script;
-        this.section3Problem = section3Problem;
-        this.section4Title = section4Title;
-        this.section4Script = section4Script;
-        this.section4Problem = section4Problem;
-    }
-}
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/models/toefl.model.ts":
-/*!*********************************************!*\
-  !*** ./src/app/toefl/models/toefl.model.ts ***!
-  \*********************************************/
-/*! exports provided: Toefl */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Toefl", function() { return Toefl; });
-class Toefl {
-    constructor(toeflNo, toeflDesc, toeflLevel, toeflCreatedDate, toeflCompletionTag, toeflImage, toeflAudio, readingDesc, listeningDesc, writingDesc, speakingDesc, writer, imageSettingTimes, toeflPrice) {
-        this.toeflNo = toeflNo;
-        this.toeflDesc = toeflDesc;
-        this.toeflLevel = toeflLevel;
-        this.toeflCreatedDate = toeflCreatedDate;
-        this.toeflCompletionTag = toeflCompletionTag;
-        this.toeflImage = toeflImage;
-        this.toeflAudio = toeflAudio;
-        this.readingDesc = readingDesc;
-        this.listeningDesc = listeningDesc;
-        this.writingDesc = writingDesc;
-        this.speakingDesc = speakingDesc;
-        this.writer = writer;
-        this.imageSettingTimes = imageSettingTimes;
-    }
-}
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/not-found/not-found.component.html":
-/*!**********************************************************!*\
-  !*** ./src/app/toefl/not-found/not-found.component.html ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n<main>\n  <div class=\"main-wrapper\">\n    <div class=\"container-fluid center\">\n\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n        </div>\n        <div class=\"col-md-4\">\n\n                <!--Card-->\n                <div class=\"card card-cascade wider\">\n\n                <!--Card image-->\n                <div class=\"view gradient-card-header peach-gradient\">\n                    <h2 class=\"h2-responsive mb-2\"><i class=\"fa fa-danger\"></i>Page is not found</h2>\n                    <p class=\"fa-calendar\"> </p>\n\n                </div>\n                <!--/Card image-->\n\n                <!--Card content-->\n                <div class=\"card-body text-center\">\n\n                    <p class=\"card-text mr-2 ml-2\">\n                      You are looking for a wrong page...\n                    </p>\n                    <p class=\"card-text mr-2 ml-2\">\n                      Please login Again to access the right page...\n                    </p>\n\n                    <a href=\"#\" class=\"orange-text mt-1 d-flex flex-row-reverse\">\n                        <h5 class=\"waves-effect p-2\" mdbWavesEffect>Read more <i class=\"fa fa-chevron-right\"></i></h5>\n                    </a>\n                </div>\n                <!--/.Card content-->\n\n                </div>\n                <!--/.Card-->\n\n\n        </div>\n        <div class=\"col-md-4\">\n        </div>\n      </div>\n\n    </div>\n  </div>\n</main>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/not-found/not-found.component.scss":
-/*!**********************************************************!*\
-  !*** ./src/app/toefl/not-found/not-found.component.scss ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/toefl/not-found/not-found.component.ts":
-/*!********************************************************!*\
-  !*** ./src/app/toefl/not-found/not-found.component.ts ***!
-  \********************************************************/
-/*! exports provided: NotFoundComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotFoundComponent", function() { return NotFoundComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-let NotFoundComponent = class NotFoundComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-NotFoundComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-not-found',
-        template: __webpack_require__(/*! ./not-found.component.html */ "./src/app/toefl/not-found/not-found.component.html"),
-        styles: [__webpack_require__(/*! ./not-found.component.scss */ "./src/app/toefl/not-found/not-found.component.scss")]
-    }),
-    __metadata("design:paramtypes", [])
-], NotFoundComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl.component.html":
-/*!*************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl.component.html ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n<!--Double navigation-->\n<header>\n    <!-- Sidebar navigation -->\n    <mdb-sidenav #sidenav1 class=\"sn-bg-1\" [fixed]=\"false\">\n       <app-teacher-sidebar></app-teacher-sidebar>\n    </mdb-sidenav>\n    <!--/. Sidebar navigation -->\n    <app-teacher-nav-header (sidenavToggle1)=\"sidenav1.toggle()\"></app-teacher-nav-header>\n\n</header>\n\n<div class=\"fullscreen\">\n        <div class=\"row ml-2 mr-5\">\n        <div class=\"mx-auto col-md-5\">\n          <app-regist-toefl-list></app-regist-toefl-list>\n        </div>\n        <div class=\"mx-auto col-md-7\">\n            <router-outlet></router-outlet>\n        </div>\n      </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl.component.scss":
-/*!*************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl.component.scss ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".fullscreen {\n  position: fixed;\n  top: 5rem;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  overflow: auto; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl.component.ts":
-/*!***********************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl.component.ts ***!
-  \***********************************************************/
-/*! exports provided: RegisterToeflComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterToeflComponent", function() { return RegisterToeflComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-/* harmony import */ var _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Utility-shared/mainNavChange.model */ "./src/app/Utility-shared/mainNavChange.model.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-let RegisterToeflComponent = class RegisterToeflComponent {
-    constructor(utilityService, route) {
-        this.utilityService = utilityService;
-        this.route = route;
-        this.teacherName = '';
-    }
-    ngOnInit() {
-        this.mainNavModel = new _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_2__["MainNavModel"](true, false); // 이모드는 teacher 권한을 갖는 사람이 젒속하여 시험을 출제하는 모드임
-        this.utilityService.mainNavChanged.next(this.mainNavModel);
-    }
-};
-RegisterToeflComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-register-toefl',
-        template: __webpack_require__(/*! ./register-toefl.component.html */ "./src/app/toefl/teacher/register-toefl.component.html"),
-        styles: [__webpack_require__(/*! ./register-toefl.component.scss */ "./src/app/toefl/teacher/register-toefl.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_1__["UtilityService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
-], RegisterToeflComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/listening-exam/listening-exam.component.html":
-/*!***********************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/listening-exam/listening-exam.component.html ***!
-  \***********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n  <!--Card-->\n  <div class=\"areaDesc\">\n      <div class=\"card card-cascade wider\">\n          <!--Card image-->\n          <div class=\"view gradient-card-header peach-gradient\">\n              <h2 class=\"h2-responsive mb-2\">Toefle Exam No: {{ currentToefl.toeflNo }} Listening General Description </h2>\n              <p class=\"\"><i class=\"fa fa-calendar\"></i> {{ currentDate | date:'fullDate' }}</p>\n\n          </div>\n\n          <div class=\"card-body text-center\">\n              <div class=\"para\">\n              <p class=\"card-text mr-2 ml-2\">\n                {{ currentToefl.listeningDesc }}\n              </p>\n            </div>\n              <a [routerLink]=\"['/teacher/'+currentToefl.toeflNo+'/editReadingDesc']\"\n                  class=\"orange-text mt-1 d-flex flex-row-reverse\">\n                  <h5 class=\"waves-effect p-2\" mdbWavesEffect>Edit Description <i class=\"fa fa-chevron-right\"></i></h5>\n              </a>\n          </div>\n\n\n              <div class=\"row panel\">\n                <div class=\"mx-auto col-md-9\">\n\n                  <div class=\"card card-body\">\n                    <div class=\"flex-row text-center\">\n                      <button type=\"button\"\n                              class=\"btn blue accent-3 btn-rounded waves-light\"\n                              (click)=\"onListeningProblem1()\"\n                              mdbWavesEffect>Section 1  - Conversation\n                      </button>\n                      <button type=\"button\"\n                              class=\"btn blue accent-3 btn-rounded waves-light\"\n                              (click)=\"onListeningProblem2()\"\n                              mdbWavesEffect>Section 2 - Lecture\n                      </button>\n                      <button type=\"button\"\n                              class=\"btn blue accent-3 btn-rounded waves-light\"\n                              (click)=\"onListeningProblem3()\"\n                              mdbWavesEffect>Section 3 - Lecture\n                      </button>\n                      <button type=\"button\"\n                              class=\"btn blue accent-3 btn-rounded waves-light\"\n                              (click)=\"onListeningProblem4()\"\n                              mdbWavesEffect>Section 4 - Conversation\n                      </button>\n                      <button type=\"button\"\n                              class=\"btn blue accent-3 btn-rounded waves-light\"\n                              (click)=\"onListeningProblem5()\"\n                              mdbWavesEffect>Section 5 - Lecture\n                      </button>\n                      <button type=\"button\"\n                              class=\"btn blue accent-3 btn-rounded waves-light\"\n                              (click)=\"onListeningProblem6()\"\n                              mdbWavesEffect>Section 6 - Lecture\n                      </button>\n\n                    </div>\n                  </div>\n                  <!--/.Panel-->\n                </div>\n              </div>\n      </div>\n  </div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/listening-exam/listening-exam.component.scss":
-/*!***********************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/listening-exam/listening-exam.component.scss ***!
-  \***********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".areaDesc {\n  position: relative;\n  top: -3rem;\n  left: 0;\n  bottom: 1rem;\n  right: 0;\n  overflow: auto; }\n\n.para {\n  height: 18rem;\n  min-height: 10rem;\n  overflow: auto; }\n\n.panel {\n  position: relative;\n  top: -2rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/listening-exam/listening-exam.component.ts":
-/*!*********************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/listening-exam/listening-exam.component.ts ***!
-  \*********************************************************************************************************/
-/*! exports provided: ListeningExamComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListeningExamComponent", function() { return ListeningExamComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _models_toefl_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../models/toefl.model */ "./src/app/toefl/models/toefl.model.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-let ListeningExamComponent = class ListeningExamComponent {
-    constructor(router, route) {
-        this.router = router;
-        this.route = route;
-        this.currentDate = Date.now();
-    }
-    ngOnInit() {
-        console.log(this.currentToefl);
-    }
-    onListeningProblem1() {
-        console.log('listening problems 1...');
-    }
-    onListeningProblem2() {
-        console.log('listening problems 1...');
-    }
-    onListeningProblem3() {
-        console.log('listening problems 1...');
-    }
-    onListeningProblem4() {
-        console.log('listening problems 1...');
-    }
-    onListeningProblem5() {
-        console.log('listening problems 1...');
-    }
-    onListeningProblem6() {
-        console.log('listening problems 1...');
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", _models_toefl_model__WEBPACK_IMPORTED_MODULE_2__["Toefl"])
-], ListeningExamComponent.prototype, "currentToefl", void 0);
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", Boolean)
-], ListeningExamComponent.prototype, "currentListeningStepper", void 0);
-ListeningExamComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-listening-exam',
-        template: __webpack_require__(/*! ./listening-exam.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/listening-exam/listening-exam.component.html"),
-        styles: [__webpack_require__(/*! ./listening-exam.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/listening-exam/listening-exam.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
-], ListeningExamComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.html":
-/*!*************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.html ***!
-  \*************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Nav tabs -->\n<div class=\"fullscreen\">\n    <div class=\"row mr-0\">\n            <div class=\"col-md-12 mx-auto\">\n            <app-stepper [currentStep]=\"currentStep\"></app-stepper>\n            </div>\n    </div>\n    <div class=\"row row1\">\n    <div class=\"col-md-12 mx-auto\">\n        <mdb-tabset #staticTabs [buttonClass]=\"'nav-tabs tabs-4 indigo'\" [contentClass]=\"'class2'\">\n                    <!--Panel 1-->\n                    <mdb-tab heading=\"<i class='fa fa-user'></i> Reading Comprehension\"\n                      (select)=\"onSelectReading()\"\n                      >\n                        <div class=\"row class1\">\n                            <div class=\"col-12\">\n                                <br>\n                                <app-reading-exam [currentToefl]=\"currentToefl\"></app-reading-exam>\n                            </div>\n                        </div>\n                    </mdb-tab>\n                    <!--Panel 2-->\n                    <mdb-tab heading=\"<i class='fa fa-heart'></i> Listening Comprehension\"\n                             (select)=\"onSelectListening()\">\n                        <div class=\"row class2\">\n                            <div class=\"col-12\">\n                                <br>\n                                <app-listening-exam [currentToefl]=\"currentToefl\"></app-listening-exam>\n                            </div>\n                        </div>\n                    </mdb-tab>\n                    <!--Panel 3-->\n                    <mdb-tab heading=\"<i class='fa fa-envelope'></i> Writing Comprehension\"\n                              (select)=\"onSelectWriting()\">\n                        <div class=\"row class3\">\n                            <div class=\"col-12\">\n                                <br>\n                                <app-writing-exam [currentToefl]=\"currentToefl\"></app-writing-exam>\n                            </div>\n                        </div>\n                    </mdb-tab>\n                    <!--Panel 4-->\n                    <mdb-tab heading=\"<i class='fa fa-envelope'></i> Speaking Comprehension\"\n                      (select)=\"onSelectSpeaking()\">\n                        <div class=\"row class4\">\n                            <div class=\"col-12\">\n                                <br>\n                                <app-speaking-exam [currentToefl]=\"currentToefl\"></app-speaking-exam>\n                            </div>\n                        </div>\n                    </mdb-tab>\n        </mdb-tabset>\n\n\n    </div>\n\n</div>\n\n\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.scss":
-/*!*************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.scss ***!
-  \*************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".fullscreen {\n  position: fixed;\n  top: 5rem;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  overflow: auto; }\n\n.row {\n  position: relative;\n  padding: 0;\n  bottom: -1rem; }\n\n.row1 {\n  position: relative;\n  top: -1rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.ts":
-/*!***********************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.ts ***!
-  \***********************************************************************************************************/
-/*! exports provided: MakeExamStartComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MakeExamStartComponent", function() { return MakeExamStartComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-/* harmony import */ var _makeexam_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../makeexam.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/makeexam.service.ts");
-/* harmony import */ var _teacher_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../teacher.service */ "./src/app/toefl/teacher/teacher.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-let MakeExamStartComponent = class MakeExamStartComponent {
-    constructor(utilityService, registerToeflService, makeExamService, route, router) {
-        this.utilityService = utilityService;
-        this.registerToeflService = registerToeflService;
-        this.makeExamService = makeExamService;
-        this.route = route;
-        this.router = router;
-    }
-    ngOnInit() {
-        // this.staticTabs.setActiveTab('1');
-        this.utilityService.audioPlaySevice(null, '2', false); // register toefl detail에서 makeexam
-        this.utilityService.toeflListShowChanged.next(true);
-        this.route.params.subscribe((params) => {
-            this.toeflNo = +params['id'];
-            console.log(this.toeflNo);
-            this.currentToefl = this.registerToeflService.getRegisterToefl(this.toeflNo);
-        });
-        this.currentStep = this.makeExamService.settingCurrentStepper('3', this.toeflNo);
-    }
-    onSelectReading() {
-        this.currentStep = this.makeExamService.settingCurrentStepper('3', this.toeflNo);
-    }
-    onSelectListening() {
-        this.currentStep = this.makeExamService.settingCurrentStepper('4', this.toeflNo);
-    }
-    onSelectWriting() {
-        this.currentStep = this.makeExamService.settingCurrentStepper('5', this.toeflNo);
-    }
-    onSelectSpeaking() {
-        this.currentStep = this.makeExamService.settingCurrentStepper('6', this.toeflNo);
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('staticTabs'),
-    __metadata("design:type", Object)
-], MakeExamStartComponent.prototype, "staticTabs", void 0);
-MakeExamStartComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-make-exam-start',
-        template: __webpack_require__(/*! ./make-exam-start.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.html"),
-        styles: [__webpack_require__(/*! ./make-exam-start.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_2__["UtilityService"],
-        _teacher_service__WEBPACK_IMPORTED_MODULE_4__["RegisterToeflService"],
-        _makeexam_service__WEBPACK_IMPORTED_MODULE_3__["MakeExamService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
-], MakeExamStartComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/makeexam.service.ts":
-/*!**********************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/makeexam.service.ts ***!
-  \**********************************************************************************/
-/*! exports provided: MakeExamService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MakeExamService", function() { return MakeExamService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm2015/http.js");
-/* harmony import */ var rxjs_Observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/Observable */ "./node_modules/rxjs-compat/_esm2015/Observable.js");
-/* harmony import */ var rxjs_add_observable_throw__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/observable/throw */ "./node_modules/rxjs-compat/_esm2015/add/observable/throw.js");
-/* harmony import */ var rxjs_Subject__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/Subject */ "./node_modules/rxjs-compat/_esm2015/Subject.js");
-/* harmony import */ var _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../stepper/stepper.model */ "./src/app/toefl/teacher/stepper/stepper.model.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-let MakeExamService = class MakeExamService {
-    constructor(http) {
-        this.http = http;
-        this.currentToefl = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-        this.currentStep = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-    }
-    getReadingData(toeflNo) {
-        // 서버로 부터 모든 데이타를 가져오기 위해서는 반드시 현재 login한 userId와 token이 필요하다
-        const token = localStorage.getItem('token');
-        return this.http.get('https://examsimv100.herokuapp.com/reading/' + toeflNo + '?token=' + token)
-            .map((reading) => {
-            const data = reading.json();
-            console.log(data);
-            return data.reading;
-        })
-            .catch((error) => this.handleErrors(error));
-    }
-    //toefl reading general description 추가 기능
-    addReadingExam(reading) {
-        const body = JSON.stringify(reading);
-        const headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]({ 'Content-Type': 'application/json' });
-        const token = localStorage.getItem('token');
-        return this.http.post('https://examsimv100.herokuapp.com/reading/' + '?token=' + token, body, { headers: headers })
-            .map((response) => {
-            const result = response.json();
-            console.log(result);
-            return result;
-        })
-            .catch((error) => this.handleErrors(error)); // 나중에 이 error는 alert로 처리한다
-    }
-    handleErrors(error) {
-        const err = error.json();
-        console.log(err);
-        return rxjs_Observable__WEBPACK_IMPORTED_MODULE_2__["Observable"].throw(err);
-    }
-    // 토플 넘버를 parameters로 넘겨야 한다
-    settingCurrentStepper(currentStep, toeflNo) {
-        console.log(currentStep);
-        console.log(toeflNo);
-        switch (currentStep) {
-            case '1'://home
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '2'://toefllist
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '3':// reading area
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '4':// listening area
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '5':// writing area
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '6':// speaking area
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '7':// reading section 1
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, true, false, false, false, false, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '8':// reading section 2
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, true, false, false, false, true, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '9':// reading section 3
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, true, false, false, false, true, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '10':// reading section 4
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, true, false, false, false, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-                break;
-            case '11':// listening section 1
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, true, false, false, false, false, false, false, false, true, true, true, true, true, false, false, false, false, false, false, false, false);
-                break;
-            case '12':// listening section 2
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, true, false, false, false, false, false, false, true, false, true, true, true, true, false, false, false, false, false, false, false, false);
-                break;
-            case '13':// listening section 3
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, true, false, false, false, false, false, false, true, true, false, true, true, true, false, false, false, false, false, false, false, false);
-                break;
-            case '14':// listening section 4
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, true, false, false, false, false, false, false, true, true, true, false, true, true, false, false, false, false, false, false, false, false);
-                break;
-            case '15':// listening section 5
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, true, false, false, false, false, false, false, true, true, true, true, false, true, false, false, false, false, false, false, false, false);
-                break;
-            case '16':// listening section 6
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, true, false, false, false, false, false, false, true, true, true, true, true, false, false, false, false, false, false, false, false, false);
-                break;
-            case '17':// writing section 1 - integrated
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false);
-                break;
-            case '18':// writing section 2 - indep
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false);
-                break;
-            case '19':// speaking type1
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true);
-                break;
-            case '20':// speaking type 2
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, true, false, true, true, true, true);
-                break;
-            case '21':// speaking type 3
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, true, true, true);
-                break;
-            case '22':// speaking type 4
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, false, true, true);
-                break;
-            case '23':// speaking type5
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, false, true);
-                break;
-            case '24':// speaking type 6
-                this.stepperModel = new _stepper_stepper_model__WEBPACK_IMPORTED_MODULE_5__["StepperModel"](true, toeflNo, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, false);
-                break;
-        }
-        return this.stepperModel;
-    }
-};
-MakeExamService = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-    __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"]])
-], MakeExamService);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.html":
-/*!******************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.html ***!
-  \******************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  edit-reading-desc works!\n</p>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.scss":
-/*!******************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.scss ***!
-  \******************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.ts":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.ts ***!
-  \****************************************************************************************************************************/
-/*! exports provided: EditReadingDescComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditReadingDescComponent", function() { return EditReadingDescComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-let EditReadingDescComponent = class EditReadingDescComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-EditReadingDescComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-edit-reading-desc',
-        template: __webpack_require__(/*! ./edit-reading-desc.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.html"),
-        styles: [__webpack_require__(/*! ./edit-reading-desc.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.scss")]
-    }),
-    __metadata("design:paramtypes", [])
-], EditReadingDescComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.html":
-/*!*******************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.html ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n  <!--Card-->\n  <div class=\"areaDesc\">\n    <div class=\"card card-cascade wider\">\n        <!--Card image-->\n        <div class=\"view gradient-card-header peach-gradient\">\n            <h2 class=\"h2-responsive mb-2\">Toefle Exam No: {{ currentToefl.toeflNo }} Reading General Description </h2>\n            <p class=\"\"><i class=\"fa fa-calendar\"></i> {{ currentDate | date:'fullDate' }}</p>\n\n        </div>\n        \n        <div class=\"card-body text-center\">\n            <div class=\"para\">\n            <p class=\"card-text mr-2 ml-2\">\n              {{ currentToefl.readingDesc }}\n            </p>\n          </div>\n            <a [routerLink]=\"['/teacher/'+currentToefl.toeflNo+'/editReadingDesc']\" \n                class=\"orange-text mt-1 d-flex flex-row-reverse\">\n                <h5 class=\"waves-effect p-2\" mdbWavesEffect>Edit Description <i class=\"fa fa-chevron-right\"></i></h5>\n            </a>\n        </div>\n      \n          \n            <div class=\"row panel\">\n              <div class=\"mx-auto col-md-9\">\n            \n                <div class=\"card card-body\">\n                  <div class=\"flex-row text-center\">\n                    <button type=\"button\" \n                            class=\"btn blue accent-3 btn-rounded waves-light\" \n                            (click)=\"onReadingSection1()\"\n                            mdbWavesEffect>Section 1\n                    </button>\n                    <button type=\"button\" \n                            class=\"btn blue accent-3 btn-rounded waves-light\" \n                            (click)=\"onReadingSection2()\"\n                            mdbWavesEffect>Section 2\n                    </button>\n                    <button type=\"button\" \n                            class=\"btn blue accent-3 btn-rounded waves-light\" \n                            (click)=\"onReadingSection3()\"\n                            mdbWavesEffect>Section 3\n                    </button>\n                    <button type=\"button\" \n                            class=\"btn blue accent-3 btn-rounded waves-light\" \n                            (click)=\"onReadingSection4()\"\n                            mdbWavesEffect>Section 4\n                    </button>\n                  </div>\n                </div>\n                <!--/.Panel-->      \n              </div>\n            </div>\n    </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.scss":
-/*!*******************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.scss ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".areaDesc {\n  position: relative;\n  top: -3rem;\n  left: 0;\n  bottom: 1rem;\n  right: 0;\n  overflow: auto; }\n\n.para {\n  height: 18rem;\n  min-height: 10rem;\n  overflow: auto; }\n\n.panel {\n  position: relative;\n  top: -2rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.ts":
-/*!*****************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.ts ***!
-  \*****************************************************************************************************/
-/*! exports provided: ReadingExamComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReadingExamComponent", function() { return ReadingExamComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _models_toefl_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../models/toefl.model */ "./src/app/toefl/models/toefl.model.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-let ReadingExamComponent = class ReadingExamComponent {
-    constructor(router, route) {
-        this.router = router;
-        this.route = route;
-        this.currentDate = Date.now();
-    }
-    ngOnInit() {
-        console.log(this.currentToefl);
-    }
-    onReadingSection1() {
-        console.log('section1 clicked');
-        this.router.navigate(['readingSection1'], { relativeTo: this.route });
-    }
-    onReadingSection2() {
-        console.log('section2 clicked');
-        this.router.navigate(['readingSection2'], { relativeTo: this.route });
-    }
-    onReadingSection3() {
-        console.log('section3 clicked');
-        this.router.navigate(['readingSection3'], { relativeTo: this.route });
-    }
-    onReadingSection4() {
-        console.log('section4 clicked');
-        this.router.navigate(['readingSection4'], { relativeTo: this.route });
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", _models_toefl_model__WEBPACK_IMPORTED_MODULE_1__["Toefl"])
-], ReadingExamComponent.prototype, "currentToefl", void 0);
-ReadingExamComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-reading-exam',
-        template: __webpack_require__(/*! ./reading-exam.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.html"),
-        styles: [__webpack_require__(/*! ./reading-exam.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
-], ReadingExamComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component.html":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component.html ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"problems\">\n<p>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>1</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>2</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>3</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>4</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>5</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>6</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>7</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>8</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>9</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>10</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>11</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>12</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>13</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>14</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>15</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>16</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>17</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>18</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>19</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>20</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>21</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>22</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>23</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>24</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>25</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>26</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>27</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>28</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>29</button>\n    <button class=\"btn-floating btn-outline-primary waves-light\" mdbWavesEffect>30</button>\n\n\n</p>\n</div>\n<!-- \n<div class=\"fullscreen\">\n    <div class=\"card  m-1\">\n     <h3 class=\"card-header primary-color white-text text-center\">Reading Section and Problems</h3>\n         <div class=\"card-body p-1\">\n\n           <div class=\"row m-0\">\n                   <div class=\"col-md-12\">\n                     <div class=\"card card-body pt-1 pb-0\">\n                       <app-reading-problems></app-reading-problems>\n                     </div>\n                   </div>\n           </div>\n\n           <div class=\"row mt-1\">\n                 <div class=\"col-md-5\">\n                   <div class=\"card card-body\">\n                         <button type=\"button\"\n                                 class=\"btn btn-primary btn-lg btn-block waves-light\"\n                                 (click)=\"onSubmit()\"\n                                 #floatingButton\n                                 mdbWavesEffect>\n                                 <i class=\"fa fa-question mr-1\">\n                                 </i>\n                                 Make Problems\n                                 </button>\n                   </div>\n                 </div>\n\n                   <div class=\"col-md-7\">\n                       <form [formGroup]=\"readingSection\" (ngSubmit)=\"onSubmit()\">\n                         <div class=\"card card-body pt-0\">\n\n                               <div class=\"md-form\">\n                                   <input mdbInputDirective\n                                         type=\"text\"\n                                         id=\"section1Title\"\n                                         class=\"form-control\"\n                                         formControlName=\"section1Title\"\n                                         >\n                                   <label for=\"section1Title\" class=\"\">Enter the Reading Title</label>\n                                 </div>\n\n                           <div>\n                           <app-tony-editor></app-tony-editor>\n                         </div>\n                           <div class=\"mx-auto\">\n                               <button type=\"submit\"\n                               class=\"btn btn-success waves-light\"\n                               (click)=\"onSubmit()\"\n                               mdbWavesEffect>\n                               <i class=\"fa fa-question mr-1\">\n                               </i>\n                                 Save !\n                               </button>\n\n                               <button type=\"button\"\n                               class=\"btn btn-warning waves-light\"\n                               (click)=\"onDelete()\"\n                               mdbWavesEffect>\n                               <i class=\"fa fa-question mr-1\">\n                               </i>\n                                 Delete !\n                               </button>\n                         </div>\n\n                         </div>\n                       </form>\n                 </div>\n\n\n           </div>\n\n         </div>\n     </div>\n   </div> -->\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component.scss":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component.scss ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".btn-floating {\n  margin: 0;\n  padding: 0;\n  height: 35px;\n  width: 35px; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component.ts":
-/*!**************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component.ts ***!
-  \**************************************************************************************************************************/
-/*! exports provided: ReadingProblemsComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReadingProblemsComponent", function() { return ReadingProblemsComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-let ReadingProblemsComponent = class ReadingProblemsComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-ReadingProblemsComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-reading-problems',
-        template: __webpack_require__(/*! ./reading-problems.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component.html"),
-        styles: [__webpack_require__(/*! ./reading-problems.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component.scss")]
-    }),
-    __metadata("design:paramtypes", [])
-], ReadingProblemsComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.html":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.html ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"fullscreen\">\n    <div class=\"row mr-0\">\n        <div class=\"col-md-12 mx-auto\">\n            <app-stepper [currentStep]=\"currentStep\"></app-stepper>\n        </div>\n     </div>\n     <div class=\"row row1\">\n       <div class=\"col-md-12\">\n        <div class=\"card  mt-0 ml-5 mr-5 \">\n            <h3 class=\"card-header primary-color white-text text-center\">Reading Section 1 and Problems</h3>\n\n            <div class=\"card-body p-1\">\n\n              <div class=\"row mt-1\">\n                    <div class=\"col-md-5\">\n                      <div class=\"card card-body\">\n                            <button type=\"button\"\n                                    class=\"btn btn-primary btn-lg btn-block waves-light\"\n                                    [disabled]=\"!isAlreadySaved\"\n                                    (click)=\"onMakeExam()\"\n                                    #floatingButton\n                                    mdbWavesEffect>\n                                    <i class=\"fa fa-question mr-1\">\n                                    </i>\n                                    Make Problems\n                            </button>\n                            <div class=\"makeExam\">\n\n                            </div>\n                      </div>\n                    </div>\n                    <div class=\"col-md-7\">\n                        <div *ngIf=\"!isAlreadySaved\">\n                            <form [formGroup]=\"readingSection\" (ngSubmit)=\"onSubmit()\">\n                              <div class=\"card card-body pt-0\">\n\n                                    <div class=\"md-form\">\n                                        <input mdbInputDirective\n                                              type=\"text\"\n                                              id=\"section1Title\"\n                                              class=\"form-control\"\n                                              formControlName=\"section1Title\"\n                                              >\n                                        <label for=\"section1Title\" class=\"\">Enter the Reading Title</label>\n                                      </div>\n\n                                <div>\n                                <app-tony-editor [htmlContent]=\"htmlContent\"></app-tony-editor>\n                                </div>\n\n                                <div class=\"mt-3 mx-auto\">\n                                    <div *ngIf=\"!updateMode\">\n                                          <button type=\"submit\"\n                                          class=\"btn btn-success waves-light\"\n                                          (click)=\"onSubmit()\"\n                                          mdbWavesEffect>\n                                          <i class=\"fa fa-question-circle mr-1\">\n                                          </i>\n                                            Save !\n                                          </button>\n\n                                          <button type=\"button\"\n                                          class=\"btn btn-warning waves-light\"\n                                          (click)=\"onDelete()\"\n                                          mdbWavesEffect>\n                                          <i class=\"fa fa-trash mr-1\">\n                                          </i>\n                                            Delete !\n                                          </button>\n\n                                    </div>\n                                    <div *ngIf=\"updateMode\">\n                                        <button type=\"submit\"\n                                        class=\"btn btn-success waves-light\"\n                                        (click)=\"onSubmit()\"\n                                        mdbWavesEffect>\n                                        <i class=\"fa fa-question-circle mr-1\">\n                                        </i>\n                                          Update !\n                                        </button>\n\n                                        <button type=\"button\"\n                                        class=\"btn btn-warning waves-light\"\n                                        (click)=\"onDelete()\"\n                                        mdbWavesEffect>\n                                        <i class=\"fa fa-trash mr-1\">\n                                        </i>\n                                          Delete !\n                                        </button>\n\n                                    </div>\n                                </div>\n\n                              </div>\n                            </form>\n                        </div>\n                        <div *ngIf=\"isAlreadySaved\">\n                              <div class=\"card card-body pt-0\">\n                                <div class=\"paragraphArea\">\n                                    <div class=\"text-center\">\n                                      <h5>{{ savedSectiontitle }}</h5>\n                                    </div>\n                                    <div [innerHTML]=\"savedSectionContent\">\n                                    </div>\n                                </div>\n                              </div>\n                              <div class=\"mt-3 text-center\">\n                                  <button type=\"button\"\n                                  class=\"btn btn-success waves-light\"\n                                  (click)=\"onEdit()\"\n                                  mdbWavesEffect>\n                                  <i class=\"fa fa-question-circle mr-1\">\n                                  </i>\n                                    Edit !\n                                  </button>\n                                  <button type=\"button\"\n                                  class=\"btn btn-warning waves-light\"\n                                  (click)=\"onDelete()\"\n                                  mdbWavesEffect>\n                                  <i class=\"fa fa-trash mr-1\">\n                                  </i>\n                                    Delete !\n                                  </button>\n                              </div>\n                        </div>\n                    </div>\n              </div>\n            </div>\n        </div>\n     </div>\n    </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.scss":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.scss ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".fullscreen {\n  position: fixed;\n  top: 5rem;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  overflow-y: auto; }\n\n.makeExam {\n  height: 40rem; }\n\n.paragraphArea {\n  height: 40rem;\n  overflow-y: auto; }\n\n.row {\n  position: relative;\n  padding: 0;\n  bottom: -1rem; }\n\n.row1 {\n  position: relative;\n  top: -1rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.ts":
-/*!**************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.ts ***!
-  \**************************************************************************************************************************/
-/*! exports provided: ReadingSection1Component */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReadingSection1Component", function() { return ReadingSection1Component; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _models_reading_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../../models/reading.model */ "./src/app/toefl/models/reading.model.ts");
-/* harmony import */ var _reading_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../reading.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading.service.ts");
-/* harmony import */ var _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../../tony-editorv1.0.0/services/executable-command.service */ "./src/app/tony-editorv1.0.0/services/executable-command.service.ts");
-/* harmony import */ var _makeexam_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../makeexam.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/makeexam.service.ts");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-let ReadingSection1Component = class ReadingSection1Component {
-    constructor(route, router, readingService, makeExamService, utilityService, executableCommandService, snatizer // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-    // 표현 해야만 정상적인 html style을 적용할수 있음
-    // 또한 이것을 사용하는 이유는 web injection hacking 기법을 차단하기위함
-    ) {
-        this.route = route;
-        this.router = router;
-        this.readingService = readingService;
-        this.makeExamService = makeExamService;
-        this.utilityService = utilityService;
-        this.executableCommandService = executableCommandService;
-        this.snatizer = snatizer; // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-        this.savedSectiontitle = '';
-        this.currentDate = new Date();
-        this.isAlreadySaved = false;
-        this.updateMode = false;
-    }
-    ngOnInit() {
-        this.utilityService.stepperCheck.next(true); // steppper로 부터 routing되었는지 여부확인
-        // toefl List component가 자동으로 뜨는 문제 해결위해 사용
-        this.readingSection = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'toeflNo': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section1Title': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section1Script': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
-        });
-        this.route.params.subscribe((params) => {
-            this.toeflNo = +params['id'];
-        });
-        this.currentStep = this.makeExamService.settingCurrentStepper('7', this.toeflNo);
-        console.log(this.currentStep);
-        console.log(this.currentStep.toeflNo);
-        this.readingService.getReadingSection(this.toeflNo).subscribe(result => {
-            if (!result.reading) {
-                this.isAlreadySaved = false;
-            }
-            else {
-                if (result.reading.section1Title === '') {
-                    this.isAlreadySaved = false;
-                    this.updateMode = true;
-                }
-                else {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section1Title;
-                    // 아래와 같이 savedSectionContentString변수 한개를 더만들어 string으로 저장하는 이유는
-                    // tonyEditor에 property binding형태로 넘겨 주어야 하기때문
-                    // property binding시 반드시 string으로 넘겨 주어야만 정상적으로 editor내 textArea에 표현가능함
-                    this.savedSectionContentString = result.reading.section1Script;
-                    this.savedSectionContent = this.snatizer.bypassSecurityTrustHtml(result.reading.section1Script);
-                }
-            }
-        }, error => console.log(error));
-        this.htmlSubscription = this.executableCommandService.htmlContent.subscribe((html) => {
-            this.htmlContent = html;
-        });
-    }
-    ngOnDestroy() {
-        this.htmlSubscription.unsubscribe();
-    }
-    onSubmit() {
-        if (this.readingSection.value.section1Title && this.htmlContent) {
-            const reading = new _models_reading_model__WEBPACK_IMPORTED_MODULE_4__["Reading"](this.toeflNo, this.currentDate, this.readingSection.value.section1Title, this.htmlContent);
-            if (!this.updateMode) {
-                this.readingService.addReadingSection(reading)
-                    .subscribe(result => {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section1Title;
-                    this.savedSectionContent =
-                        this.snatizer.bypassSecurityTrustHtml(result.reading.section1Script);
-                    this.savedSectionContentString = result.reading.section1Script;
-                }, error => console.log(error));
-            }
-            else {
-                this.readingService.updateReadingSection(reading)
-                    .subscribe(result => {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section1Title;
-                    this.savedSectionContent =
-                        this.snatizer.bypassSecurityTrustHtml(result.reading.section1Script);
-                    this.savedSectionContentString = result.reading.section1Script;
-                }, error => console.log(error));
-            }
-        }
-        this.readingSection.reset();
-        this.htmlContent = '';
-    }
-    onEdit() {
-        console.log('edit click');
-        this.isAlreadySaved = false;
-        this.readingSection = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'toeflNo': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.toeflNo, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section1Title': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.savedSectiontitle, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section1Script': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
-        });
-        this.htmlContent = this.savedSectionContentString;
-        console.log(this.htmlContent);
-        this.updateMode = true;
-    }
-    onDelete() {
-        console.log('delete click');
-    }
-    onMakeExam() {
-        console.log('make exam click');
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('contentArea'),
-    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
-], ReadingSection1Component.prototype, "contentArea", void 0);
-ReadingSection1Component = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-reading-section1',
-        template: __webpack_require__(/*! ./reading-section1.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.html"),
-        styles: [__webpack_require__(/*! ./reading-section1.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.scss")],
-        encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-        _reading_service__WEBPACK_IMPORTED_MODULE_5__["ReadingService"],
-        _makeexam_service__WEBPACK_IMPORTED_MODULE_7__["MakeExamService"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_8__["UtilityService"],
-        _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_6__["ExecutableCommandService"],
-        _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"] // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-        // 표현 해야만 정상적인 html style을 적용할수 있음
-        // 또한 이것을 사용하는 이유는 web injection hacking 기법을 차단하기위함
-    ])
-], ReadingSection1Component);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.html":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.html ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"fullscreen\">\n    <div class=\"row mr-0\">\n        <div class=\"col-md-12 mx-auto\">\n            <app-stepper [currentStep]=\"currentStep\"></app-stepper>\n        </div>\n     </div>\n     <div class=\"row row1\">\n       <div class=\"col-md-12\">\n        <div class=\"card  mt-0 ml-5 mr-5 \">\n            <h3 class=\"card-header primary-color white-text text-center\">Reading Section 2 and Problems</h3>\n\n            <div class=\"card-body p-1\">\n\n              <div class=\"row mt-1\">\n                    <div class=\"col-md-5\">\n                      <div class=\"card card-body\">\n                            <button type=\"button\"\n                                    class=\"btn btn-primary btn-lg btn-block waves-light\"\n                                    [disabled]=\"!isAlreadySaved\"\n                                    (click)=\"onMakeExam()\"\n                                    #floatingButton\n                                    mdbWavesEffect>\n                                    <i class=\"fa fa-question mr-1\">\n                                    </i>\n                                    Make Problems\n                            </button>\n                            <div class=\"makeExam\">\n\n                            </div>\n                      </div>\n                    </div>\n                    <div class=\"col-md-7\">\n                        <div *ngIf=\"!isAlreadySaved\">\n                            <form [formGroup]=\"readingSection2\" (ngSubmit)=\"onSubmit()\">\n                              <div class=\"card card-body pt-0\">\n\n                                    <div class=\"md-form\">\n                                        <input mdbInputDirective\n                                              type=\"text\"\n                                              id=\"section2Title\"\n                                              class=\"form-control\"\n                                              formControlName=\"section2Title\"\n                                              >\n                                        <label for=\"section2Title\" class=\"\">Enter the Reading Title</label>\n                                      </div>\n\n                                <div>\n                                <app-tony-editor [htmlContent]=\"htmlContent\"></app-tony-editor>\n                                </div>\n\n                                <div class=\"mt-3 mx-auto\">\n                                    <div *ngIf=\"!updateMode\">\n                                          <button type=\"submit\"\n                                          class=\"btn btn-success waves-light\"\n                                          (click)=\"onSubmit()\"\n                                          mdbWavesEffect>\n                                          <i class=\"fa fa-question-circle mr-1\">\n                                          </i>\n                                            Save !\n                                          </button>\n\n                                          <button type=\"button\"\n                                          class=\"btn btn-warning waves-light\"\n                                          (click)=\"onDelete()\"\n                                          mdbWavesEffect>\n                                          <i class=\"fa fa-trash mr-1\">\n                                          </i>\n                                            Delete !\n                                          </button>\n\n                                    </div>\n                                    <div *ngIf=\"updateMode\">\n                                        <button type=\"submit\"\n                                        class=\"btn btn-success waves-light\"\n                                        (click)=\"onSubmit()\"\n                                        mdbWavesEffect>\n                                        <i class=\"fa fa-question-circle mr-1\">\n                                        </i>\n                                          Update !\n                                        </button>\n\n                                        <button type=\"button\"\n                                        class=\"btn btn-warning waves-light\"\n                                        (click)=\"onDelete()\"\n                                        mdbWavesEffect>\n                                        <i class=\"fa fa-trash mr-1\">\n                                        </i>\n                                          Delete !\n                                        </button>\n\n                                    </div>\n                                </div>\n\n                              </div>\n                            </form>\n                        </div>\n                        <div *ngIf=\"isAlreadySaved\">\n                              <div class=\"card card-body pt-0\">\n                                <div class=\"paragraphArea\">\n                                    <div class=\"text-center\">\n                                      <h5>{{ savedSectiontitle }}</h5>\n                                    </div>\n                                    <div [innerHTML]=\"savedSectionContent\">\n                                    </div>\n                                </div>\n                              </div>\n                              <div class=\"mt-3 text-center\">\n                                  <button type=\"button\"\n                                  class=\"btn btn-success waves-light\"\n                                  (click)=\"onEdit()\"\n                                  mdbWavesEffect>\n                                  <i class=\"fa fa-question-circle mr-1\">\n                                  </i>\n                                    Edit !\n                                  </button>\n                                  <button type=\"button\"\n                                  class=\"btn btn-warning waves-light\"\n                                  (click)=\"onDelete()\"\n                                  mdbWavesEffect>\n                                  <i class=\"fa fa-trash mr-1\">\n                                  </i>\n                                    Delete !\n                                  </button>\n                              </div>\n                        </div>\n                    </div>\n              </div>\n            </div>\n        </div>\n     </div>\n    </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.scss":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.scss ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".fullscreen {\n  position: fixed;\n  top: 5rem;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  overflow-y: auto; }\n\n.makeExam {\n  height: 40rem; }\n\n.paragraphArea {\n  height: 40rem;\n  overflow-y: auto; }\n\n.row {\n  position: relative;\n  padding: 0;\n  bottom: -1rem; }\n\n.row1 {\n  position: relative;\n  top: -1rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.ts":
-/*!**************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.ts ***!
-  \**************************************************************************************************************************/
-/*! exports provided: ReadingSection2Component */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReadingSection2Component", function() { return ReadingSection2Component; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _models_reading_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../../models/reading.model */ "./src/app/toefl/models/reading.model.ts");
-/* harmony import */ var _reading_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../reading.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading.service.ts");
-/* harmony import */ var _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../../tony-editorv1.0.0/services/executable-command.service */ "./src/app/tony-editorv1.0.0/services/executable-command.service.ts");
-/* harmony import */ var _makeexam_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../makeexam.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/makeexam.service.ts");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-let ReadingSection2Component = class ReadingSection2Component {
-    constructor(route, router, readingService, makeExamService, utilityService, executableCommandService, snatizer // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-    // 표현 해야만 정상적인 html style을 적용할수 있음
-    // 또한 이것을 사용하는 이유는 web injection hacking 기법을 차단하기위함
-    ) {
-        this.route = route;
-        this.router = router;
-        this.readingService = readingService;
-        this.makeExamService = makeExamService;
-        this.utilityService = utilityService;
-        this.executableCommandService = executableCommandService;
-        this.snatizer = snatizer; // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-        this.savedSectiontitle = '';
-        this.currentDate = new Date();
-        this.isAlreadySaved = false;
-        this.updateMode = false;
-    }
-    ngOnInit() {
-        this.utilityService.stepperCheck.next(true); // steppper로 부터 routing되었는지 여부확인
-        // toefl List component가 자동으로 뜨는 문제 해결위해 사용
-        this.readingSection2 = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'toeflNo': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section2Title': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section2Script': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
-        });
-        this.route.params.subscribe((params) => {
-            this.toeflNo = +params['id'];
-        });
-        this.currentStep = this.makeExamService.settingCurrentStepper('8', this.toeflNo);
-        console.log(this.currentStep);
-        this.readingService.getReadingSection(this.toeflNo).subscribe(result => {
-            if (!result.reading) {
-                this.isAlreadySaved = false;
-            }
-            else {
-                if (result.reading.section2Title === '' || !result.reading.section2Title) {
-                    this.isAlreadySaved = false;
-                    this.updateMode = true;
-                }
-                else {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section2Title;
-                    // 아래와 같이 savedSectionContentString변수 한개를 더만들어 string으로 저장하는 이유는
-                    // tonyEditor에 property binding형태로 넘겨 주어야 하기때문
-                    // property binding시 반드시 string으로 넘겨 주어야만 정상적으로 editor내 textArea에 표현가능함
-                    this.savedSectionContentString = result.reading.section2Script;
-                    this.savedSectionContent = this.snatizer.bypassSecurityTrustHtml(result.reading.section2Script);
-                }
-            }
-        }, error => console.log(error));
-        this.htmlSubscription = this.executableCommandService.htmlContent.subscribe((html) => {
-            this.htmlContent = html;
-        });
-    }
-    ngOnDestroy() {
-        this.htmlSubscription.unsubscribe();
-    }
-    onSubmit() {
-        if (this.readingSection2.value.section2Title && this.htmlContent) {
-            const reading2 = new _models_reading_model__WEBPACK_IMPORTED_MODULE_4__["Reading"](this.toeflNo, this.currentDate, '', '', [], this.readingSection2.value.section2Title, this.htmlContent);
-            if (!this.updateMode) {
-                this.readingService.addReadingSection(reading2)
-                    .subscribe(result => {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section2Title;
-                    this.savedSectionContent =
-                        this.snatizer.bypassSecurityTrustHtml(result.reading.section2Script);
-                    this.savedSectionContentString = result.reading.section2Script;
-                }, error => console.log(error));
-            }
-            else {
-                this.readingService.updateReadingSection(reading2)
-                    .subscribe(result => {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section2Title;
-                    this.savedSectionContent =
-                        this.snatizer.bypassSecurityTrustHtml(result.reading.section2Script);
-                    this.savedSectionContentString = result.reading.section2Script;
-                }, error => console.log(error));
-            }
-        }
-        this.readingSection2.reset();
-        this.htmlContent = '';
-    }
-    onEdit() {
-        console.log('edit click');
-        this.isAlreadySaved = false;
-        this.readingSection2 = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'toeflNo': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.toeflNo, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section2Title': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.savedSectiontitle, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section2Script': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
-        });
-        this.htmlContent = this.savedSectionContentString;
-        console.log(this.htmlContent);
-        this.updateMode = true;
-    }
-    onDelete() {
-        console.log('delete click');
-    }
-    onMakeExam() {
-        console.log('make exam click');
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('contentArea'),
-    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
-], ReadingSection2Component.prototype, "contentArea", void 0);
-ReadingSection2Component = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-reading-section2',
-        template: __webpack_require__(/*! ./reading-section2.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.html"),
-        styles: [__webpack_require__(/*! ./reading-section2.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.scss")],
-        encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-        _reading_service__WEBPACK_IMPORTED_MODULE_5__["ReadingService"],
-        _makeexam_service__WEBPACK_IMPORTED_MODULE_7__["MakeExamService"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_8__["UtilityService"],
-        _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_6__["ExecutableCommandService"],
-        _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"] // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-        // 표현 해야만 정상적인 html style을 적용할수 있음
-        // 또한 이것을 사용하는 이유는 web injection hacking 기법을 차단하기위함
-    ])
-], ReadingSection2Component);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.html":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.html ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"fullscreen\">\n  <div class=\"row mr-0\">\n      <div class=\"col-md-12 mx-auto\">\n          <app-stepper [currentStep]=\"currentStep\"></app-stepper>\n      </div>\n   </div>\n   <div class=\"row row1\">\n     <div class=\"col-md-12\">\n      <div class=\"card  mt-0 ml-5 mr-5 \">\n          <h3 class=\"card-header primary-color white-text text-center\">Reading Section 2 and Problems</h3>\n\n          <div class=\"card-body p-1\">\n\n            <div class=\"row mt-1\">\n                  <div class=\"col-md-5\">\n                    <div class=\"card card-body\">\n                          <button type=\"button\"\n                                  class=\"btn btn-primary btn-lg btn-block waves-light\"\n                                  [disabled]=\"!isAlreadySaved\"\n                                  (click)=\"onMakeExam()\"\n                                  #floatingButton\n                                  mdbWavesEffect>\n                                  <i class=\"fa fa-question mr-1\">\n                                  </i>\n                                  Make Problems\n                          </button>\n                          <div class=\"makeExam\">\n\n                          </div>\n                    </div>\n                  </div>\n                  <div class=\"col-md-7\">\n                      <div *ngIf=\"!isAlreadySaved\">\n                          <form [formGroup]=\"readingSection3\" (ngSubmit)=\"onSubmit()\">\n                            <div class=\"card card-body pt-0\">\n\n                                  <div class=\"md-form\">\n                                      <input mdbInputDirective\n                                            type=\"text\"\n                                            id=\"section3Title\"\n                                            class=\"form-control\"\n                                            formControlName=\"section3Title\"\n                                            >\n                                      <label for=\"section3Title\" class=\"\">Enter the Reading Title</label>\n                                    </div>\n\n                              <div>\n                              <app-tony-editor [htmlContent]=\"htmlContent\"></app-tony-editor>\n                              </div>\n\n                              <div class=\"mt-3 mx-auto\">\n                                  <div *ngIf=\"!updateMode\">\n                                        <button type=\"submit\"\n                                        class=\"btn btn-success waves-light\"\n                                        (click)=\"onSubmit()\"\n                                        mdbWavesEffect>\n                                        <i class=\"fa fa-question-circle mr-1\">\n                                        </i>\n                                          Save !\n                                        </button>\n\n                                        <button type=\"button\"\n                                        class=\"btn btn-warning waves-light\"\n                                        (click)=\"onDelete()\"\n                                        mdbWavesEffect>\n                                        <i class=\"fa fa-trash mr-1\">\n                                        </i>\n                                          Delete !\n                                        </button>\n\n                                  </div>\n                                  <div *ngIf=\"updateMode\">\n                                      <button type=\"submit\"\n                                      class=\"btn btn-success waves-light\"\n                                      (click)=\"onSubmit()\"\n                                      mdbWavesEffect>\n                                      <i class=\"fa fa-question-circle mr-1\">\n                                      </i>\n                                        Update !\n                                      </button>\n\n                                      <button type=\"button\"\n                                      class=\"btn btn-warning waves-light\"\n                                      (click)=\"onDelete()\"\n                                      mdbWavesEffect>\n                                      <i class=\"fa fa-trash mr-1\">\n                                      </i>\n                                        Delete !\n                                      </button>\n\n                                  </div>\n                              </div>\n\n                            </div>\n                          </form>\n                      </div>\n                      <div *ngIf=\"isAlreadySaved\">\n                            <div class=\"card card-body pt-0\">\n                              <div class=\"paragraphArea\">\n                                  <div class=\"text-center\">\n                                    <h5>{{ savedSectiontitle }}</h5>\n                                  </div>\n                                  <div [innerHTML]=\"savedSectionContent\">\n                                  </div>\n                              </div>\n                            </div>\n                            <div class=\"mt-3 text-center\">\n                                <button type=\"button\"\n                                class=\"btn btn-success waves-light\"\n                                (click)=\"onEdit()\"\n                                mdbWavesEffect>\n                                <i class=\"fa fa-question-circle mr-1\">\n                                </i>\n                                  Edit !\n                                </button>\n                                <button type=\"button\"\n                                class=\"btn btn-warning waves-light\"\n                                (click)=\"onDelete()\"\n                                mdbWavesEffect>\n                                <i class=\"fa fa-trash mr-1\">\n                                </i>\n                                  Delete !\n                                </button>\n                            </div>\n                      </div>\n                  </div>\n            </div>\n          </div>\n      </div>\n   </div>\n  </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.scss":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.scss ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".fullscreen {\n  position: fixed;\n  top: 5rem;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  overflow-y: auto; }\n\n.makeExam {\n  height: 40rem; }\n\n.paragraphArea {\n  height: 40rem;\n  overflow-y: auto; }\n\n.row {\n  position: relative;\n  padding: 0;\n  bottom: -1rem; }\n\n.row1 {\n  position: relative;\n  top: -1rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.ts":
-/*!**************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.ts ***!
-  \**************************************************************************************************************************/
-/*! exports provided: ReadingSection3Component */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReadingSection3Component", function() { return ReadingSection3Component; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _models_reading_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../../models/reading.model */ "./src/app/toefl/models/reading.model.ts");
-/* harmony import */ var _reading_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../reading.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading.service.ts");
-/* harmony import */ var _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../../tony-editorv1.0.0/services/executable-command.service */ "./src/app/tony-editorv1.0.0/services/executable-command.service.ts");
-/* harmony import */ var _makeexam_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../makeexam.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/makeexam.service.ts");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-let ReadingSection3Component = class ReadingSection3Component {
-    constructor(route, router, readingService, makeExamService, utilityService, executableCommandService, snatizer // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-    // 표현 해야만 정상적인 html style을 적용할수 있음
-    // 또한 이것을 사용하는 이유는 web injection hacking 기법을 차단하기위함
-    ) {
-        this.route = route;
-        this.router = router;
-        this.readingService = readingService;
-        this.makeExamService = makeExamService;
-        this.utilityService = utilityService;
-        this.executableCommandService = executableCommandService;
-        this.snatizer = snatizer; // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-        this.savedSectiontitle = '';
-        this.currentDate = new Date();
-        this.isAlreadySaved = false;
-        this.updateMode = false;
-    }
-    ngOnInit() {
-        this.utilityService.stepperCheck.next(true); // steppper로 부터 routing되었는지 여부확인
-        // toefl List component가 자동으로 뜨는 문제 해결위해 사용
-        console.log(this.currentStep);
-        this.readingSection3 = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'toeflNo': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section3Title': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section3Script': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
-        });
-        this.route.params.subscribe((params) => {
-            this.toeflNo = +params['id'];
-        });
-        this.currentStep = this.makeExamService.settingCurrentStepper('9', this.toeflNo);
-        this.readingService.getReadingSection(this.toeflNo).subscribe(result => {
-            if (!result.reading) {
-                this.isAlreadySaved = false;
-            }
-            else {
-                if (result.reading.section3Title === '' || !result.reading.section2Title) {
-                    this.isAlreadySaved = false;
-                    this.updateMode = true;
-                }
-                else {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section3Title;
-                    // 아래와 같이 savedSectionContentString변수 한개를 더만들어 string으로 저장하는 이유는
-                    // tonyEditor에 property binding형태로 넘겨 주어야 하기때문
-                    // property binding시 반드시 string으로 넘겨 주어야만 정상적으로 editor내 textArea에 표현가능함
-                    this.savedSectionContentString = result.reading.section3Script;
-                    this.savedSectionContent = this.snatizer.bypassSecurityTrustHtml(result.reading.section3Script);
-                }
-            }
-        }, error => console.log(error));
-        this.htmlSubscription = this.executableCommandService.htmlContent.subscribe((html) => {
-            this.htmlContent = html;
-        });
-    }
-    ngOnDestroy() {
-        this.htmlSubscription.unsubscribe();
-    }
-    onSubmit() {
-        if (this.readingSection3.value.section3Title && this.htmlContent) {
-            const reading3 = new _models_reading_model__WEBPACK_IMPORTED_MODULE_4__["Reading"](this.toeflNo, this.currentDate, '', '', [], '', '', [], this.readingSection3.value.section3Title, this.htmlContent, [], '', '', []);
-            if (!this.updateMode) {
-                this.readingService.addReadingSection(reading3)
-                    .subscribe(result => {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section3Title;
-                    this.savedSectionContent =
-                        this.snatizer.bypassSecurityTrustHtml(result.reading.section3Script);
-                    this.savedSectionContentString = result.reading.section3Script;
-                }, error => console.log(error));
-            }
-            else {
-                this.readingService.updateReadingSection(reading3)
-                    .subscribe(result => {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section3Title;
-                    this.savedSectionContent =
-                        this.snatizer.bypassSecurityTrustHtml(result.reading.section3Script);
-                    this.savedSectionContentString = result.reading.section3Script;
-                }, error => console.log(error));
-            }
-        }
-        this.readingSection3.reset();
-        this.htmlContent = '';
-    }
-    onEdit() {
-        console.log('edit click');
-        this.isAlreadySaved = false;
-        this.readingSection3 = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'toeflNo': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.toeflNo, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section3Title': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.savedSectiontitle, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section3Script': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
-        });
-        this.htmlContent = this.savedSectionContentString;
-        console.log(this.htmlContent);
-        this.updateMode = true;
-    }
-    onDelete() {
-        console.log('delete click');
-    }
-    onMakeExam() {
-        console.log('make exam click');
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('contentArea'),
-    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
-], ReadingSection3Component.prototype, "contentArea", void 0);
-ReadingSection3Component = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-reading-section3',
-        template: __webpack_require__(/*! ./reading-section3.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.html"),
-        styles: [__webpack_require__(/*! ./reading-section3.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.scss")],
-        encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-        _reading_service__WEBPACK_IMPORTED_MODULE_5__["ReadingService"],
-        _makeexam_service__WEBPACK_IMPORTED_MODULE_7__["MakeExamService"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_8__["UtilityService"],
-        _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_6__["ExecutableCommandService"],
-        _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"] // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-        // 표현 해야만 정상적인 html style을 적용할수 있음
-        // 또한 이것을 사용하는 이유는 web injection hacking 기법을 차단하기위함
-    ])
-], ReadingSection3Component);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.html":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.html ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"fullscreen\">\n  <div class=\"row mr-0\">\n      <div class=\"col-md-12 mx-auto\">\n          <app-stepper [currentStep]=\"currentStep\"></app-stepper>\n      </div>\n   </div>\n   <div class=\"row row1\">\n     <div class=\"col-md-12\">\n      <div class=\"card  mt-0 ml-5 mr-5 \">\n          <h3 class=\"card-header primary-color white-text text-center\">Reading Section 4 and Problems</h3>\n\n          <div class=\"card-body p-1\">\n\n            <div class=\"row mt-1\">\n                  <div class=\"col-md-5\">\n                    <div class=\"card card-body\">\n                          <button type=\"button\"\n                                  class=\"btn btn-primary btn-lg btn-block waves-light\"\n                                  [disabled]=\"!isAlreadySaved\"\n                                  (click)=\"onMakeExam()\"\n                                  #floatingButton\n                                  mdbWavesEffect>\n                                  <i class=\"fa fa-question mr-1\">\n                                  </i>\n                                  Make Problems\n                          </button>\n                          <div class=\"makeExam\">\n\n                          </div>\n                    </div>\n                  </div>\n                  <div class=\"col-md-7\">\n                      <div *ngIf=\"!isAlreadySaved\">\n                          <form [formGroup]=\"readingSection4\" (ngSubmit)=\"onSubmit()\">\n                            <div class=\"card card-body pt-0\">\n\n                                  <div class=\"md-form\">\n                                      <input mdbInputDirective\n                                            type=\"text\"\n                                            id=\"section4Title\"\n                                            class=\"form-control\"\n                                            formControlName=\"section4Title\"\n                                            >\n                                      <label for=\"section4Title\" class=\"\">Enter the Reading Title</label>\n                                    </div>\n\n                              <div>\n                              <app-tony-editor [htmlContent]=\"htmlContent\"></app-tony-editor>\n                              </div>\n\n                              <div class=\"mt-3 mx-auto\">\n                                  <div *ngIf=\"!updateMode\">\n                                        <button type=\"submit\"\n                                        class=\"btn btn-success waves-light\"\n                                        (click)=\"onSubmit()\"\n                                        mdbWavesEffect>\n                                        <i class=\"fa fa-question-circle mr-1\">\n                                        </i>\n                                          Save !\n                                        </button>\n\n                                        <button type=\"button\"\n                                        class=\"btn btn-warning waves-light\"\n                                        (click)=\"onDelete()\"\n                                        mdbWavesEffect>\n                                        <i class=\"fa fa-trash mr-1\">\n                                        </i>\n                                          Delete !\n                                        </button>\n\n                                  </div>\n                                  <div *ngIf=\"updateMode\">\n                                      <button type=\"submit\"\n                                      class=\"btn btn-success waves-light\"\n                                      (click)=\"onSubmit()\"\n                                      mdbWavesEffect>\n                                      <i class=\"fa fa-question-circle mr-1\">\n                                      </i>\n                                        Update !\n                                      </button>\n\n                                      <button type=\"button\"\n                                      class=\"btn btn-warning waves-light\"\n                                      (click)=\"onDelete()\"\n                                      mdbWavesEffect>\n                                      <i class=\"fa fa-trash mr-1\">\n                                      </i>\n                                        Delete !\n                                      </button>\n\n                                  </div>\n                              </div>\n\n                            </div>\n                          </form>\n                      </div>\n                      <div *ngIf=\"isAlreadySaved\">\n                            <div class=\"card card-body pt-0\">\n                              <div class=\"paragraphArea\">\n                                  <div class=\"text-center\">\n                                    <h5>{{ savedSectiontitle }}</h5>\n                                  </div>\n                                  <div [innerHTML]=\"savedSectionContent\">\n                                  </div>\n                              </div>\n                            </div>\n                            <div class=\"mt-3 text-center\">\n                                <button type=\"button\"\n                                class=\"btn btn-success waves-light\"\n                                (click)=\"onEdit()\"\n                                mdbWavesEffect>\n                                <i class=\"fa fa-question-circle mr-1\">\n                                </i>\n                                  Edit !\n                                </button>\n                                <button type=\"button\"\n                                class=\"btn btn-warning waves-light\"\n                                (click)=\"onDelete()\"\n                                mdbWavesEffect>\n                                <i class=\"fa fa-trash mr-1\">\n                                </i>\n                                  Delete !\n                                </button>\n                            </div>\n                      </div>\n                  </div>\n            </div>\n          </div>\n      </div>\n   </div>\n  </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.scss":
-/*!****************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.scss ***!
-  \****************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".fullscreen {\n  position: fixed;\n  top: 5rem;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  overflow-y: auto; }\n\n.makeExam {\n  height: 40rem; }\n\n.paragraphArea {\n  height: 40rem;\n  overflow-y: auto; }\n\n.row {\n  position: relative;\n  padding: 0;\n  bottom: -1rem; }\n\n.row1 {\n  position: relative;\n  top: -1rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.ts":
-/*!**************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.ts ***!
-  \**************************************************************************************************************************/
-/*! exports provided: ReadingSection4Component */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReadingSection4Component", function() { return ReadingSection4Component; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _models_reading_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../../models/reading.model */ "./src/app/toefl/models/reading.model.ts");
-/* harmony import */ var _reading_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../reading.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading.service.ts");
-/* harmony import */ var _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../../tony-editorv1.0.0/services/executable-command.service */ "./src/app/tony-editorv1.0.0/services/executable-command.service.ts");
-/* harmony import */ var _makeexam_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../makeexam.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/makeexam.service.ts");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-let ReadingSection4Component = class ReadingSection4Component {
-    constructor(route, router, readingService, makeExamService, utilityService, executableCommandService, snatizer // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-    // 표현 해야만 정상적인 html style을 적용할수 있음
-    // 또한 이것을 사용하는 이유는 web injection hacking 기법을 차단하기위함
-    ) {
-        this.route = route;
-        this.router = router;
-        this.readingService = readingService;
-        this.makeExamService = makeExamService;
-        this.utilityService = utilityService;
-        this.executableCommandService = executableCommandService;
-        this.snatizer = snatizer; // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-        this.savedSectiontitle = '';
-        this.currentDate = new Date();
-        this.isAlreadySaved = false;
-        this.updateMode = false;
-    }
-    ngOnInit() {
-        this.utilityService.stepperCheck.next(true); // steppper로 부터 routing되었는지 여부확인
-        // toefl List component가 자동으로 뜨는 문제 해결위해 사용
-        console.log(this.currentStep);
-        this.readingSection4 = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'toeflNo': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section4Title': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section4Script': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
-        });
-        this.route.params.subscribe((params) => {
-            this.toeflNo = +params['id'];
-        });
-        this.currentStep = this.makeExamService.settingCurrentStepper('10', this.toeflNo);
-        this.readingService.getReadingSection(this.toeflNo).subscribe(result => {
-            if (!result.reading) {
-                this.isAlreadySaved = false;
-            }
-            else {
-                if (result.reading.section4Title === '' || !result.reading.section2Title) {
-                    this.isAlreadySaved = false;
-                    this.updateMode = true;
-                }
-                else {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section4Title;
-                    // 아래와 같이 savedSectionContentString변수 한개를 더만들어 string으로 저장하는 이유는
-                    // tonyEditor에 property binding형태로 넘겨 주어야 하기때문
-                    // property binding시 반드시 string으로 넘겨 주어야만 정상적으로 editor내 textArea에 표현가능함
-                    this.savedSectionContentString = result.reading.section4Script;
-                    this.savedSectionContent = this.snatizer.bypassSecurityTrustHtml(result.reading.section4Script);
-                }
-            }
-        }, error => console.log(error));
-        this.htmlSubscription = this.executableCommandService.htmlContent.subscribe((html) => {
-            this.htmlContent = html;
-        });
-    }
-    ngOnDestroy() {
-        this.htmlSubscription.unsubscribe();
-    }
-    onSubmit() {
-        if (this.readingSection4.value.section4Title && this.htmlContent) {
-            const reading4 = new _models_reading_model__WEBPACK_IMPORTED_MODULE_4__["Reading"](this.toeflNo, this.currentDate, '', '', [], '', '', [], '', '', [], this.readingSection4.value.section4Title, this.htmlContent, []);
-            if (!this.updateMode) {
-                this.readingService.addReadingSection(reading4)
-                    .subscribe(result => {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section4Title;
-                    this.savedSectionContent =
-                        this.snatizer.bypassSecurityTrustHtml(result.reading.section4Script);
-                    this.savedSectionContentString = result.reading.section4Script;
-                }, error => console.log(error));
-            }
-            else {
-                this.readingService.updateReadingSection(reading4)
-                    .subscribe(result => {
-                    this.isAlreadySaved = true;
-                    this.savedSectiontitle = result.reading.section4Title;
-                    this.savedSectionContent =
-                        this.snatizer.bypassSecurityTrustHtml(result.reading.section4Script);
-                    this.savedSectionContentString = result.reading.section4Script;
-                }, error => console.log(error));
-            }
-        }
-        this.readingSection4.reset();
-        this.htmlContent = '';
-    }
-    onEdit() {
-        console.log('edit click');
-        this.isAlreadySaved = false;
-        this.readingSection4 = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'toeflNo': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.toeflNo, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section4Title': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.savedSectiontitle, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'section4Script': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
-        });
-        this.htmlContent = this.savedSectionContentString;
-        console.log(this.htmlContent);
-        this.updateMode = true;
-    }
-    onDelete() {
-        console.log('delete click');
-    }
-    onMakeExam() {
-        console.log('make exam click');
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('contentArea'),
-    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
-], ReadingSection4Component.prototype, "contentArea", void 0);
-ReadingSection4Component = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-reading-section4',
-        template: __webpack_require__(/*! ./reading-section4.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.html"),
-        styles: [__webpack_require__(/*! ./reading-section4.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.scss")],
-        encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-        _reading_service__WEBPACK_IMPORTED_MODULE_5__["ReadingService"],
-        _makeexam_service__WEBPACK_IMPORTED_MODULE_7__["MakeExamService"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_8__["UtilityService"],
-        _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_6__["ExecutableCommandService"],
-        _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"] // [innerHTML]="htmlContent"표현시 반드시 이것을 사용하여
-        // 표현 해야만 정상적인 html style을 적용할수 있음
-        // 또한 이것을 사용하는 이유는 web injection hacking 기법을 차단하기위함
-    ])
-], ReadingSection4Component);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading.service.ts":
-/*!**********************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading.service.ts ***!
-  \**********************************************************************************************/
-/*! exports provided: ReadingService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReadingService", function() { return ReadingService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm2015/http.js");
-/* harmony import */ var rxjs_Observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/Observable */ "./node_modules/rxjs-compat/_esm2015/Observable.js");
-/* harmony import */ var rxjs_add_observable_throw__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/observable/throw */ "./node_modules/rxjs-compat/_esm2015/add/observable/throw.js");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-let ReadingService = class ReadingService {
-    constructor(http, utilityService) {
-        this.http = http;
-        this.utilityService = utilityService;
-    }
-    getReadingSection(toeflNo) {
-        const token = localStorage.getItem('token');
-        this.utilityService.loadingStateChanged.next(true);
-        return this.http.get('http://localhost:3000/reading/' + toeflNo + '?token=' + token)
-            .map((res) => {
-            const data = res.json();
-            console.log(data);
-            this.utilityService.loadingStateChanged.next(false);
-            return data;
-        })
-            .catch((error) => this.handleError(error));
-    }
-    addReadingSection(reading) {
-        const token = localStorage.getItem('token');
-        const body = JSON.stringify(reading);
-        console.log(body);
-        const header = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]({ 'Content-Type': 'application/json' });
-        this.utilityService.loadingStateChanged.next(true);
-        return this.http.post('http://localhost:3000/reading' + '?token=' + token, body, { headers: header })
-            .map((res) => {
-            const data = res.json();
-            console.log(data);
-            this.utilityService.loadingStateChanged.next(false);
-            return data;
-        })
-            .catch((error) => this.handleError(error));
-    }
-    updateReadingSection(reading) {
-        const token = localStorage.getItem('token');
-        const body = JSON.stringify(reading);
-        console.log('Update Mode : ' + body);
-        const header = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]({ 'Content-Type': 'application/json' });
-        this.utilityService.loadingStateChanged.next(true);
-        return this.http.patch('http://localhost:3000/reading' + '?token=' + token, body, { headers: header })
-            .map((res) => {
-            const data = res.json();
-            console.log(data);
-            this.utilityService.loadingStateChanged.next(false);
-            return data;
-        })
-            .catch((error) => this.handleError(error));
-    }
-    handleError(error) {
-        const err = error.json();
-        this.utilityService.loadingStateChanged.next(false);
-        this.utilityService.errorToast(err.title, err.message);
-        return rxjs_Observable__WEBPACK_IMPORTED_MODULE_2__["Observable"].throw(err);
-    }
-};
-ReadingService = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-    __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_4__["UtilityService"]])
-], ReadingService);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component.html":
-/*!*********************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component.html ***!
-  \*********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n  <!--Card-->\n  <div class=\"areaDesc\">\n      <div class=\"card card-cascade wider\">\n          <!--Card image-->\n          <div class=\"view gradient-card-header peach-gradient\">\n              <h2 class=\"h2-responsive mb-2\">Toefle Exam No: {{ currentToefl.toeflNo }} Speaking General Description </h2>\n              <p class=\"\"><i class=\"fa fa-calendar\"></i> {{ currentDate | date:'fullDate' }}</p>\n  \n          </div>\n          \n          <div class=\"card-body text-center\">\n              <div class=\"para\">\n              <p class=\"card-text mr-2 ml-2\">\n                {{ currentToefl.speakingDesc }}\n              </p>\n            </div>\n              <a [routerLink]=\"['/teacher/'+currentToefl.toeflNo+'/editReadingDesc']\" \n                  class=\"orange-text mt-1 d-flex flex-row-reverse\">\n                  <h5 class=\"waves-effect p-2\" mdbWavesEffect>Edit Description <i class=\"fa fa-chevron-right\"></i></h5>\n              </a>\n          </div>\n        \n            \n              <div class=\"row panel\">\n                <div class=\"mx-auto col-md-9\">\n              \n                  <div class=\"card card-body\">\n                    <div class=\"flex-row text-center\">\n                      <button type=\"button\" \n                              class=\"btn blue accent-3 btn-rounded waves-light\" \n                              (click)=\"onSpeakingingProblem1()\"\n                              mdbWavesEffect>Problem Type 1\n                      </button>\n                      <button type=\"button\" \n                              class=\"btn blue accent-3 btn-rounded waves-light\" \n                              (click)=\"onSpeakingingProblem2()\"\n                              mdbWavesEffect>Problem Type 2\n                      </button>\n                      <button type=\"button\" \n                              class=\"btn blue accent-3 btn-rounded waves-light\" \n                              (click)=\"onSpeakingingProblem3()\"\n                              mdbWavesEffect>Problem Type 3\n                      </button>\n                      <button type=\"button\" \n                              class=\"btn blue accent-3 btn-rounded waves-light\" \n                              (click)=\"onSpeakingingProblem4()\"\n                              mdbWavesEffect>Prolem Type 4\n                      </button>\n                      <button type=\"button\" \n                              class=\"btn blue accent-3 btn-rounded waves-light\" \n                              (click)=\"onSpeakingingProblem5()\"\n                              mdbWavesEffect>Prolem Type 5\n                      </button>\n                      <button type=\"button\" \n                              class=\"btn blue accent-3 btn-rounded waves-light\" \n                              (click)=\"onSpeakingingProblem6()\"\n                              mdbWavesEffect>Prolem Type 6\n                      </button>\n\n                    </div>\n                  </div>\n                  <!--/.Panel-->      \n                </div>\n              </div>\n      </div>\n  </div>\n  "
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component.scss":
-/*!*********************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component.scss ***!
-  \*********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".areaDesc {\n  position: relative;\n  top: -3rem;\n  left: 0;\n  bottom: 1rem;\n  right: 0;\n  overflow: auto; }\n\n.para {\n  height: 18rem;\n  min-height: 10rem;\n  overflow: auto; }\n\n.panel {\n  position: relative;\n  top: -2rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component.ts":
-/*!*******************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component.ts ***!
-  \*******************************************************************************************************/
-/*! exports provided: SpeakingExamComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpeakingExamComponent", function() { return SpeakingExamComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _models_toefl_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../models/toefl.model */ "./src/app/toefl/models/toefl.model.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-let SpeakingExamComponent = class SpeakingExamComponent {
-    constructor(router, route) {
-        this.router = router;
-        this.route = route;
-        this.currentDate = Date.now();
-    }
-    ngOnInit() {
-        console.log(this.currentToefl);
-    }
-    onSpeakingingProblem1() {
-        console.log('clicked');
-    }
-    onSpeakingingProblem2() {
-        console.log('clicked');
-    }
-    onSpeakingingProblem3() {
-        console.log('clicked');
-    }
-    onSpeakingingProblem4() {
-        console.log('clicked');
-    }
-    onSpeakingingProblem5() {
-        console.log('clicked');
-    }
-    onSpeakingingProblem6() {
-        console.log('clicked');
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", _models_toefl_model__WEBPACK_IMPORTED_MODULE_1__["Toefl"])
-], SpeakingExamComponent.prototype, "currentToefl", void 0);
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", Boolean)
-], SpeakingExamComponent.prototype, "currentSpeakingStepper", void 0);
-SpeakingExamComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-speaking-exam',
-        template: __webpack_require__(/*! ./speaking-exam.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component.html"),
-        styles: [__webpack_require__(/*! ./speaking-exam.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
-], SpeakingExamComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/writing-exam/writing-exam.component.html":
-/*!*******************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/writing-exam/writing-exam.component.html ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n  <!--Card-->\n  <div class=\"areaDesc\">\n      <div class=\"card card-cascade wider\">\n          <!--Card image-->\n          <div class=\"view gradient-card-header peach-gradient\">\n              <h2 class=\"h2-responsive mb-2\">Toefle Exam No: {{ currentToefl.toeflNo }} Writing General Description </h2>\n              <p class=\"\"><i class=\"fa fa-calendar\"></i> {{ currentDate | date:'fullDate' }}</p>\n\n          </div>\n\n          <div class=\"card-body text-center\">\n              <div class=\"para\">\n              <p class=\"card-text mr-2 ml-2\">\n                {{ currentToefl.writingDesc }}\n              </p>\n            </div>\n              <a [routerLink]=\"['/teacher/'+currentToefl.toeflNo+'/editReadingDesc']\"\n                  class=\"orange-text mt-1 d-flex flex-row-reverse\">\n                  <h5 class=\"waves-effect p-2\" mdbWavesEffect>Edit Description <i class=\"fa fa-chevron-right\"></i></h5>\n              </a>\n          </div>\n\n\n              <div class=\"row panel\">\n                <div class=\"mx-auto col-md-9\">\n\n                  <div class=\"card card-body\">\n                    <div class=\"flex-row text-center\">\n                      <button type=\"button\"\n                              class=\"btn blue accent-3 btn-rounded waves-light\"\n                               (click)=\"onWritingProlem1()\"\n                              mdbWavesEffect>Integrated Writing Problem\n                      </button>\n                      <button type=\"button\"\n                              class=\"btn blue accent-3 btn-rounded waves-light\"\n                             (click)=\"onWritingProlem2()\"\n                              mdbWavesEffect>Indepence Writing Problem\n                      </button>\n                    </div>\n                  </div>\n\n                </div>\n              </div>\n      </div>\n  </div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/writing-exam/writing-exam.component.scss":
-/*!*******************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/writing-exam/writing-exam.component.scss ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".areaDesc {\n  position: relative;\n  top: -3rem;\n  left: 0;\n  bottom: 1rem;\n  right: 0;\n  overflow: auto; }\n\n.para {\n  height: 18rem;\n  min-height: 10rem;\n  overflow: auto; }\n\n.panel {\n  position: relative;\n  top: -2rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/writing-exam/writing-exam.component.ts":
-/*!*****************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/make-toefl-exam/writing-exam/writing-exam.component.ts ***!
-  \*****************************************************************************************************/
-/*! exports provided: WritingExamComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WritingExamComponent", function() { return WritingExamComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _models_toefl_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../models/toefl.model */ "./src/app/toefl/models/toefl.model.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-let WritingExamComponent = class WritingExamComponent {
-    constructor(router, route) {
-        this.router = router;
-        this.route = route;
-        this.currentDate = Date.now();
-    }
-    ngOnInit() {
-        console.log(this.currentToefl);
-    }
-    onWritingProlem1() {
-        console.log(' writing problem 1 ....');
-    }
-    onWritingProlem2() {
-        console.log(' writing problem 1 ....');
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", _models_toefl_model__WEBPACK_IMPORTED_MODULE_1__["Toefl"])
-], WritingExamComponent.prototype, "currentToefl", void 0);
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", Boolean)
-], WritingExamComponent.prototype, "currentWritingStepper", void 0);
-WritingExamComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-writing-exam',
-        template: __webpack_require__(/*! ./writing-exam.component.html */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/writing-exam/writing-exam.component.html"),
-        styles: [__webpack_require__(/*! ./writing-exam.component.scss */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/writing-exam/writing-exam.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
-], WritingExamComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.html":
-/*!***********************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.html ***!
-  \***********************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n  <!-- Card -->\n      <div class=\"card testimonial-card col-md-12 p-0 mt-auto\">\n\n        <!-- Bacground color -->\n        <div class=\"card-up indigo lighten-1\">\n        </div>\n\n        <!-- Avatar -->\n        <div class=\"avatar mx-auto white\">\n            <img  [src]=\"toefl.toeflImage\" alt=\"toefl.toeflImage\"\n            class=\"rounded-circle image-responsive\">\n        </div>\n\n        <div class=\"card-body\">\n            <!-- Name -->\n            <h4 class=\"card-title\">Toefl Regitration NO: {{ toefl.toeflNo }}</h4>\n            <hr>\n            <!-- Quotation -->\n            <div class=\"para\">\n            <p><i class=\"fa fa-quote-left\"></i>\n                {{ toefl.toeflDesc }}\n            </p>\n        </div>\n        </div>\n\n           <!-- Card footer -->\n    <div class=\"mdb-color lighten-3 text-center\">\n        <ul class=\"list-unstyled list-inline font-small mt-3\">\n            <li class=\"list-inline-item pr-2\">\n                <button class=\"btn btn-default btn-sm\" (click)=\"onEditToeflRegistration()\" >Edit</button>\n            </li>\n            <li class=\"list-inline-item pr-2\">\n                <button class=\"btn btn-danger btn-sm\" (click)=\"onDeleteRegistration()\" >Delete</button>\n            </li>\n            <li class=\"list-inline-item pr-2\">\n                <button class=\"btn btn-danger btn-sm\" (click)=\"onMakeExam()\" >Make Exam</button>\n            </li>\n\n        </ul>\n    </div>\n    <!-- Card footer -->\n      <!-- Card -->\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.scss":
-/*!***********************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.scss ***!
-  \***********************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".para {\n  height: 32rem;\n  min-height: 15rem;\n  overflow: auto; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.ts":
-/*!*********************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.ts ***!
-  \*********************************************************************************************************************/
-/*! exports provided: RegistToeflDetailComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegistToeflDetailComponent", function() { return RegistToeflDetailComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _teacher_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../teacher.service */ "./src/app/toefl/teacher/teacher.service.ts");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-let RegistToeflDetailComponent = class RegistToeflDetailComponent {
-    constructor(registerToeflService, utilityService, route, router) {
-        this.registerToeflService = registerToeflService;
-        this.utilityService = utilityService;
-        this.route = route;
-        this.router = router;
-        this.audio = new Audio(); // Audio instance 발생시킴
-        this.stepperCheck = false;
-    }
-    ngOnInit() {
-        // Audio Play Service 중 toefl List, detail에서 소리가 나면 값은 "1" === 소리 실행
-        // 만일 add,  edit component는 "2" --- 소리를 중지
-        // add 와 edit 후  save 버튼을 누르면 새로 update된 값으로 소리 실행  === "3"
-        this.route.params.subscribe((params) => {
-            this.toeflNo = +params['id'];
-            console.log(this.toeflNo);
-            this.toefl = this.registerToeflService.getRegisterToefl(this.toeflNo);
-            this.utilityService.audioPlaySevice(this.toefl.toeflAudio, '1', false);
-        });
-        this.utilityService.stepperCheck.subscribe((stepperCheck) => {
-            this.stepperCheck = stepperCheck;
-            console.log(stepperCheck);
-        });
-    }
-    onEditToeflRegistration() {
-        this.router.navigate(['edit'], { relativeTo: this.route });
-    }
-    onMakeExam() {
-        this.utilityService.toeflListShowChanged.next(true); // toefl List 값이 바뀜을 알려준다
-        this.utilityService.teacherNavSideBarChanged.next(true); // NavSideBar가 비뀜을 알려준다
-        this.router.navigate(['makeexam'], { relativeTo: this.route }); // makeExam으로 넘어간다
-    }
-    onDeleteRegistration() {
-        // registration Toefl을 지우기 위해서는 toefl No 가 아닌 this.id(index)값을 parameter로 넘겨준다
-        this.registerToeflService.deleteRegisterToeflExam(this.toeflNo);
-        this.router.navigate(['../'], { relativeTo: this.route });
-    }
-};
-RegistToeflDetailComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-regist-toefl-detail',
-        template: __webpack_require__(/*! ./regist-toefl-detail.component.html */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.html"),
-        styles: [__webpack_require__(/*! ./regist-toefl-detail.component.scss */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_teacher_service__WEBPACK_IMPORTED_MODULE_2__["RegisterToeflService"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__["UtilityService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
-], RegistToeflDetailComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.html":
-/*!*******************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.html ***!
-  \*******************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n<div class=\"flex-md-row\">\n\n  <form [formGroup]=\"registerToeflForm\" (ngSubmit)=\"onSubmit()\">\n\n\n      <div class=\"card col-md-12 p-0 mt-0\">\n          <h3 class=\"card-header info-color white-text text-center mb-0\">Toefl Registration NO: {{ toeflNo }}</h3>\n        <div class=\"card-body\">\n\n    <!-- toefl level input 정의  -->\n              <div class=\"row mt-0\">\n                  <div class=\"col-md-6 p-3 clearfix\">\n                        <div class=\"md-form\" #select>\n                            <mdb-select\n                                      [options]=\"levelSelect\"\n                                      placeholder=\"Choose Toefl Level\"\n                                      formControlName=\"levelSelect\"\n                                      class=\"colorful-select dropdown-primary\"\n                            ></mdb-select>\n                        </div>\n                  </div>\n              </div>\n\n    <!-- toefl Description input 정의 -->\n              <div class=\"row\">\n                <div class=\"col-md-12\">\n                      <label for=\"toeflDesc\">Description</label>\n                      <textarea type=\"text\"\n                                name=\"toeflDesc\"\n                                id=\"toeflDesc\"\n                                formControlName=\"toeflDesc\"\n                                class=\"form-control\"\n                                rows=\"10\">\n                      </textarea>\n                  </div>\n              </div>\n\n<br>\n    <!-- toefl Preview Image File Input 처리 -->\n              <div class=\"row\">\n                    <!--이미지 선택 타이틀과 이미지 보여주기 카드 -->\n                    <div class=\"card col-md-6 text-center\">\n                        <h3 class=\"card-header primary-color white-text\">{{ imageTag }}</h3>\n                        <div class=\"card-body\">\n                                <div class=\"image-preview\" *ngIf=\"imagePath !== '' && imagePath\">\n                                        <img [src]=\"imagePath\" *ngIf=\"imagePath !=='' && imagePath\">    \n                                  </div>\n                        </div>\n                    </div>\n\n                    <!--오디오 선택 타이틀과 오디오 controls 보여주기-->\n                    <div class=\"card col-md-6 text-center\">\n                        <h3 class=\"card-header info-color white-text\">{{ audioTag }}</h3>\n                        <div class=\"card-body mx-auto\">\n                           <div class=\"row\">\n                                <div class=\"audio-preview\" *ngIf=\"audioPath !== '' && audioPath\">\n                                        <audio controls controlsList=\"nodownload\"\n                                             [src]=\"audioPath\" *ngIf=\"audioPath !=='' && audioPath\">\n                                        </audio>  \n                                </div>\n                           </div>\n                          <div class=\"mt-2\">\n\n                          </div>\n                        </div>\n                    </div>\n              </div>\n    <!-- toefl 실제 Upload Image File Input 처리 -->\n              <div class=\"row mt-3\">\n                  <div class=\"col-md-6 text-center\"  >\n \n                        <input type=\"file\" \n                                #imagePicker \n                                accept=\"image/*\" \n                                (change)=\"onImagePicked($event)\" \n                                multiple>\n                        <button class=\"btn btn-light-blue btn-sm btn-rounded waves-light\"\n                                type=\"button\"\n                                (click)=\"imagePicker.click()\">Upload Image\n                        </button>\n                  </div>   \n                  <div class=\"col-md-6 text-center\" >\n\n                        <div>\n                                <input type=\"file\" \n                                        #audioPicker \n                                        accept=\"audio/*\" \n                                        (change)=\"onAudioPicked($event)\" \n                                        multiple>\n                                <button class=\"btn btn-light-blue btn-sm btn-rounded waves-light\"\n                                        type=\"button\"\n                                       (click)=\"audioPicker.click()\">Upload Audio\n                                </button>\n                        </div>     \n                  </div>\n              </div>\n        </div>\n        \n    <!-- Card footer -->\n        <div class=\"mdb-color lighten-3 text-center\">\n            <ul class=\"list-unstyled list-inline font-small m-1\">\n                <li class=\"list-inline-item pr-2\">\n                    <button type=\"submit\"\n                            class=\"btn btn-default waves-light btn-sm\"\n                            [disabled]=\"!registerToeflForm.valid\"\n                            mdbWavesEffect>\n                            <i class=\"fa fa-magic mr-1\"></i> Save\n                    </button>\n\n                </li>\n                <li class=\"list-inline-item pr-2\">\n                    <button\n                            type=\"button\"\n                            class=\"btn btn-danger waves-light btn-sm\"\n                            (click)=\"onCancel()\"\n                            mdbWavesEffect>Cancel<i class=\"fa fa-magic ml-1\"></i>\n                    </button>\n\n                </li>\n            </ul>\n        </div>\n    </div>\n  </form>\n</div>\n\n\n<!-- 이부분은 훗날 toefl section부위를 코딩할때 사용할것임 ----- FormArray를 사용한 예제임\n          <div class=\"row mt-5\">\n              <div class=\"col-md-12\" formArrayName=\"imageSettingTimes\">\n                <div class=\"row\"\n                    *ngFor=\"let imageSettime of getControls(); let i=index\"\n                    [formGroupName]=\"i\">\n                        <div class=\"col-md-8\">\n                          <input type=\"text\"\n                                class=\"form-control\"\n                                formControlName=\"imageUrl\">\n                        </div>\n                        <div class=\"col-md-2\">\n                          <input type=\"number\"\n                                class=\"form-control\"\n                                formControlName=\"imageShowTime\">\n                        </div>\n                        <div class=\"col-md-2\">\n                          <button type=\"button\"\n                                  class=\"btn btn-danger\"\n                                  (click)=\"onDeleteImageShowTime(i)\"\n                                  >X</button>\n                        </div>\n                </div>\n              </div>\n          </div>\n\n  -->\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.scss":
-/*!*******************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.scss ***!
-  \*******************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "textarea.ng-invalid {\n  border: 1px solid red; }\n\n.fileBox {\n  border: 1px solid blue; }\n\ninput[type=\"file\"] {\n  visibility: hidden; }\n\n.image-preview {\n  height: 5rem;\n  margin: 1rem 0; }\n\n.image-preview img {\n  height: 100%; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.ts":
-/*!*****************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.ts ***!
-  \*****************************************************************************************************************/
-/*! exports provided: RegistToeflEditComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegistToeflEditComponent", function() { return RegistToeflEditComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _teacher_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../teacher.service */ "./src/app/toefl/teacher/teacher.service.ts");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-/* harmony import */ var _models_default_data_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../models/default.data.model */ "./src/app/toefl/models/default.data.model.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-let RegistToeflEditComponent = class RegistToeflEditComponent {
-    constructor(registerToeflService, utilityService, route, router) {
-        this.registerToeflService = registerToeflService;
-        this.utilityService = utilityService;
-        this.route = route;
-        this.router = router;
-        this.upLoadImageFile = null;
-        this.upLoadAudioFile = null;
-        this.toeflFiles = [];
-        this.imageTag = null;
-        this.audioTag = null;
-        this.imagePath = '../../../../../../assets/img/toeflLogo.png'; // html 내 preview에 image 보여주기위한 기본값
-        this.audioPath = '../../../../../../assets/audio/toeflAudioDefault.mp3'; // html 내 preview에 audio 보여주기위한 기본값
-        this.readings = [];
-        this.imageSettingTimes = [];
-        this.toeflNo = 0;
-        this.editMode = false;
-        this.currentTime = new Date();
-        this.completionTag = 'not completed';
-    }
-    ngOnInit() {
-        this.levelSelect = [
-            { value: 'Beginner', label: 'Beginner' },
-            { value: 'Basic', label: 'Basic' },
-            { value: 'InterMediate', label: 'InterMediate' },
-            { value: 'Advanced', label: 'Advanced' },
-            { value: 'Most Cmparative', label: 'Most Cmparative' },
-        ];
-        // Audio Play Service 중 toefl List에서 소리가 나면 값은 "1" === 소리 실행
-        // 만일 add, detail, edit component는 "2" --- 소리를 중지
-        // add 와 edit 후  save 버튼을 누르면 새로 update된 값으로 소리 실행  === "3"
-        this.route.params.subscribe((params) => {
-            this.toeflNo = +params['id'];
-            this.editMode = params['id'] != null;
-            console.log('toefle edit 모드인지 아닌지 검사', this.editMode);
-            this.initForm();
-            // this.utilityService.audioPlaySevice(null, '2', false);
-        });
-        this.audioPathChangedSubScription = this.utilityService.audioPathChanged.subscribe((audioUrl) => {
-            console.log(audioUrl);
-            this.audioPath = audioUrl;
-        });
-    }
-    initForm() {
-        // const toeflImageSettingTimes = new FormArray([]);
-        this.makeExam = _models_default_data_model__WEBPACK_IMPORTED_MODULE_5__["default"];
-        let levelSelect = '';
-        let toeflDesc = this.makeExam[0].desc;
-        console.log(toeflDesc);
-        console.log('ㅇ이지점 점검부위임');
-        console.log(this.editMode);
-        if (this.editMode) {
-            const registerToefl = this.registerToeflService.getRegisterToefl(this.toeflNo);
-            levelSelect = registerToefl.toeflLevel;
-            toeflDesc = registerToefl.toeflDesc;
-            this.imagePath = registerToefl.toeflImage;
-            this.audioPath = registerToefl.toeflAudio;
-            // 이미지 와 오디오 URL에서 filename만 추출하기
-            this.imageTag = this.imagePath.substring(this.imagePath.lastIndexOf('/') + 1);
-            this.audioTag = this.audioPath.substring(this.audioPath.lastIndexOf('/') + 1);
-            // 앞으로 진행할 여러개의 이미즈를 upload할때 사용할 formarray 처리부분임 - 삭제하지 말것
-            // if (registerToefl['imageSettingTimes']) {
-            //   for (const imageSetTime of registerToefl.imageSettingTimes) {
-            //       toeflImageSettingTimes.push(
-            //         new FormGroup({
-            //           'imageUrl': new FormControl(imageSetTime.imageUrl),
-            //           'imageShowTime': new FormControl(imageSetTime.imageShowTime, [
-            //                                                                           Validators.required,
-            //                                                                           Validators.pattern(/^[1-9]+[0-9]*$/)
-            //                                             ])
-            //                       })
-            //       );
-            //   }
-            // }
-        }
-        else {
-            this.toeflNo = this.registerToeflService.getLastToeflNo();
-            // this.registerToeflService.getToeflLastNo().subscribe( (lastToeflNo: number) => {
-            //   this.toeflNo = lastToeflNo;
-            // });
-            console.log('adding toefl no is ', this.toeflNo);
-            this.imageTag = 'Default Image Selected';
-            this.audioTag = 'Default Audio Selected';
-        }
-        // 이부분은 editmode 이든 newMode이든 무조건 실행하여야 한다
-        this.registerToeflForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            'levelSelect': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](levelSelect, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'toeflDesc': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](toeflDesc, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            'imagePath': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.imagePath),
-            'audioPath': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.audioPath)
-            // 'imageSettingTimes': toeflImageSettingTimes
-        });
-    }
-    // 이부분의 method또한 여러장의 이미지를 가져올 imageSetttingTime에 필요한 method이고 html에서 controls부위가 error가 떨어지므로
-    // 반드시 이부위를 html에서 빼내 새로운 method로 만들었음 그러니 까먹지 말것 ㅋㅋㅋㅋ
-    // getControls() {
-    //   return (<FormArray>this.registerToeflForm.get('imageSettingTimes')).controls;
-    // }
-    // upload InputFile 처리 하는 방법중 imagefile 처리
-    // onHandleImageFileInput(file: FileList) {
-    //   this.upLoadImageFile = file.item(0);
-    //   console.log(this.upLoadImageFile);
-    //   const reader = new FileReader();
-    //   reader.onload = (event: any) => {
-    //     this.imagePath = event.target.result;
-    // 이 부분은 html문서의 이미지 preview에 사용할 id 값지정한것임
-    //   };
-    //   reader.readAsDataURL(this.upLoadImageFile);
-    //   console.log(this.imagePath);
-    //   console.log(this.upLoadImageFile);
-    //   this.imageTag = this.upLoadImageFile.name;
-    // }
-    // onHandleAudioFileInput(file: FileList) {
-    //   this.upLoadAudioFile = file.item(0);
-    //   console.log(this.upLoadAudioFile);
-    //   const reader = new FileReader();
-    //   reader.onload = (event: any) => {
-    //     this.audioPath = event.target.result;
-    // 이 부분은 html문서의 이미지 preview에 사용할 id 값지정한것임
-    //   };
-    //   reader.readAsDataURL(this.upLoadAudioFile);
-    //   console.log(this.audioPath);
-    //   console.log(this.upLoadAudioFile);
-    //   this.audioTag = this.upLoadAudioFile.name;
-    //   this.utilityService.getChangedAudioUrl(this.audioTag);
-    // }
-    onImagePicked(event) {
-        this.upLoadImageFile = event.target.files[0];
-        const reader = new FileReader();
-        reader.onload = () => {
-            this.imagePath = reader.result;
-        };
-        console.log(this.upLoadImageFile);
-        reader.readAsDataURL(this.upLoadImageFile);
-        this.imageTag = this.upLoadImageFile.name;
-    }
-    onAudioPicked(event) {
-        this.upLoadAudioFile = event.target.files[0];
-        const reader = new FileReader();
-        reader.onload = () => {
-            this.audioPath = reader.result;
-        };
-        reader.readAsDataURL(this.upLoadAudioFile);
-        this.audioTag = this.upLoadAudioFile.name;
-    }
-    onSubmit() {
-        console.log('onSubmit process.....');
-        // 주의 fornData는 string만을 parameter값으로 할수 있으므로 반드시 date(), number는 toString을 변환하여 backend에 넘겨야함
-        const formData = new FormData();
-        formData.append('toeflDesc', this.registerToeflForm.value['toeflDesc']);
-        formData.append('toeflLevel', this.registerToeflForm.value['levelSelect']);
-        formData.append('toeflCompletionTag', this.completionTag);
-        formData.append('toeflImage', this.imagePath);
-        formData.append('toeflAudio', this.audioPath);
-        formData.append('readingDesc', this.makeExam[1].desc); // reading general desc
-        formData.append('listeningDesc', this.makeExam[2].desc); // listening general desc
-        formData.append('writingDesc', this.makeExam[3].desc); // writing general desc
-        formData.append('speakingDesc', this.makeExam[4].desc); // speaking general desc
-        if (this.upLoadImageFile) {
-            formData.append('toeflFiles', this.upLoadImageFile);
-        }
-        if (this.upLoadAudioFile) {
-            formData.append('toeflFiles', this.upLoadAudioFile);
-        }
-        if (this.editMode) {
-            this.registerToeflService.updateRegisterToeflExam(this.toeflNo, formData);
-        }
-        else {
-            console.log('최종적으로 정해진 toefl no', this.toeflNo);
-            this.registerToeflService.addRegisterToeflExam(this.toeflNo, formData);
-        }
-        this.registerToeflForm.reset();
-        this.onCancel();
-    }
-    // onAddImageShowTime() {
-    //   (<FormArray>this.registerToeflForm.get('imageSettingTimes')).push(
-    //     new FormGroup({
-    //       'imageUrl': new FormControl(null, Validators.required),
-    //       'imageShowTime': new FormControl(null, [
-    //                                                 Validators.required,
-    //                                                 Validators.pattern(/^[1-9]+[0-9]*$/)
-    //                                               ])
-    //                   })
-    //   );
-    // }
-    onDeleteImageShowTime(index) {
-        this.registerToeflForm.get('imageSettingTimes').removeAt(index);
-    }
-    onCancel() {
-        this.router.navigate(['../'], { relativeTo: this.route });
-    }
-    ngOnDestroy() {
-        this.audioPathChangedSubScription.unsubscribe();
-    }
-};
-RegistToeflEditComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-regist-toefl-edit',
-        template: __webpack_require__(/*! ./regist-toefl-edit.component.html */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.html"),
-        styles: [__webpack_require__(/*! ./regist-toefl-edit.component.scss */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_teacher_service__WEBPACK_IMPORTED_MODULE_3__["RegisterToeflService"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_4__["UtilityService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
-], RegistToeflEditComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component.html":
-/*!*************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component.html ***!
-  \*************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n<a  #list\n    [routerLink]=\"[toefl.toeflNo]\"\n    routerLinkActive=\"active\"\n    class=\"col-md-12 list-group-item waves-light clearfix\" mdbWavesEffect>\n\n    <div class=\"text-center\">\n      <div *ngIf=\"soundOnOff\">\n        <a class=\"btn-floating btn-lg peach-gradient waves-light\" mdbWavesEffect>\n            <i class=\"list-group-item-heading\">{{ toefl.toeflNo }}</i>\n        </a>\n\n        <button type=\"button\" class=\"pull-right btn-floating btn-sm blue-gradient waves-light\"\n                  mdbWavesEffect\n                  (click)=\"onSound(false)\"><i class=\"fa fa-volume-up\"></i></button>\n      </div>\n\n      <div *ngIf=\"!soundOnOff\">\n          <a class=\"btn-floating btn-lg peach-gradient waves-light\" mdbWavesEffect>\n              <i class=\"list-group-item-heading\">{{ toefl.toeflNo }}</i>\n          </a>\n\n          <button type=\"button\" class=\"pull-right btn-floating btn-sm blue-gradient waves-light\"\n                    mdbWavesEffect\n                    (click)=\"onSound(true)\"><i class=\"fa fa-volume-off\"></i></button>\n      </div>\n\n                  <hr>\n      <div class=\"avatar pull-left\">\n          <img [src]=\"toefl.toeflImage\"\n          class=\"rounded-circle img-responsive\"\n          style=\"max-height: 50px\">\n        </div>\n\n      <p class=\"list-group-item-text\"> {{ toefl.toeflDesc | shorten1:200 }} </p>\n      <hr>\n      <div class=\"row\">\n      <div class=\"col-md-6 pt-2\">\n        <small>{{ toefl.toeflCreatedDate | date:'fullDate'}}</small>\n      </div>\n      <div class=\"col-md-2\">\n       \n      </div>\n      <div class=\"col-md-4 pt-2\">\n        <small>{{ toefl.toeflCompletionTag }}</small>\n      </div>\n    </div>\n    </div>\n  </a>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component.scss":
-/*!*************************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component.scss ***!
-  \*************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "list {\n  background-color: blue; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component.ts":
-/*!***********************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component.ts ***!
-  \***********************************************************************************************************************/
-/*! exports provided: RegistItemComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegistItemComponent", function() { return RegistItemComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _models_toefl_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../models/toefl.model */ "./src/app/toefl/models/toefl.model.ts");
-/* harmony import */ var _teacher_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../teacher.service */ "./src/app/toefl/teacher/teacher.service.ts");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-let RegistItemComponent = class RegistItemComponent {
-    constructor(registerToeflService, router, utilityService) {
-        this.registerToeflService = registerToeflService;
-        this.router = router;
-        this.utilityService = utilityService;
-        this.soundOnOff = false;
-    }
-    ngOnInit() {
-        this.router.navigated = true;
-        this.soundSubscription = this.utilityService.soundButtonChanged
-            .subscribe((soundStatus) => {
-            this.soundOnOff = soundStatus;
-        });
-    }
-    onSound(soundCheck) {
-        // this.toefl.toefAudioㄴ는 실제 array안에들어있는 toefl Audio URl 이다
-        // toeflList에서 소리가 들리는지를 확인하기 위한값으로 toefl List에서 소리가 시작되면
-        // 현재 soundCheck에서 소리가 진행하는지 여부를 확인하는 버튼
-        // Audio Play Service 중 toefl List에서 소리가 나면 값은 "1" === 소리 실행
-        // 만일 add, detail, edit component는 "2" --- 소리를 중지
-        // add 와 edit 후  save 버튼을 누르면 새로 update된 값으로 소리 실행  === "3"
-        if (soundCheck) {
-            this.utilityService.audioPlaySevice(this.toefl.toeflAudio, '2', soundCheck);
-        }
-        else {
-            this.utilityService.audioPlaySevice(this.toefl.toeflAudio, '1', soundCheck);
-        }
-    }
-    ngOnDestroy() {
-        this.soundSubscription.unsubscribe();
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", _models_toefl_model__WEBPACK_IMPORTED_MODULE_1__["Toefl"])
-], RegistItemComponent.prototype, "toefl", void 0);
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", Number)
-], RegistItemComponent.prototype, "index", void 0);
-RegistItemComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-regist-item',
-        template: __webpack_require__(/*! ./regist-item.component.html */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component.html"),
-        styles: [__webpack_require__(/*! ./regist-item.component.scss */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_teacher_service__WEBPACK_IMPORTED_MODULE_2__["RegisterToeflService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__["UtilityService"]])
-], RegistItemComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component.html":
-/*!*******************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component.html ***!
-  \*******************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div *ngIf=\"!toeflListHide\">\n        <div class=\"row\">\n            <div class=\"col-md-12 pt-0 text-center\">\n                  <button class=\"btn btn-success\" (click)=\"onNewToeflRegistration()\"  >\n                    New Toefl Registion\n                  </button>\n            </div>\n        </div>\n    <hr>\n\n        <div *ngIf=\"toefls.length > 2\" class=\"row scrollbar scrollbar-morpheus-den\">\n            <div class=\"mt-auto col-md-12\">\n                <app-regist-item\n                                *ngFor=\"let toeflElement of toefls.slice().reverse(); let i = index\"\n                                [toefl]=\"toeflElement\"\n                                [index]=\"i\">\n                </app-regist-item>\n            </div>\n        </div>\n        <div *ngIf=\"toefls.length <= 2\">\n              <div class=\"mt-auto col-md-12\">\n                  <app-regist-item\n                                  *ngFor=\"let toeflElement of toefls.slice().reverse(); let i = index\"\n                                  [toefl]=\"toeflElement\"\n                                  [index]=\"i\">\n                  </app-regist-item>\n              </div>\n        </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component.scss":
-/*!*******************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component.scss ***!
-  \*******************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".scrollbar {\n  height: 45rem;\n  background: #fff;\n  overflow-y: scroll; }\n\n.scrollbar-morpheus-den::-webkit-scrollbar-track {\n  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);\n  background-color: #F5F5F5;\n  border-radius: 10px; }\n\n.scrollbar-morpheus-den::-webkit-scrollbar {\n  width: 12px;\n  background-color: #F5F5F5; }\n\n.scrollbar-morpheus-den::-webkit-scrollbar-thumb {\n  border-radius: 10px;\n  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);\n  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component.ts":
-/*!*****************************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component.ts ***!
-  \*****************************************************************************************************************/
-/*! exports provided: RegistToeflListComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegistToeflListComponent", function() { return RegistToeflListComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _teacher_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../teacher.service */ "./src/app/toefl/teacher/teacher.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-let RegistToeflListComponent = class RegistToeflListComponent {
-    constructor(registerToeflService, router, route, utilityService) {
-        this.registerToeflService = registerToeflService;
-        this.router = router;
-        this.route = route;
-        this.utilityService = utilityService;
-        this.toefls = [];
-        this.emptyCehcked = false;
-        this.toeflListHide = false;
-    }
-    ngOnInit() {
-        this.toeflListHideSubscription = this.utilityService.toeflListShowChanged
-            .subscribe((toeflListHIdeStatus) => {
-            this.toeflListHide = toeflListHIdeStatus;
-        });
-        this.toeflListSubscription = this.registerToeflService.registerToeflExamChanged
-            .subscribe((recentToefls) => {
-            this.toefls = recentToefls;
-            console.log('최신 토플명단', this.toefls);
-        });
-        this.utilityServiceSubscription = this.utilityService.stepperCheck.
-            subscribe((stepCheckStatus) => {
-            this.toeflListHide = stepCheckStatus;
-            console.log(this.toeflListHide);
-        });
-        this.toefls = this.registerToeflService.getRegisterToefls(); // 변경된 최신 토플 시험을 가져옴
-    }
-    onNewToeflRegistration() {
-        this.router.navigate(['new'], { relativeTo: this.route });
-    }
-    ngOnDestroy() {
-        this.toeflListSubscription.unsubscribe();
-        this.toeflListHideSubscription.unsubscribe();
-        this.utilityServiceSubscription.unsubscribe();
-    }
-};
-RegistToeflListComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-regist-toefl-list',
-        template: __webpack_require__(/*! ./regist-toefl-list.component.html */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component.html"),
-        styles: [__webpack_require__(/*! ./regist-toefl-list.component.scss */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_teacher_service__WEBPACK_IMPORTED_MODULE_1__["RegisterToeflService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__["UtilityService"]])
-], RegistToeflListComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.html":
-/*!*******************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.html ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n\n<div class=\"row mt-2\">\n       \n        <div class=\"col-md-12 mx-auto\">\n            <div class=\"card testimonial-card\">\n                <div class=\"card-up indigo lighten-1\">\n                </div>\n    \n                <div class=\"avatar mx-auto\"><img src=\"./../../../../../assets/img/toeflLogo.png\" class=\"rounded-circle\">\n                </div>    \n                <div class=\"card-body\">\n                 \n                    <h4 class=\"card-title\">Toefl Registration</h4>\n                    <hr>\n                    <p><i class=\"fa fa-quote-left\"></i> Please select a Toefl Exam Number.....</p>\n                </div>\n    \n            </div>\n    \n        </div>\n    \n    </div>\n    <!--Grid row-->"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.scss":
-/*!*******************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.scss ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.ts":
-/*!*****************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.ts ***!
-  \*****************************************************************************************************/
-/*! exports provided: RegisterToeflStartComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterToeflStartComponent", function() { return RegisterToeflStartComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-let RegisterToeflStartComponent = class RegisterToeflStartComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-RegisterToeflStartComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-register-toefl-start',
-        template: __webpack_require__(/*! ./register-toefl-start.component.html */ "./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.html"),
-        styles: [__webpack_require__(/*! ./register-toefl-start.component.scss */ "./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.scss")]
-    }),
-    __metadata("design:paramtypes", [])
-], RegisterToeflStartComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/stepper/stepper.component.html":
-/*!**************************************************************!*\
-  !*** ./src/app/toefl/teacher/stepper/stepper.component.html ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n<ul class=\"stepper stepper-horizontal m-0\">\n    <li *ngIf=\"currentStep.home\" class=\"completed\">\n        <a type=\"button\" (click)=\"onMainHome()\">\n\n            <span class=\"circle\">1</span>\n            <span class=\"label\">Toefl List</span>\n        </a>\n    </li>\n    <li *ngIf=\"currentStep.toeflList\" class=\"completed\">\n        <a type=\"button\" (click)=\"onToelfList()\">\n\n            <span class=\"circle\">2</span>\n            <span class=\"label\">Toefl No. {{currentStep.toeflNo}}</span>\n        </a>\n    </li>\n    <li *ngIf=\"currentStep.readingArea\" class=\"completed\">\n        <a type=\"button\" (click)=\"onToelfMakeExam()\">\n\n            <span class=\"circle\">3</span>\n            <span class=\"label\">Reading Areas</span>\n        </a>\n    </li>\n    <li *ngIf=\"currentStep.listeningArea\" class=\"completed\">\n        <a href=\"#!\">\n            <span class=\"circle\">3</span>\n            <span class=\"label\">Listening Areas</span>\n        </a>\n    </li>\n    <li *ngIf=\"currentStep.writingArea\" class=\"completed\">\n        <a href=\"#!\">\n            <span class=\"circle\">3</span>\n            <span class=\"label\">Writing Areas</span>\n        </a>\n    </li>\n    <li *ngIf=\"currentStep.speakingArea\" class=\"completed\">\n        <a href=\"#!\">\n            <span class=\"circle\">3</span>\n            <span class=\"label\">Speaking Areas</span>\n        </a>\n    </li>\n\n    <li *ngIf=\"currentStep.readingSection1\" class=\"completed\">\n        <a type=\"button\" (click)=\"onToelfMakeExamSection1()\">\n            <span class=\"circle\">4</span>\n            <span class=\"label\">Section 1</span>\n        </a>\n    </li>\n    <li *ngIf=\"currentStep.readingSection2\" class=\"completed\">\n        <a type=\"button\" (click)=\"onToelfMakeExamSection2()\">\n            <span class=\"circle\">5</span>\n            <span class=\"label\">Section 2</span>\n        </a>\n    </li>\n    <li *ngIf=\"currentStep.readingSection3\" class=\"completed\">\n            <a type=\"button\" (click)=\"onToelfMakeExamSection3()\">\n                <span class=\"circle\">6</span>\n                <span class=\"label\">Section 3</span>\n            </a>\n    </li>\n    <li *ngIf=\"currentStep.readingSection4\" class=\"completed\">\n            <a type=\"button\" (click)=\"onToelfMakeExamSection4()\">\n                <span class=\"circle\">7</span>\n                <span class=\"label\">Section 4</span>\n            </a>\n    </li>\n    <li *ngIf=\"currentStep.listeningSection1\" class=\"completed\">\n            <a href=\"#!\">\n                <span class=\"circle\">4</span>\n                <span class=\"label\">Section 1</span>\n            </a>\n    </li>\n    <li *ngIf=\"currentStep.listeningSection2\" class=\"completed\">\n            <a href=\"#!\">\n                <span class=\"circle\">5</span>\n                <span class=\"label\">Section 2</span>\n            </a>\n    </li>\n    <li *ngIf=\"currentStep.listeningSection3\" class=\"completed\">\n            <a href=\"#!\">\n                <span class=\"circle\">6</span>\n                <span class=\"label\">Section 3</span>\n            </a>\n    </li>\n    <li *ngIf=\"currentStep.listeningSection4\" class=\"completed\">\n            <a href=\"#!\">\n                <span class=\"circle\">7</span>\n                <span class=\"label\">Section 4</span>\n            </a>\n    </li>\n    <li *ngIf=\"currentStep.listeningSection5\" class=\"completed\">\n            <a href=\"#!\">\n                <span class=\"circle\">8</span>\n                <span class=\"label\">Section 5</span>\n            </a>\n    </li>\n    <li *ngIf=\"currentStep.listeningSection6\" class=\"completed\">\n            <a href=\"#!\">\n                <span class=\"circle\">9</span>\n                <span class=\"label\">Section 6</span>\n            </a>\n    </li>\n</ul>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/stepper/stepper.component.scss":
-/*!**************************************************************!*\
-  !*** ./src/app/toefl/teacher/stepper/stepper.component.scss ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".stepper {\n  top: -2rem;\n  left: -1rem; }\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/stepper/stepper.component.ts":
-/*!************************************************************!*\
-  !*** ./src/app/toefl/teacher/stepper/stepper.component.ts ***!
-  \************************************************************/
-/*! exports provided: StepperComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StepperComponent", function() { return StepperComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _stepper_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stepper.model */ "./src/app/toefl/teacher/stepper/stepper.model.ts");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-let StepperComponent = class StepperComponent {
-    constructor(router, route, utilityService) {
-        this.router = router;
-        this.route = route;
-        this.utilityService = utilityService;
-    }
-    ngOnInit() {
-        console.log(this.currentStep);
-        console.log(this.currentStep.toeflNo);
-    }
-    onMainHome() {
-        this.router.navigate(['/teacher']);
-    }
-    onToelfList() {
-        console.log('toeflList stepper clicked');
-        console.log(this.currentStep.toeflNo);
-        this.router.navigate(['/teacher/' + this.currentStep.toeflNo]);
-    }
-    onToelfMakeExam() {
-        console.log('Reading Area stepper clicked');
-        console.log(this.currentStep.toeflNo);
-        this.router.navigate(['/teacher/' + this.currentStep.toeflNo + '/makeexam']);
-    }
-    onToelfMakeExamSection1() {
-        console.log('Reading Area stepper clicked');
-        console.log(this.currentStep.toeflNo);
-        this.router.navigate(['/teacher/' + this.currentStep.toeflNo + '/makeexam/readingSection1']);
-    }
-    onToelfMakeExamSection2() {
-        console.log('Reading Area stepper clicked');
-        console.log(this.currentStep.toeflNo);
-        this.router.navigate(['/teacher/' + this.currentStep.toeflNo + '/makeexam/readingSection2']);
-    }
-    onToelfMakeExamSection3() {
-        console.log('Reading Area stepper clicked');
-        console.log(this.currentStep.toeflNo);
-        this.router.navigate(['/teacher/' + this.currentStep.toeflNo + '/makeexam/readingSection3']);
-    }
-    onToelfMakeExamSection4() {
-        console.log('Reading Area stepper clicked');
-        console.log(this.currentStep.toeflNo);
-        this.router.navigate(['/teacher/' + this.currentStep.toeflNo + '/makeexam/readingSection4']);
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", _stepper_model__WEBPACK_IMPORTED_MODULE_2__["StepperModel"])
-], StepperComponent.prototype, "currentStep", void 0);
-StepperComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-stepper',
-        template: __webpack_require__(/*! ./stepper.component.html */ "./src/app/toefl/teacher/stepper/stepper.component.html"),
-        styles: [__webpack_require__(/*! ./stepper.component.scss */ "./src/app/toefl/teacher/stepper/stepper.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_3__["UtilityService"]])
-], StepperComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/stepper/stepper.model.ts":
-/*!********************************************************!*\
-  !*** ./src/app/toefl/teacher/stepper/stepper.model.ts ***!
-  \********************************************************/
-/*! exports provided: StepperModel */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StepperModel", function() { return StepperModel; });
-class StepperModel {
-    constructor(home, toeflNo, toeflList, readingArea, listeningArea, writingArea, speakingArea, readingSection1, readingSection2, readingSection3, readingSection4, listeningSection1, listeningSection2, listeningSection3, listeningSection4, listeningSection5, listeningSection6, writingSection1, writingSection2, speakingSection1, speakingSection2, speakingSection3, speakingSection4, speakingSection5, speakingSection6) {
-        this.home = home;
-        this.toeflNo = toeflNo;
-        this.toeflList = toeflList;
-        this.readingArea = readingArea;
-        this.listeningArea = listeningArea;
-        this.writingArea = writingArea;
-        this.speakingArea = speakingArea;
-        this.readingSection1 = readingSection1;
-        this.readingSection2 = readingSection2;
-        this.readingSection3 = readingSection3;
-        this.readingSection4 = readingSection4;
-        this.listeningSection1 = listeningSection1;
-        this.listeningSection2 = listeningSection2;
-        this.listeningSection3 = listeningSection3;
-        this.listeningSection4 = listeningSection4;
-        this.listeningSection5 = listeningSection5;
-        this.listeningSection6 = listeningSection6;
-        this.writingSection1 = writingSection1;
-        this.writingSection2 = writingSection2;
-        this.speakingSection1 = speakingSection1;
-        this.speakingSection2 = speakingSection2;
-        this.speakingSection3 = speakingSection3;
-        this.speakingSection4 = speakingSection4;
-        this.speakingSection5 = speakingSection5;
-        this.speakingSection6 = speakingSection6;
-    }
-}
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.html":
-/*!*******************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.html ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Navbar -->\n  <mdb-navbar SideClass=\"navbar navbar-light blue fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav\" [containerInside]=\"false\">\n\n    <!-- SideNav slide-out button -->\n        <navlinks class=\"navbar-container\">\n            <div class=\"float-left\">\n                <a (click)=\"onToggleSideNav()\" class=\"button-collapse hidden-nav-button-collapse\">\n                    <i class=\"fa fa-bars\"></i>\n                </a>\n            </div>\n        </navlinks>\n\n        <logo>\n                <div class=\"breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto\">\n                        <p> 2018.6.9</p>\n                    </div>\n\n\n                  <div class=\"ml-auto\">\n                      <h5>Teacher's Board</h5>\n                  </div>\n        </logo>\n\n        <navlinks>\n            <ul class=\"nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav\">\n\n                <li class=\"nav-item\">\n\n                    <a class=\"nav-link waves-light white-text\"\n                    (click)=\"goBackHome()\"\n                    mdbWavesEffect>\n                        <i class=\"fa home-o\"></i>\n                        <span class=\"clearfix d-none d-sm-inline-block\">Home</span>\n                    </a>\n                </li>\n\n                <li  class=\"nav-item\">\n                    <a class=\"nav-link waves-light white-text\" mdbWavesEffect>\n                        <i class=\"fa fa-envelope-o\"></i>\n                        <span class=\"clearfix d-none d-sm-inline-block\">Contact</span>\n                    </a>\n                </li>\n\n                <li class=\"nav-item dropdown btn-group\" dropdown>\n                    <a dropdownToggle type=\"button\" class=\"nav-link dropdown-toggle waves-light white-text\" mdbWavesEffect>\n                        <i class=\"fa fa-user-circle-o\"></i>\n                        {{ this.userName }}\n                    </a>\n                    <div class=\"dropdown-menu dropdown-primary dropdown-menu-right\" role=\"menu\">\n                        <a class=\"dropdown-item\"><i class=\"fa fa-user-circle-o\"></i>Edit</a>\n                        <a class=\"dropdown-item\" [routerLink]=\"['/auth/logout']\">LogOut</a>\n                    </div>\n                </li>\n\n            </ul>\n        </navlinks>\n  </mdb-navbar>\n\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.scss":
-/*!*******************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.scss ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.ts":
-/*!*****************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.ts ***!
-  \*****************************************************************************************************/
-/*! exports provided: TeacherNavHeaderComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeacherNavHeaderComponent", function() { return TeacherNavHeaderComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-/* harmony import */ var _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../Utility-shared/mainNavChange.model */ "./src/app/Utility-shared/mainNavChange.model.ts");
-/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../auth/auth.service */ "./src/app/auth/auth.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-let TeacherNavHeaderComponent = class TeacherNavHeaderComponent {
-    constructor(router, authService, utilityService) {
-        this.router = router;
-        this.authService = authService;
-        this.utilityService = utilityService;
-        this.sidenavToggle1 = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-    }
-    ngOnInit() {
-        this.userName = this.authService.getUserName();
-    }
-    goBackHome() {
-        this.utilityService.audioPlaySevice('', '0', false); // audio를 초기화한다
-        this.mainNavModel = new _Utility_shared_mainNavChange_model__WEBPACK_IMPORTED_MODULE_3__["MainNavModel"](false, false, true); // 앞에것은 showNav값 이고 뒤에것은 logout이 아닌경우 즉 home button click시
-        this.utilityService.mainNavChanged.next(this.mainNavModel); // main 화면 navigation활성화
-        this.router.navigate(['/']);
-    }
-    onToggleSideNav() {
-        console.log('side button clicked');
-        this.sidenavToggle1.emit();
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
-    __metadata("design:type", Object)
-], TeacherNavHeaderComponent.prototype, "sidenavToggle1", void 0);
-TeacherNavHeaderComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-teacher-nav-header',
-        template: __webpack_require__(/*! ./teacher-nav-header.component.html */ "./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.html"),
-        styles: [__webpack_require__(/*! ./teacher-nav-header.component.scss */ "./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.scss")]
-    }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-        _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_2__["UtilityService"]])
-], TeacherNavHeaderComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/teacher-navigation/teacher-sidebar/teacher-sidebar.component.html":
-/*!*************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/teacher-navigation/teacher-sidebar/teacher-sidebar.component.html ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n        <logo>\n          \n            <div class=\"logo-wrapper waves-light pl-4\">                                       \n                                    <img src=\"../../../assets/img/toeflLogo.png\"\n                                    class=\"rounded-circle img-fluid flex-center\"\n                                    style=\"max-height: 90px\">       \n            </div>\n            \n    </logo>\n\n        <!-- Side navigation links -->\n        \n            <ul class=\"collapsible collapsible-accordion\">\n                <mdb-squeezebox [multiple]=\"false\" aria-multiselectable=\"false\">\n\n                    <!-- Collapsible link -->\n                    <mdb-item>\n                        <mdb-item-head mdbWavesEffect>\n                            <i class=\"fa fa-chevron-right\"></i> Collapsible menu</mdb-item-head>\n                        <mdb-item-body>\n                            <ul>\n                                <li>\n                                    <a class=\"waves-effect\" mdbWavesEffect>Link 1</a>\n                                </li>\n                                <li>\n                                    <a class=\"waves-effect\" mdbWavesEffect>Link 2</a>\n                                </li>\n                            </ul>\n                        </mdb-item-body>\n                    </mdb-item>\n\n                    <!-- Simple link -->\n                    <mdb-item class=\"no-collase\">\n                        <mdb-item-head mdbWavesEffect>\n                            <i class=\"fa fa-hand-pointer-o\"></i> Simple link</mdb-item-head>\n                        <mdb-item-body></mdb-item-body>\n                    </mdb-item>\n\n                    <!-- Collapsible link -->\n                    <mdb-item>\n                        <mdb-item-head mdbWavesEffect>\n                            <i class=\"fa fa-eye\"></i> Collapsible menu 2</mdb-item-head>\n                        <mdb-item-body>\n                            <ul>\n                                <li>\n                                    <a class=\"waves-effect\" mdbWavesEffect>Link 1</a>\n                                </li>\n                                <li>\n                                    <a class=\"waves-effect\" mdbWavesEffect>Link 2</a>\n                                </li>\n                            </ul>\n                        </mdb-item-body>\n                    </mdb-item>\n\n                    <!-- Simple link -->\n                    <mdb-item class=\"no-collase\">\n                        <mdb-item-head mdbWavesEffect>\n                            <i class=\"fa fa-diamond\">\n                                <a></a>\n                            </i> Logout </mdb-item-head>\n                        <mdb-item-body></mdb-item-body>\n                    </mdb-item>\n\n                </mdb-squeezebox>\n            </ul>\n       \n        <!--/. Side navigation links -->\n   \n    <div class=\"sidenav-bg mask-strong\"></div>\n"
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/teacher-navigation/teacher-sidebar/teacher-sidebar.component.scss":
-/*!*************************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/teacher-navigation/teacher-sidebar/teacher-sidebar.component.scss ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/teacher-navigation/teacher-sidebar/teacher-sidebar.component.ts":
-/*!***********************************************************************************************!*\
-  !*** ./src/app/toefl/teacher/teacher-navigation/teacher-sidebar/teacher-sidebar.component.ts ***!
-  \***********************************************************************************************/
-/*! exports provided: TeacherSidebarComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeacherSidebarComponent", function() { return TeacherSidebarComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-let TeacherSidebarComponent = class TeacherSidebarComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-TeacherSidebarComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-teacher-sidebar',
-        template: __webpack_require__(/*! ./teacher-sidebar.component.html */ "./src/app/toefl/teacher/teacher-navigation/teacher-sidebar/teacher-sidebar.component.html"),
-        styles: [__webpack_require__(/*! ./teacher-sidebar.component.scss */ "./src/app/toefl/teacher/teacher-navigation/teacher-sidebar/teacher-sidebar.component.scss")]
-    }),
-    __metadata("design:paramtypes", [])
-], TeacherSidebarComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/teacher-routing.module.ts":
-/*!*********************************************************!*\
-  !*** ./src/app/toefl/teacher/teacher-routing.module.ts ***!
-  \*********************************************************/
-/*! exports provided: TeacherRoutingModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeacherRoutingModule", function() { return TeacherRoutingModule; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _auth_auth_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../auth/auth.guard */ "./src/app/auth/auth.guard.ts");
-/* harmony import */ var _register_toefl_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./register-toefl.component */ "./src/app/toefl/teacher/register-toefl.component.ts");
-/* harmony import */ var _register_toefl_register_toefl_start_register_toefl_start_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./register-toefl/register-toefl-start/register-toefl-start.component */ "./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.ts");
-/* harmony import */ var _register_toefl_regist_toefl_exam_regist_toefl_detail_regist_toefl_detail_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.ts");
-/* harmony import */ var _teacher_register_toefl_regist_toefl_exam_regist_toefl_edit_regist_toefl_edit_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_make_exam_start_make_exam_start_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_exam_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-exam.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_edit_reading_desc_edit_reading_desc_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_section1_reading_section1_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_section2_reading_section2_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_section3_reading_section3_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_section4_reading_section4_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const teacherRoutes = [
-    { path: 'teacher', component: _register_toefl_component__WEBPACK_IMPORTED_MODULE_3__["RegisterToeflComponent"], children: [
-            { path: '', component: _register_toefl_register_toefl_start_register_toefl_start_component__WEBPACK_IMPORTED_MODULE_4__["RegisterToeflStartComponent"] },
-            { path: 'new', component: _teacher_register_toefl_regist_toefl_exam_regist_toefl_edit_regist_toefl_edit_component__WEBPACK_IMPORTED_MODULE_6__["RegistToeflEditComponent"] },
-            { path: ':id', component: _register_toefl_regist_toefl_exam_regist_toefl_detail_regist_toefl_detail_component__WEBPACK_IMPORTED_MODULE_5__["RegistToeflDetailComponent"] },
-            { path: ':id/edit', component: _teacher_register_toefl_regist_toefl_exam_regist_toefl_edit_regist_toefl_edit_component__WEBPACK_IMPORTED_MODULE_6__["RegistToeflEditComponent"] },
-            { path: ':id/makeexam', component: _register_toefl_make_toefl_exam_make_exam_start_make_exam_start_component__WEBPACK_IMPORTED_MODULE_7__["MakeExamStartComponent"] },
-            { path: ':id/editReadingDesc', component: _register_toefl_make_toefl_exam_reading_exam_edit_reading_desc_edit_reading_desc_component__WEBPACK_IMPORTED_MODULE_9__["EditReadingDescComponent"] },
-            { path: ':id/makeexam/reading', component: _register_toefl_make_toefl_exam_reading_exam_reading_exam_component__WEBPACK_IMPORTED_MODULE_8__["ReadingExamComponent"] },
-            { path: ':id/makeexam/readingSection1', component: _register_toefl_make_toefl_exam_reading_exam_reading_section1_reading_section1_component__WEBPACK_IMPORTED_MODULE_10__["ReadingSection1Component"] },
-            { path: ':id/makeexam/readingSection2', component: _register_toefl_make_toefl_exam_reading_exam_reading_section2_reading_section2_component__WEBPACK_IMPORTED_MODULE_11__["ReadingSection2Component"] },
-            { path: ':id/makeexam/readingSection3', component: _register_toefl_make_toefl_exam_reading_exam_reading_section3_reading_section3_component__WEBPACK_IMPORTED_MODULE_12__["ReadingSection3Component"] },
-            { path: ':id/makeexam/readingSection4', component: _register_toefl_make_toefl_exam_reading_exam_reading_section4_reading_section4_component__WEBPACK_IMPORTED_MODULE_13__["ReadingSection4Component"] }
-            // { path: 'registertoefl', component: RegisterToeflComponent, canActivate: [AuthGuard] }
-        ]
-    }
-];
-let TeacherRoutingModule = class TeacherRoutingModule {
-};
-TeacherRoutingModule = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-        imports: [
-            _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(teacherRoutes)
-        ],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]],
-        providers: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]],
-    })
-], TeacherRoutingModule);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/teacher.module.ts":
-/*!*************************************************!*\
-  !*** ./src/app/toefl/teacher/teacher.module.ts ***!
-  \*************************************************/
-/*! exports provided: ToeflTeacherModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToeflTeacherModule", function() { return ToeflTeacherModule; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
-/* harmony import */ var ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng-uikit-pro-standard */ "./node_modules/ng-uikit-pro-standard/esm2015/ng-uikit-pro-standard.js");
-/* harmony import */ var _teacher_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./teacher-routing.module */ "./src/app/toefl/teacher/teacher-routing.module.ts");
-/* harmony import */ var _register_toefl_register_toefl_start_register_toefl_start_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./register-toefl/register-toefl-start/register-toefl-start.component */ "./src/app/toefl/teacher/register-toefl/register-toefl-start/register-toefl-start.component.ts");
-/* harmony import */ var _register_toefl_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./register-toefl.component */ "./src/app/toefl/teacher/register-toefl.component.ts");
-/* harmony import */ var _register_toefl_regist_toefl_exam_regist_toefl_list_regist_toefl_list_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-toefl-list.component.ts");
-/* harmony import */ var _register_toefl_regist_toefl_exam_regist_toefl_detail_regist_toefl_detail_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-detail/regist-toefl-detail.component.ts");
-/* harmony import */ var _register_toefl_regist_toefl_exam_regist_toefl_list_regist_item_regist_item_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-list/regist-item/regist-item.component.ts");
-/* harmony import */ var _register_toefl_regist_toefl_exam_regist_toefl_edit_regist_toefl_edit_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component */ "./src/app/toefl/teacher/register-toefl/regist-toefl-exam/regist-toefl-edit/regist-toefl-edit.component.ts");
-/* harmony import */ var _teacher_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./teacher.service */ "./src/app/toefl/teacher/teacher.service.ts");
-/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../shared/shared.module */ "./src/app/shared/shared.module.ts");
-/* harmony import */ var _teacher_navigation_teacher_nav_header_teacher_nav_header_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./teacher-navigation/teacher-nav-header/teacher-nav-header.component */ "./src/app/toefl/teacher/teacher-navigation/teacher-nav-header/teacher-nav-header.component.ts");
-/* harmony import */ var _teacher_navigation_teacher_sidebar_teacher_sidebar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./teacher-navigation/teacher-sidebar/teacher-sidebar.component */ "./src/app/toefl/teacher/teacher-navigation/teacher-sidebar/teacher-sidebar.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_make_exam_start_make_exam_start_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/make-exam-start/make-exam-start.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_listening_exam_listening_exam_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/listening-exam/listening-exam.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/listening-exam/listening-exam.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_writing_exam_writing_exam_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/writing-exam/writing-exam.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/writing-exam/writing-exam.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_speaking_exam_speaking_exam_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/speaking-exam/speaking-exam.component.ts");
-/* harmony import */ var _teacher_register_toefl_make_toefl_exam_makeexam_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../teacher/register-toefl/make-toefl-exam/makeexam.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/makeexam.service.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_exam_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-exam.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-exam.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_edit_reading_desc_edit_reading_desc_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/edit-reading-desc/edit-reading-desc.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_section1_reading_section1_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section1/reading-section1.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_section2_reading_section2_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section2/reading-section2.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_section3_reading_section3_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section3/reading-section3.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_section4_reading_section4_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-section4/reading-section4.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_problems_reading_problems_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading-problems/reading-problems.component.ts");
-/* harmony import */ var _register_toefl_make_toefl_exam_reading_exam_reading_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./register-toefl/make-toefl-exam/reading-exam/reading.service */ "./src/app/toefl/teacher/register-toefl/make-toefl-exam/reading-exam/reading.service.ts");
-/* harmony import */ var _tony_editorv1_0_0_tony_editor_tony_editor_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../../tony-editorv1.0.0/tony-editor/tony-editor.component */ "./src/app/tony-editorv1.0.0/tony-editor/tony-editor.component.ts");
-/* harmony import */ var _tony_editorv1_0_0_tony_editor_toolbar_tony_editor_toolbar_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../../tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component */ "./src/app/tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component.ts");
-/* harmony import */ var _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../../tony-editorv1.0.0/services/executable-command.service */ "./src/app/tony-editorv1.0.0/services/executable-command.service.ts");
-/* harmony import */ var _stepper_stepper_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./stepper/stepper.component */ "./src/app/toefl/teacher/stepper/stepper.component.ts");
-/* harmony import */ var _shared_pipe_collection_shorten_pipe_1__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../../shared/pipe-collection/shorten.pipe.1 */ "./src/app/shared/pipe-collection/shorten.pipe.1.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let ToeflTeacherModule = class ToeflTeacherModule {
-};
-ToeflTeacherModule = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-        declarations: [
-            _register_toefl_component__WEBPACK_IMPORTED_MODULE_5__["RegisterToeflComponent"],
-            _register_toefl_regist_toefl_exam_regist_toefl_list_regist_toefl_list_component__WEBPACK_IMPORTED_MODULE_6__["RegistToeflListComponent"],
-            _register_toefl_regist_toefl_exam_regist_toefl_detail_regist_toefl_detail_component__WEBPACK_IMPORTED_MODULE_7__["RegistToeflDetailComponent"],
-            _register_toefl_regist_toefl_exam_regist_toefl_list_regist_item_regist_item_component__WEBPACK_IMPORTED_MODULE_8__["RegistItemComponent"],
-            _register_toefl_register_toefl_start_register_toefl_start_component__WEBPACK_IMPORTED_MODULE_4__["RegisterToeflStartComponent"],
-            _register_toefl_regist_toefl_exam_regist_toefl_edit_regist_toefl_edit_component__WEBPACK_IMPORTED_MODULE_9__["RegistToeflEditComponent"],
-            _register_toefl_make_toefl_exam_make_exam_start_make_exam_start_component__WEBPACK_IMPORTED_MODULE_14__["MakeExamStartComponent"],
-            _teacher_navigation_teacher_nav_header_teacher_nav_header_component__WEBPACK_IMPORTED_MODULE_12__["TeacherNavHeaderComponent"],
-            _teacher_navigation_teacher_sidebar_teacher_sidebar_component__WEBPACK_IMPORTED_MODULE_13__["TeacherSidebarComponent"],
-            _register_toefl_make_toefl_exam_reading_exam_reading_exam_component__WEBPACK_IMPORTED_MODULE_19__["ReadingExamComponent"],
-            _register_toefl_make_toefl_exam_listening_exam_listening_exam_component__WEBPACK_IMPORTED_MODULE_15__["ListeningExamComponent"],
-            _register_toefl_make_toefl_exam_writing_exam_writing_exam_component__WEBPACK_IMPORTED_MODULE_16__["WritingExamComponent"],
-            _register_toefl_make_toefl_exam_speaking_exam_speaking_exam_component__WEBPACK_IMPORTED_MODULE_17__["SpeakingExamComponent"],
-            _register_toefl_make_toefl_exam_reading_exam_edit_reading_desc_edit_reading_desc_component__WEBPACK_IMPORTED_MODULE_20__["EditReadingDescComponent"],
-            _register_toefl_make_toefl_exam_reading_exam_reading_section1_reading_section1_component__WEBPACK_IMPORTED_MODULE_21__["ReadingSection1Component"],
-            _register_toefl_make_toefl_exam_reading_exam_reading_section2_reading_section2_component__WEBPACK_IMPORTED_MODULE_22__["ReadingSection2Component"],
-            _register_toefl_make_toefl_exam_reading_exam_reading_section3_reading_section3_component__WEBPACK_IMPORTED_MODULE_23__["ReadingSection3Component"],
-            _register_toefl_make_toefl_exam_reading_exam_reading_section4_reading_section4_component__WEBPACK_IMPORTED_MODULE_24__["ReadingSection4Component"],
-            _tony_editorv1_0_0_tony_editor_tony_editor_component__WEBPACK_IMPORTED_MODULE_27__["TonyEditorComponent"],
-            _tony_editorv1_0_0_tony_editor_toolbar_tony_editor_toolbar_component__WEBPACK_IMPORTED_MODULE_28__["TonyEditorToolbarComponent"],
-            _register_toefl_make_toefl_exam_reading_exam_reading_problems_reading_problems_component__WEBPACK_IMPORTED_MODULE_25__["ReadingProblemsComponent"],
-            _stepper_stepper_component__WEBPACK_IMPORTED_MODULE_30__["StepperComponent"],
-            _shared_pipe_collection_shorten_pipe_1__WEBPACK_IMPORTED_MODULE_31__["ShortenPipe1"]
-        ],
-        imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-            _shared_shared_module__WEBPACK_IMPORTED_MODULE_11__["SharedModule"],
-            ng_uikit_pro_standard__WEBPACK_IMPORTED_MODULE_2__["MDBBootstrapModulesPro"].forRoot(),
-            _teacher_routing_module__WEBPACK_IMPORTED_MODULE_3__["TeacherRoutingModule"]
-        ],
-        providers: [_teacher_service__WEBPACK_IMPORTED_MODULE_10__["RegisterToeflService"], _teacher_register_toefl_make_toefl_exam_makeexam_service__WEBPACK_IMPORTED_MODULE_18__["MakeExamService"], _tony_editorv1_0_0_services_executable_command_service__WEBPACK_IMPORTED_MODULE_29__["ExecutableCommandService"], _register_toefl_make_toefl_exam_reading_exam_reading_service__WEBPACK_IMPORTED_MODULE_26__["ReadingService"]]
-    })
-], ToeflTeacherModule);
-
-
-
-/***/ }),
-
-/***/ "./src/app/toefl/teacher/teacher.service.ts":
-/*!**************************************************!*\
-  !*** ./src/app/toefl/teacher/teacher.service.ts ***!
-  \**************************************************/
-/*! exports provided: RegisterToeflService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterToeflService", function() { return RegisterToeflService; });
-/* harmony import */ var _Utility_shared_globalConstantShare__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Utility-shared/globalConstantShare */ "./src/app/Utility-shared/globalConstantShare.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var rxjs_Subject__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/Subject */ "./node_modules/rxjs-compat/_esm2015/Subject.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Utility-shared/utility.service */ "./src/app/Utility-shared/utility.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-let RegisterToeflService = class RegisterToeflService {
-    constructor(http, utilityService) {
-        this.http = http;
-        this.utilityService = utilityService;
-        this.registerToeflExamChanged = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.urlConfig = _Utility_shared_globalConstantShare__WEBPACK_IMPORTED_MODULE_0__["GlobalConstantShare"].httpUrl; // 실제 url이 있는 위치
-        this.lastToeflNo = 0;
-        this.date = new Date();
-        this.toefls = [];
-    }
-    getRegisterToefls() {
-        // 서버로 부터 모든 데이타를 가져오기 위해서는 반드시 현재 login한 userId와 token이 필요하다
-        const token = localStorage.getItem('token');
-        this.http.get(this.urlConfig + '/registerExam/' + '?token=' + token)
-            .subscribe((registerToefls) => {
-            console.log(registerToefls);
-            this.toefls = [];
-            for (const toeflItem of registerToefls.toefls) {
-                this.toefls.push(toeflItem);
-            }
-            this.registerToeflExamChanged.next([...this.toefls]);
-            // for looping으로 개별적이 toeflItem을 push로 저장해주어야 한다
-        }, (error) => console.log(error) // 나중에 이 error는 alert로 처리한다
-        );
-        console.log('이미등록된 토플명단', this.toefls);
-        return [...this.toefls];
-    }
-    // 가장 최신 register toefl exam을 가져올때 사용
-    getRegisterToefl(toeflNo) {
-        this.registerToeflExamChanged.next([...this.toefls]);
-        // 이것을 제거하면 registerExam의 listView가 업데이트가 안되고 error가 발생함
-        for (let i = 0; i <= this.toefls.length; i++) {
-            if (this.toefls[i].toeflNo === toeflNo) {
-                return this.toefls[i];
-            }
-        }
-    }
-    /* 만일의 경우를 대비하여 toefl Last No를 가져오는 방법을 http.map.subscribe를
-       사용하여 코등을 해두었다 이방법을 사용하면 toefl record 추가시 확실히 toefl의 가장 최근 번호를
-       가져올수 있지만 performance가 떨어지는 단점이 있다. 그러므로 되도록 사용하지 말고
-       기본의 this.toefls을 통해 toefl last no를  가져오는 방법이 최적이다
-    */
-    getLastToeflNo() {
-        return this.lastToeflNo = this.toefls.slice()[this.toefls.length - 1].toeflNo + 1;
-    }
-    // getToeflLastNo() {
-    //   return this.http.get<{ message: string, toefls: Toefl[], lastToeflNo: number }>(this.urlConfig + '/showexam')
-    //           .map ( ( data ) => {
-    //             this.lastToeflNo = data.lastToeflNo + 1;
-    //             return this.lastToeflNo;
-    //           });
-    // }
-    // toefllist 추가 기능
-    addRegisterToeflExam(toeflNo, formData) {
-        // 일단 onSubmit을 진행된 formData를 받아서 곧바로 toekn과 함께 posting을 server에 요청한다
-        // 그런후 서버로 부터오는 결과가 error가 없으면 그결과를 res,json() object로 unwrapping 한다
-        // 이제 front 쪽 toefls array에 결과물인 data.toefl을 push한후 slice를 통해 최신 toelflist를 생성한다
-        // Audio Play Service 중 toefl List에서 소리가 나면 값은 "1" === 소리 실행
-        // 만일 add, detail, edit component는 "2" --- 소리를 중지
-        // add 와 edit 후  save 버튼을 누르면 새로 update된 값으로 소리 실행  === "3"
-        const token = localStorage.getItem('token');
-        // tslint:disable-next-line:max-line-length
-        this.http.post(this.urlConfig + '/registerExam/' + toeflNo + '?token=' + token, formData)
-            .subscribe((savedToefl) => {
-            console.log('추가되기 전 토플명단', this.toefls);
-            console.log('새로 추가된 토플시험', savedToefl);
-            this.toefls.push(savedToefl.toefl);
-            console.log('추가되고 난 후 토플명단', this.toefls);
-            this.registerToeflExamChanged.next([...this.toefls]);
-            //  this.utilityService.audioPlaySevice(savedToefl.toefl.toeflAudio, '3', false);
-        }, (error) => console.log(error) // 나중에 이 error는 alert로 처리한다
-        );
-    }
-    // toefl item edit후 서버연결후 최신 toefllist로 만드는 method
-    updateRegisterToeflExam(toeflNo, formData) {
-        // add와 마찬가지로 onSubmit으로 부터 받은 데이타를 formData로 받아서 token과 같이 patch한다.
-        // 그결과물을 받아 res.json()으로 upwrapping한후 toefllist에 index 값으로 update한다
-        // Audio Play Service 중 toefl List에서 소리가 나면 값은 "1" === 소리 실행
-        // 만일 add, detail, edit component는 "2" --- 소리를 중지
-        // add 와 edit 후  save 버튼을 누르면 새로 update된 값으로 소리 실행  === "3"
-        const token = localStorage.getItem('token');
-        // tslint:disable-next-line:max-line-length
-        this.http.patch(this.urlConfig + '/registerExam/' + toeflNo + '?token=' + token, formData)
-            .subscribe((updatedToefl) => {
-            console.log('새로 수정된 토플시험', updatedToefl.toefl);
-            for (let i = 0; i < this.toefls.length; i++) {
-                if (this.toefls[i].toeflNo === updatedToefl.toefl.toeflNo) {
-                    this.toefls[i] = updatedToefl.toefl;
-                }
-            }
-            this.registerToeflExamChanged.next([...this.toefls]);
-            this.utilityService.audioPlaySevice(updatedToefl.toefl.toeflAudio, '3', false);
-        }, (error) => console.log(error));
-    }
-    // toefl list 삭제 기능
-    deleteRegisterToeflExam(toeflNo) {
-        // Registration Toefl을 제거할때는 반드시 toeflNo가 필요하다
-        // 하지만 front toeflList에서는 index number가 필요하므로 항상 1을 빼고 추가하는작없을 잊어버리면 안된다
-        const token = localStorage.getItem('token');
-        this.http.delete(this.urlConfig + '/registerExam/' + toeflNo + '?token=' + token)
-            .subscribe((deletedToefl) => {
-            console.log('삭제된 토플시험', deletedToefl);
-            for (let i = 0; i < this.toefls.length; i++) {
-                if (this.toefls[i].toeflNo === toeflNo) {
-                    this.toefls.splice(i, 1);
-                }
-            }
-            this.registerToeflExamChanged.next([...this.toefls]);
-        }, (error) => console.log(error));
-    }
-};
-RegisterToeflService = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-    __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
-        _Utility_shared_utility_service__WEBPACK_IMPORTED_MODULE_4__["UtilityService"]])
-], RegisterToeflService);
-
 
 
 /***/ }),
@@ -7766,13 +4607,14 @@ ToeflListComponent = __decorate([
 /*!*********************************************************!*\
   !*** ./src/app/toefl/toeflExam/toefl-routing.module.ts ***!
   \*********************************************************/
-/*! exports provided: toeflExamRoutes, ToeflExamRoutingModule */
+/*! exports provided: toeflExamRoutes, ToeflExamRoutingModule, toeflExamRoutingComponents */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toeflExamRoutes", function() { return toeflExamRoutes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToeflExamRoutingModule", function() { return ToeflExamRoutingModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toeflExamRoutingComponents", function() { return toeflExamRoutingComponents; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _toefl_exam_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./toefl-exam.component */ "./src/app/toefl/toeflExam/toefl-exam.component.ts");
@@ -7797,6 +4639,9 @@ ToeflExamRoutingModule = __decorate([
     })
 ], ToeflExamRoutingModule);
 
+const toeflExamRoutingComponents = [
+    _toefl_exam_component__WEBPACK_IMPORTED_MODULE_2__["ToeflExamComponent"]
+];
 
 
 /***/ }),
@@ -7814,9 +4659,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var _toefl_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./toefl-routing.module */ "./src/app/toefl/toeflExam/toefl-routing.module.ts");
-/* harmony import */ var _toefl_exam_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./toefl-exam.component */ "./src/app/toefl/toeflExam/toefl-exam.component.ts");
-/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/shared.module */ "./src/app/shared/shared.module.ts");
-/* harmony import */ var _toeflexam_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./toeflexam.service */ "./src/app/toefl/toeflExam/toeflexam.service.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/shared.module */ "./src/app/shared/shared.module.ts");
+/* harmony import */ var _toeflexam_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./toeflexam.service */ "./src/app/toefl/toeflExam/toeflexam.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7828,20 +4672,19 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
 let ToeflExamModule = class ToeflExamModule {
 };
 ToeflExamModule = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         declarations: [
-            _toefl_exam_component__WEBPACK_IMPORTED_MODULE_3__["ToeflExamComponent"]
+            _toefl_routing_module__WEBPACK_IMPORTED_MODULE_2__["toeflExamRoutingComponents"]
         ],
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-            _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"],
+            _shared_shared_module__WEBPACK_IMPORTED_MODULE_3__["SharedModule"],
             _toefl_routing_module__WEBPACK_IMPORTED_MODULE_2__["ToeflExamRoutingModule"]
         ],
-        providers: [_toeflexam_service__WEBPACK_IMPORTED_MODULE_5__["ToeflExamService"]]
+        providers: [_toeflexam_service__WEBPACK_IMPORTED_MODULE_4__["ToeflExamService"]]
     })
 ], ToeflExamModule);
 
@@ -7897,495 +4740,6 @@ ToeflExamService = __decorate([
     __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
 ], ToeflExamService);
 
-
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/GlobalSetting/command.model.ts":
-/*!******************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/GlobalSetting/command.model.ts ***!
-  \******************************************************************/
-/*! exports provided: CommandModel */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommandModel", function() { return CommandModel; });
-//각종 document.execcomand()에서 작동한 명령어와 parameter값을 저장하기 위한 model
-class CommandModel {
-    constructor(commandName, value) {
-        this.commandName = commandName;
-        this.value = value;
-    }
-}
-
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/GlobalSetting/tony-editor.global.default.ts":
-/*!*******************************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/GlobalSetting/tony-editor.global.default.ts ***!
-  \*******************************************************************************/
-/*! exports provided: GlobalConfig, Symbol */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalConfig", function() { return GlobalConfig; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Symbol", function() { return Symbol; });
-/**
- * toolbar default configuration
- */
-const GlobalConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '34rem',
-    minHeight: '15rem',
-    width: '100%',
-    minWidth: '50%',
-    translate: 'yes',
-    enableToolbar: true,
-    showToolbar: true,
-    placeholder: 'Enter text here...',
-    imageEndPoint: '',
-    toolbar: [
-        ['bold', 'italic', 'underline'],
-        ['fontName', 'fontSize', 'color'],
-        ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent'],
-        ['cut', 'copy', 'paste']
-    ]
-};
-const Symbol = {
-    squareSymbol: '■',
-    triangleSymbol: '►',
-    oneSymbol: '①',
-    twoSymbol: '②',
-    threeSymbol: '③',
-    fourSymbol: '④'
-};
-
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/Utility/tony-editor.utility.ts":
-/*!******************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/Utility/tony-editor.utility.ts ***!
-  \******************************************************************/
-/*! exports provided: canEnableToolbarOptions, saveSelection, restoreSelection */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "canEnableToolbarOptions", function() { return canEnableToolbarOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveSelection", function() { return saveSelection; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "restoreSelection", function() { return restoreSelection; });
-//각 툴바 옵션 선택사항
-function canEnableToolbarOptions(value, toolbar) {
-    if (value) {
-        if (toolbar['length'] === 0) {
-            return true;
-        }
-        else {
-            const found = toolbar.filter(array => {
-                return array.indexOf(value) != -1;
-            });
-            return found.length ? true : false;
-        }
-    }
-    else {
-        return false;
-    }
-}
-// textarea에서 선택한 내용물 저장하기
-function saveSelection() {
-    if (window.getSelection) {
-        const selected = window.getSelection();
-        console.log(selected.toString());
-        if (selected.getRangeAt && selected.rangeCount) {
-            return selected.getRangeAt(0);
-        }
-    }
-    else if (document.getSelection && document.createRange) {
-        return document.createRange();
-    }
-    return null;
-}
-// textarea에 저장된 값을 복원하기
-function restoreSelection(range) {
-    if (range) {
-        if (window.getSelection) {
-            const sel = window.getSelection();
-            console.log(sel.toString());
-            sel.removeAllRanges();
-            sel.addRange(range);
-            return true;
-        }
-        else if (document.getSelection && range.select) {
-            range.select();
-            return true;
-        }
-    }
-    else {
-        return false;
-    }
-}
-
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/services/executable-command.service.ts":
-/*!**************************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/services/executable-command.service.ts ***!
-  \**************************************************************************/
-/*! exports provided: ExecutableCommandService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExecutableCommandService", function() { return ExecutableCommandService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var rxjs_Subject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/Subject */ "./node_modules/rxjs-compat/_esm2015/Subject.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-let ExecutableCommandService = class ExecutableCommandService {
-    constructor() {
-        // text area내 벗어나면 blur 기능을 수행하고 곧바로 작업한 내용을 저장하기위한 용도
-        this.htmlContent = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
-        this.savedSelection = undefined;
-    }
-    execute(command, value) {
-        console.log(command);
-        console.log(value);
-        if (!this.savedSelection && command !== 'enableObjectResizing') {
-            throw new Error('Range OUt of Editor');
-        }
-        if (command === 'enableObjectResizing') {
-            document.execCommand('enableObjectResizing', true, true);
-        }
-        if (command === 'blockquote') {
-            document.execCommand('formatBlock', false, 'blockquote');
-            return;
-        }
-        if (command === 'removeBlockquote') {
-            document.execCommand('formatBlock', false, 'div');
-            return;
-        }
-        if (command !== undefined) {
-            console.log(value);
-            document.execCommand(command, false, value);
-        }
-        else {
-            console.log('this is check point');
-            document.execCommand(command, false, null);
-        }
-        return;
-    }
-};
-ExecutableCommandService = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
-], ExecutableCommandService);
-
-
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component.html":
-/*!******************************************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component.html ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row mt-0 p-0\">\n  <div class=\"mx-auto\">\n    <div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"Toolbar with button groups\">\n      <div class=\"btn-group\" role=\"group\" aria-label=\"First group\">\n          <button type=\"button\"\n                  class=\"btn-floating light-blue accent-4 btn-sm\"\n                  (click)=\"triggerCommand('bold', 'none')\">\n                  <i class=\"fa fa-bold indigo-text\" aria-hidden=\"true\"></i></button>\n          <button type=\"button\" class=\"btn-floating light-blue accent-3 btn-sm\"\n                 (click)=\"triggerCommand('italic', 'none')\">\n                 <i class=\"fa fa-italic indigo-text\" aria-hidden=\"true\"></i></button>\n          <button type=\"button\" class=\"btn-floating light-blue accent-1 btn-sm\"\n                   (click)=\"triggerCommand('underline', 'none')\">\n                 <i class=\"fa fa-underline indigo-text\" aria-hidden=\"true\"></i></button>\n      </div>\n\n      <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Second group\">\n\n        <div class=\"dropdown\" dropdown>\n                                <button dropdownToggle type=\"button\"\n                                        class=\"btn-floating\n                                        light-blue accent-4 btn-sm\n                                        dropdown-toggle waves-light\"\n                                        mdbWavesEffect>\n                                        <i class=\"fa fa-clipboard indigo-text\" aria-hidden=\"true\"></i>\n                                </button>\n\n                                <div class=\"dropdown-menu\">\n\n                                    <button class=\"dropdown-item\" type=\"button\"\n                                            (click)=\"onSymbolInsert(0)\"\n                                    >\n                                                ■ Symbol Insert\n                                    </button>\n                                    <button class=\"dropdown-item\" type=\"button\"\n                                            (click)=\"onSymbolInsert(1)\"\n                                    >\n                                                ► Symbol Insert\n                                    </button>\n\n                                    <button class=\"dropdown-item\" type=\"button\"\n                                            (click)=\"onSymbolInsert(2)\"\n                                    >\n                                                ① Symbol Insert\n                                    </button>\n                                    <button class=\"dropdown-item\" type=\"button\"\n                                            (click)=\"onSymbolInsert(3)\"\n                                    >\n                                                ② Symbol Insert\n                                    </button>\n                                    <button class=\"dropdown-item\" type=\"button\"\n                                            (click)=\"onSymbolInsert(4)\"\n                                    >\n                                                ③ Symbol Insert\n                                     </button>\n                                     <button class=\"dropdown-item\" type=\"button\"\n                                             (click)=\"onSymbolInsert(5)\"\n                                     >\n                                                ④ Symbol Insert\n                                     </button>\n\n                                </div>\n                            </div>\n\n        <button type=\"button\" class=\"btn-floating light-blue accent-3 btn-sm\"\n                (click)=\"onBackColorChange()\">\n                <i class=\"fa fa-tint indigo-text\" aria-hidden=\"true\"></i></button>\n    </div>\n\n      <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Third group\">\n          <button type=\"button\" class=\"btn-floating green accent-4 btn-sm\"\n                  (click)=\"triggerCommand('justifyCenter', 'none')\">\n                  <i class=\"fa fa-align-center indigo-text\" aria-hidden=\"true\"></i></button>\n          <button type=\"button\" class=\"btn-floating green accent-3 btn-sm\"\n                  (click)=\"triggerCommand('justifyFull', 'none')\">\n                  <i class=\"fa fa-align-justify indigo-text\" aria-hidden=\"true\"></i></button>\n          <button type=\"button\" class=\"btn-floating green accent-2 btn-sm\"\n                  (click)=\"triggerCommand('justifyLeft', 'none')\">\n                  <i class=\"fa fa-align-left indigo-text\" aria-hidden=\"true\"></i></button>\n          <button type=\"button\" class=\"btn-floating green accent-1 btn-sm\"\n                        (click)=\"triggerCommand('justifyRight', 'none')\">\n                  <i class=\"fa fa-align-right indigo-text\" aria-hidden=\"true\"></i></button>\n       </div>\n      <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Fourth group\">\n          <button type=\"button\" class=\"btn-floating indigo lighten-2 btn-sm\"\n                  (click)=\"triggerCommand('indent', 'none')\">\n                  <i class=\"fa fa-indent indigo-text\" aria-hidden=\"true\"></i></button>\n\n          <button type=\"button\" class=\"btn-floating indigo lighten-2 btn-sm\"\n                  (click)=\"triggerCommand('outdent', 'none')\">\n                  <i class=\"fa fa-dedent indigo-text\" aria-hidden=\"true\"></i></button>\n\n      </div>\n\n      <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Fifth group\">\n          <button type=\"button\" class=\"btn-floating amber accent-4 btn-sm\"\n                  (click)=\"triggerCommand('copy', 'none')\">\n                  <i class=\"fa fa-copy indigo-text\" aria-hidden=\"true\"></i></button>\n          <button type=\"button\" class=\"btn-floating amber accent-3 btn-sm\"\n                  (click)=\"triggerCommand('cut','none')\">\n                  <i class=\"fa fa-cut indigo-text\" aria-hidden=\"true\"></i></button>\n          <button type=\"button\" class=\"btn-floating amber accent-4 btn-sm\"\n                  (click)=\"triggerCommand('delete', 'none')\">\n                  <i class=\"fa fa-eraser indigo-text\" aria-hidden=\"true\"></i></button>\n      </div>\n\n      <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Sixth group\">\n        <button type=\"button\" class=\"btn-floating amber accent-4 btn-sm\"\n                (click)=\"triggerCommand('undo', 'none')\">\n                <i class=\"fa fa-undo indigo-text\" aria-hidden=\"true\"></i></button>\n        <button type=\"button\" class=\"btn-floating amber accent-3 btn-sm\"\n                (click)=\"triggerCommand('redo', 'none')\">\n                <i class=\"fa fa-repeat indigo-text\" aria-hidden=\"true\"></i></button>\n    </div>\n\n    </div>\n\n  </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component.scss":
-/*!******************************************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component.scss ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".btn-floating {\n  margin: 0;\n  padding: 0;\n  height: 35px;\n  width: 35px; }\n"
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component.ts":
-/*!****************************************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component.ts ***!
-  \****************************************************************************************/
-/*! exports provided: TonyEditorToolbarComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TonyEditorToolbarComponent", function() { return TonyEditorToolbarComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _GlobalSetting_tony_editor_global_default__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../GlobalSetting/tony-editor.global.default */ "./src/app/tony-editorv1.0.0/GlobalSetting/tony-editor.global.default.ts");
-/* harmony import */ var _GlobalSetting_command_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../GlobalSetting/command.model */ "./src/app/tony-editorv1.0.0/GlobalSetting/command.model.ts");
-/* harmony import */ var _services_executable_command_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/executable-command.service */ "./src/app/tony-editorv1.0.0/services/executable-command.service.ts");
-/* harmony import */ var _Utility_tony_editor_utility__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Utility/tony-editor.utility */ "./src/app/tony-editorv1.0.0/Utility/tony-editor.utility.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-let TonyEditorToolbarComponent = class TonyEditorToolbarComponent {
-    constructor(executableCommandService) {
-        this.executableCommandService = executableCommandService;
-        this.checkBackColor = true;
-        this.execute = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-    }
-    ngOnInit() {
-    }
-    canEnableToolbarOptions(value) {
-        return _Utility_tony_editor_utility__WEBPACK_IMPORTED_MODULE_4__["canEnableToolbarOptions"](value, this.config['toolbar']);
-    }
-    onSymbolInsert(option) {
-        console.log(' ■ Symbol Insert');
-        switch (option) {
-            case 0:
-                this.triggerCommand('insertText', _GlobalSetting_tony_editor_global_default__WEBPACK_IMPORTED_MODULE_1__["Symbol"].squareSymbol);
-                break;
-            case 1:
-                this.triggerCommand('insertText', _GlobalSetting_tony_editor_global_default__WEBPACK_IMPORTED_MODULE_1__["Symbol"].triangleSymbol);
-                break;
-            case 2:
-                this.triggerCommand('insertText', _GlobalSetting_tony_editor_global_default__WEBPACK_IMPORTED_MODULE_1__["Symbol"].oneSymbol);
-                break;
-            case 3:
-                this.triggerCommand('insertText', _GlobalSetting_tony_editor_global_default__WEBPACK_IMPORTED_MODULE_1__["Symbol"].twoSymbol);
-                break;
-            case 4:
-                this.triggerCommand('insertText', _GlobalSetting_tony_editor_global_default__WEBPACK_IMPORTED_MODULE_1__["Symbol"].threeSymbol);
-                break;
-            case 5:
-                this.triggerCommand('insertText', _GlobalSetting_tony_editor_global_default__WEBPACK_IMPORTED_MODULE_1__["Symbol"].fourSymbol);
-                break;
-        }
-    }
-    onBackColorChange() {
-        if (this.checkBackColor) {
-            this.triggerCommand('backcolor', '#80cbc4');
-            this.checkBackColor = false;
-        }
-        else {
-            this.triggerCommand('backcolor', 'white');
-            this.checkBackColor = true;
-        }
-    }
-    triggerCommand(command, value) {
-        this.command = new _GlobalSetting_command_model__WEBPACK_IMPORTED_MODULE_2__["CommandModel"](command, value);
-        console.log(this.command);
-        this.execute.emit(this.command);
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", Object)
-], TonyEditorToolbarComponent.prototype, "config", void 0);
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
-    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
-], TonyEditorToolbarComponent.prototype, "execute", void 0);
-TonyEditorToolbarComponent = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-tony-editor-toolbar',
-        template: __webpack_require__(/*! ./tony-editor.toolbar.component.html */ "./src/app/tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component.html"),
-        styles: [__webpack_require__(/*! ./tony-editor.toolbar.component.scss */ "./src/app/tony-editorv1.0.0/tony-editor.toolbar/tony-editor.toolbar.component.scss")],
-    }),
-    __metadata("design:paramtypes", [_services_executable_command_service__WEBPACK_IMPORTED_MODULE_3__["ExecutableCommandService"]])
-], TonyEditorToolbarComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/tony-editor/tony-editor.component.html":
-/*!**************************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/tony-editor/tony-editor.component.html ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div>\n  <app-tony-editor-toolbar [config]=\"config\" (execute)=\"executeCommand($event)\"></app-tony-editor-toolbar>\n</div>\n  <div class=\"tony-editor\"\n       id=\"tonyEditor\"\n       [style.width]=\"config['width']\"\n       [style.minWidth]=\"config['minWidth']\"\n       tabindex=\"0\"\n      (focus)=\"onEditorFocus()\">\n\n    <!-- text area -->\n    <div class=\"tony-wrapper\" #tonyWrapper>\n      <div class=\"tony-editor-textarea\"\n           [attr.contenteditable]=\"config['editable']\"\n\n           (input)=\"onContentChange($event.target.innerHTML)\"\n           [attr.translate]=\"config['translate']\"\n           [attr.spellcheck]=\"config['spellcheck']\"\n           [style.height]=\"config['height']\"\n           [style.minHeight]=\"config['minHeight']\"\n           (focus)=\"onTextAreaFocus()\"\n           (blur)=\"onTextAreaBlur()\"\n           #tonyTextArea>\n      </div>\n\n    </div>\n  </div>\n"
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/tony-editor/tony-editor.component.scss":
-/*!**************************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/tony-editor/tony-editor.component.scss ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".tony-editor {\n  position: relative; }\n  .tony-editor ::ng-deep [contenteditable=true]:empty:before {\n    content: attr(placeholder);\n    display: block;\n    color: #868e96;\n    opacity: 1; }\n  .tony-editor .tony-wrapper {\n    position: relative;\n    top: 1rem; }\n  .tony-editor .tony-wrapper .tony-editor-textarea {\n      min-height: 5rem;\n      padding: 0.5rem 0.8rem 1rem 0.8rem;\n      border: 1px solid #ddd;\n      background-color: transparent;\n      overflow-x: hidden;\n      overflow-y: auto;\n      z-index: 3;\n      position: relative; }\n  .tony-editor .tony-wrapper .tony-editor-textarea:focus, .tony-editor .tony-wrapper .tony-editor-textarea.focus {\n        outline: 0; }\n  .tony-editor .tony-wrapper .tony-editor-textarea ::ng-deep blockquote {\n        margin-left: 1rem;\n        border-left: 0.2em solid #dfe2e5;\n        padding-left: 0.5rem; }\n  .tony-editor .tony-wrapper ::ng-deep p {\n      margin-bottom: 0; }\n"
-
-/***/ }),
-
-/***/ "./src/app/tony-editorv1.0.0/tony-editor/tony-editor.component.ts":
-/*!************************************************************************!*\
-  !*** ./src/app/tony-editorv1.0.0/tony-editor/tony-editor.component.ts ***!
-  \************************************************************************/
-/*! exports provided: TonyEditorComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TonyEditorComponent", function() { return TonyEditorComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _GlobalSetting_tony_editor_global_default__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../GlobalSetting/tony-editor.global.default */ "./src/app/tony-editorv1.0.0/GlobalSetting/tony-editor.global.default.ts");
-/* harmony import */ var _services_executable_command_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/executable-command.service */ "./src/app/tony-editorv1.0.0/services/executable-command.service.ts");
-/* harmony import */ var _Utility_tony_editor_utility__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Utility/tony-editor.utility */ "./src/app/tony-editorv1.0.0/Utility/tony-editor.utility.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-let TonyEditorComponent = TonyEditorComponent_1 = class TonyEditorComponent {
-    constructor(executableCommandService, renderer, snatizer) {
-        this.executableCommandService = executableCommandService;
-        this.renderer = renderer;
-        this.snatizer = snatizer;
-        this.resizer = 'stack';
-        this.blur = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        this.focus = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        this.Utils = _Utility_tony_editor_utility__WEBPACK_IMPORTED_MODULE_5__;
-        this.config = _GlobalSetting_tony_editor_global_default__WEBPACK_IMPORTED_MODULE_3__["GlobalConfig"];
-    }
-    ngOnInit() {
-        console.log(this.config.editable);
-        console.log(this.config.height);
-        console.log(this.config.placeholder);
-        if (this.htmlContent) {
-            console.log(this.htmlContent);
-            this.textArea.nativeElement.innerHTML = this.htmlContent;
-        }
-        // const div = this.readerer.createElement('div');
-        // const text = this.readerer.createText(this.htmlContent);
-        // this.readerer.appendChild(div, text);
-        // this.readerer.appendChild(this.textArea.nativeElement, div);
-    }
-    writeValue(value) {
-        console.log(value);
-        if (value === null || value === undefined || value === '' || value === '<br>') {
-            value = null;
-        }
-        this.refreshView(value);
-    }
-    registerOnChange(fn) {
-        this.onChange = fn;
-    }
-    registerOnTouched(fn) {
-        this.onTouched = fn;
-    }
-    onTextAreaFocus() {
-        this.focus.emit('focus');
-        console.log(this.focus);
-        return;
-    }
-    onEditorFocus() {
-        this.textArea.nativeElement.focus();
-        console.log(this.textArea.nativeElement.focus());
-    }
-    onTextAreaBlur() {
-        // 만일 textarea에서 벗어나면 곧바로 window.section영역을 이용하여 저장함
-        this.executableCommandService.savedSelection = _Utility_tony_editor_utility__WEBPACK_IMPORTED_MODULE_5__["saveSelection"]();
-    }
-    resixeTextArea(offsetY) {
-        let newHeight = parseInt(this.height, 10);
-        newHeight += offsetY;
-        this.height = newHeight + 'px';
-        this.textArea.nativeElement.style.height = this.height;
-    }
-    onContentChange(html) {
-        console.log(html);
-        this.executableCommandService.htmlContent.next(html); // 실시간으로 textArea에서 입력한 값을 Obserable함
-    }
-    executeCommand(command) {
-        try {
-            console.log(command.commandName);
-            console.log(command.value);
-            this.executableCommandService.execute(command.commandName, command.value);
-        }
-        catch (error) {
-            console.log(error);
-        }
-        return;
-    }
-    refreshView(value) {
-        const normalizedValue = value === null ? '' : value;
-        this.renderer.setProperty(this.textArea.nativeElement, 'innerHTML', normalizedValue);
-        return;
-    }
-};
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-    __metadata("design:type", String)
-], TonyEditorComponent.prototype, "htmlContent", void 0);
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
-    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
-], TonyEditorComponent.prototype, "blur", void 0);
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
-    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
-], TonyEditorComponent.prototype, "focus", void 0);
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('tonyTextArea'),
-    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
-], TonyEditorComponent.prototype, "textArea", void 0);
-__decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('tonyWrapper'),
-    __metadata("design:type", Object)
-], TonyEditorComponent.prototype, "tonyWrapper", void 0);
-TonyEditorComponent = TonyEditorComponent_1 = __decorate([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-        selector: 'app-tony-editor',
-        template: __webpack_require__(/*! ./tony-editor.component.html */ "./src/app/tony-editorv1.0.0/tony-editor/tony-editor.component.html"),
-        styles: [__webpack_require__(/*! ./tony-editor.component.scss */ "./src/app/tony-editorv1.0.0/tony-editor/tony-editor.component.scss")],
-        providers: [
-            {
-                provide: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NG_VALUE_ACCESSOR"],
-                useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(() => TonyEditorComponent_1),
-                multi: true
-            }
-        ]
-    }),
-    __metadata("design:paramtypes", [_services_executable_command_service__WEBPACK_IMPORTED_MODULE_4__["ExecutableCommandService"],
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"],
-        _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"]])
-], TonyEditorComponent);
-
-var TonyEditorComponent_1;
 
 
 /***/ }),

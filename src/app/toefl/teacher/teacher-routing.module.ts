@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from '../../auth/auth.guard';
-import { NotFoundComponent } from '../not-found/not-found.component';
 
 import { RegisterToeflComponent } from './register-toefl.component';
 import { RegisterToeflStartComponent } from './register-toefl/register-toefl-start/register-toefl-start.component';
@@ -22,23 +21,18 @@ import { ReadingSection4Component } from './register-toefl/make-toefl-exam/readi
 import { ListeningExamComponent } from './register-toefl/make-toefl-exam/listening-exam/listening-exam.component';
 
 const teacherRoutes: Routes = [
-  { path: 'teacher', component: RegisterToeflComponent, children: [
-      { path: '', component: RegisterToeflStartComponent },
-      { path: 'new', component: RegistToeflEditComponent},       // 만일 순서를 지키지 않으면 params 에러가 발생할수 있음
-      { path: ':id', component: RegistToeflDetailComponent },
-      { path: ':id/edit', component: RegistToeflEditComponent},
-
-      { path: ':id/makeexam', component: MakeExamStartComponent},
-
-      { path: ':id/editReadingDesc', component: EditReadingDescComponent},
-      { path: ':id/makeexam/reading', component: ReadingExamComponent},
-      { path: ':id/makeexam/readingSection1', component: ReadingSection1Component},
-      { path: ':id/makeexam/readingSection2', component: ReadingSection2Component},
-      { path: ':id/makeexam/readingSection3', component: ReadingSection3Component},
-      { path: ':id/makeexam/readingSection4', component: ReadingSection4Component}
-
-
-      // { path: 'registertoefl', component: RegisterToeflComponent, canActivate: [AuthGuard] }
+  { path: '', component: RegisterToeflComponent, children: [
+      { path: '', component: RegisterToeflStartComponent, canActivate: [AuthGuard] },
+      { path: 'new', component: RegistToeflEditComponent, canActivate: [AuthGuard]},       // 만일 순서를 지키지 않으면 params 에러가 발생할수 있음
+      { path: ':id', component: RegistToeflDetailComponent, canActivate: [AuthGuard] },
+      { path: ':id/edit', component: RegistToeflEditComponent, canActivate: [AuthGuard]},
+      { path: ':id/makeexam', component: MakeExamStartComponent, canActivate: [AuthGuard]},
+      { path: ':id/editReadingDesc', component: EditReadingDescComponent, canActivate: [AuthGuard]},
+      { path: ':id/makeexam/reading', component: ReadingExamComponent, canActivate: [AuthGuard]},
+      { path: ':id/makeexam/readingSection1', component: ReadingSection1Component, canActivate: [AuthGuard]},
+      { path: ':id/makeexam/readingSection2', component: ReadingSection2Component, canActivate: [AuthGuard]},
+      { path: ':id/makeexam/readingSection3', component: ReadingSection3Component, canActivate: [AuthGuard]},
+      { path: ':id/makeexam/readingSection4', component: ReadingSection4Component, canActivate: [AuthGuard]}
   ]
 }
 ];
@@ -52,4 +46,16 @@ const teacherRoutes: Routes = [
 
 })
 export class TeacherRoutingModule {}
-
+export const teacherRoutingComponents = [
+                                          RegisterToeflComponent,
+                                          RegisterToeflStartComponent,
+                                          RegistToeflEditComponent,
+                                          RegistToeflDetailComponent,
+                                          MakeExamStartComponent,
+                                          EditReadingDescComponent,
+                                          ReadingExamComponent,
+                                          ReadingSection1Component,
+                                          ReadingSection2Component,
+                                          ReadingSection3Component,
+                                          ReadingSection4Component
+                                        ];

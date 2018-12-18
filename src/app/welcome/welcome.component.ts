@@ -107,7 +107,7 @@ export class WelcomeComponent implements OnInit, OnDestroy {
                                                                     }
                                                                   } else {
                                                                     this.jointPaidToeflLists = [];
-                                                                    
+
                                                                   for (const toeflItem of this.toefls) {
                                                                       this.paidToeflCheck = false;
                                                                       this.joinPaidToefl = new JoinPaidToefl(toeflItem.toeflNo,

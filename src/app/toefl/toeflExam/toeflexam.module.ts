@@ -1,9 +1,8 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToeflExamRoutingModule } from './toefl-routing.module';
 
-import { ToeflExamComponent } from './toefl-exam.component';
+import { ToeflExamRoutingModule, toeflExamRoutingComponents } from './toefl-routing.module';
 
 import { SharedModule } from '../../shared/shared.module';
 
@@ -11,8 +10,7 @@ import { ToeflExamService } from './toeflexam.service';
 
 @NgModule({
   declarations: [
-    ToeflExamComponent
-   
+    toeflExamRoutingComponents
   ],
   imports: [
     CommonModule,
