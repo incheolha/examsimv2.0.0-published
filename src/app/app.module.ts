@@ -43,6 +43,7 @@ import { StripePaymentService } from './payment/paymentAgency-Service/stripe-pay
 @NgModule({
   declarations: [
     AppComponent,
+    
     ErrorComponent,
     appRoutingComponent,
   ],
