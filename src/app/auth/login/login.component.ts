@@ -47,8 +47,6 @@ export class LoginComponent implements OnInit, OnDestroy {
                     });
     }
 
-
-    
   onSubmit() {
     console.log(this.loginForm.value.email);
     const user = new User(this.loginForm.value.email,

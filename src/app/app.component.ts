@@ -20,7 +20,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { UtilityService } from './Utility-shared/utility.service';
 import { MainNavModel } from './Utility-shared/mainNavChange.model';
 import { Subscription } from 'rxjs/Subscription';
-import { ProfileInfo } from './auth/profile.model';
+
 import { User } from './auth/user.model';
 import { ShoppingcartService } from './payment/shoppingcart.service';
 
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngOnInit() {
 
-        this.utilitySubscription = this.utilityService.mainNavChanged.subscribe((navStatus: MainNavModel) => {
+    this.utilitySubscription = this.utilityService.mainNavChanged.subscribe((navStatus: MainNavModel) => {
             this.mainNavHide = navStatus.showMainNav;
 
             console.log('main nav 상태점검', this.mainNavHide);

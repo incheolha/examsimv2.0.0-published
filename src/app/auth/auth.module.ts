@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 // MDBootstrap module
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 
+// Google AGM Map 사용하기
+import { AgmCoreModule } from '@agm/core';
+
 // authRoutingMOdule
 import { AuthRoutingModule, authRoutingComponents } from './auth-routing.module';
 // 제 3자가 제공한 toaster module
@@ -30,6 +33,9 @@ import { ProfileOrderHistoryComponent } from './profile/profile-edit/profile-ord
             SharedModule,
             MDBBootstrapModulesPro.forRoot(),
             ToastModule.forRoot(),
+            AgmCoreModule.forRoot({
+              apiKey: 'AIzaSyCwMYILY491pwQdKQzCV8XfFT1O0E3aYFo'
+            }),
             AuthRoutingModule
   ]
 })

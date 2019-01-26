@@ -41,9 +41,8 @@ import { PaypalPaymentService } from './payment/paymentAgency-Service/paypal-pay
 import { StripePaymentService } from './payment/paymentAgency-Service/stripe-payment.service';
 
 @NgModule({
-  declarations: [
+   declarations: [
     AppComponent,
-    
     ErrorComponent,
     appRoutingComponent,
   ],
