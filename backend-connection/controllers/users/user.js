@@ -167,6 +167,115 @@ exports.user_login = (req, res, next) => {
     });
 };
 
+exports.user_sociaLogin = (req, res, next) => {
+  console.log('name is '+ req.body.name);
+  console.log('email is '+ req.body.email);
+  console.log('password is '+ req.body.password);
+  console.log('permission tag is '+ req.body.permissionTag);
+  console.log( 'social Login Provider'+ req.body.provider);
+
+  User.findOne({email: req.body.email})
+      .exec()
+      .then( user => {
+        console.log( user );
+              if (user.length < 1) {
+                      bcrypt.hash(req.body.password, 10, (err, hash) => {
+                        if (err) {
+                            return res.status(500).json({
+                              title: 'New User Saved Error',
+                              message: 'Password is not matched'
+                            });
+                        } else {
+                            const user = new User({
+                                email: req.body.email,
+                                password: hash,
+                                name: req.body.name,
+                                permissionTag: req.body.permissionTag,
+                                created_at: req.body.currentDate,
+                                updated_at: req.body.updatedDate,
+                                provider: req.body.provider
+                            });
+                            user
+                                .save()
+                                .then(result => {
+                                        const token = jwt.sign({user: user}, saltKey,{expiresIn: '1h'});
+                                        return res.status(200).json({
+                                          message: 'user are saved successfully',
+                                          token: token,
+                                          user: user
+                                      });
+                                })
+                                    .catch(err => {
+                                        res.status(500).json({
+                                          title: 'User SignUp Error',
+                                          message: 'User can not be saved'
+                                        });
+                                });
+
+                        }
+                      });
+              }
+              bcrypt.compare(req.body.password, user.password, (err, result) => {
+                  if (err) {
+                      return res.status(401).json({
+                        title: 'User Login Error',
+                        message: 'Password is wrong.....'
+                      });
+                  }
+                  if (result) {
+                      const token = jwt.sign({user: user}, saltKey,{expiresIn: '1h'});
+                      return res.status(200).json({
+                          message: 'Auth successful',
+                          token: token,
+                          user: user
+                      });
+                  }
+                  res.status(401).json({
+                    title: 'User Login Error',
+                    message: 'Authentication is failed'
+                  });
+              });
+
+      })
+        .catch(err => {
+          bcrypt.hash(req.body.password, 10, (err, hash) => {
+            if (err) {
+                return res.status(500).json({
+                  title: 'New User Saved Error',
+                  message: 'Password is not matched'
+                });
+            } else {
+                const user = new User({
+                    email: req.body.email,
+                    password: hash,
+                    name: req.body.name,
+                    permissionTag: req.body.permissionTag,
+                    created_at: req.body.currentDate,
+                    updated_at: req.body.updatedDate,
+                    provider: req.body.provider
+                });
+                user
+                    .save()
+                    .then(result => {
+                            const token = jwt.sign({user: user}, saltKey,{expiresIn: '1h'});
+                            return res.status(200).json({
+                              message: 'user are saved successfully',
+                              token: token,
+                              user: user
+                          });
+                    })
+                        .catch(err => {
+                            res.status(500).json({
+                              title: 'Social user Added  Error',
+                              message: 'User can not be saved'
+                            });
+                    });
+
+            }
+          });
+        });
+};
+
 exports.user_delete = (req, res, next) => {
 
   const decoded = jwt.decode(req.query.token);

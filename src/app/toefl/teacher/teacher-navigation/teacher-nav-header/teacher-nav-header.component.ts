@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UtilityService } from '../../../../Utility-shared/utility.service';
 import { MainNavModel } from './../../../../Utility-shared/mainNavChange.model';
 import { ProfileInfo } from '../../../../auth/profile.model';
-import { AuthService } from '../../../../auth/auth.service';
+import { AuthService_Local } from '../../../../auth/auth.service';
 import { User } from '../../../../auth/user.model';
 
 @Component({
@@ -21,7 +21,7 @@ export class TeacherNavHeaderComponent implements OnInit {
   @Output() sidenavToggle1 = new EventEmitter<void>();
 
   constructor(private router: Router,
-              private authService: AuthService,
+              private authService: AuthService_Local,
               private utilityService: UtilityService) { }
 
   ngOnInit() {

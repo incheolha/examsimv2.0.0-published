@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MainNavModel } from './../../../Utility-shared/mainNavChange.model';
 import { UtilityService } from '../../../Utility-shared/utility.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { AuthService } from '../../../auth/auth.service';
+import { AuthService_Local } from '../../../auth/auth.service';
 import { PaypalPaymentService } from '../../paymentAgency-Service/paypal-payment.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class PaymentNotificationComponent implements OnInit, AfterViewInit {
   constructor(private utilityService: UtilityService,
               private router: Router,
               private route: ActivatedRoute,
-              private authService: AuthService,
+              private authService: AuthService_Local,
               private payPalService: PaypalPaymentService
             ) { }
 

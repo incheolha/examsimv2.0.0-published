@@ -1,5 +1,5 @@
 import { GlobalConstantShare } from '../Utility-shared/globalConstantShare';
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
@@ -11,12 +11,10 @@ import { User } from './user.model';
 import { Shoppingcart } from '../payment/model/shoppingcart.model';
 import { PaidToeflList } from '../payment/model/paidToeflLists.model';
 import { ProfileInfo } from './profile.model';
-import { Subscription } from 'rxjs/Subscription';
-import { ShoppingcartService } from '../payment/shoppingcart.service';
 
 
 @Injectable()
-export class AuthService {
+export class AuthService_Local {
 
   urlConfig = GlobalConstantShare.httpUrl;     // 현재 설정ehls url 주소 설정
   authChange = new Subject<boolean>();
@@ -26,6 +24,8 @@ export class AuthService {
 
   userName: string;             // 메인 header에 필요한 사용자 이름을 가조오기위한 모델
   user: User;                             // 사용자에 관한 모든정보를 가져오기 위한 user 모델
+
+  currentUser: User;
 
   clearPaidToeflLists: PaidToeflList[] = [];
   clearShoppingCartLists: Shoppingcart[] = [];
@@ -59,7 +59,7 @@ export class AuthService {
 
                                 localStorage.setItem('token', result.token);
                                 localStorage.setItem('userName', result.user.name);
-                                this.user = result.user;
+                                this.currentUser = result.user;
                                 this.authSuccess(result.user.permissionTag);
                                 this.utilityService.loadingStateChanged.next(false);
                                 this.shoppingCartLists.next(result.user.shoppingCartLists);
@@ -86,7 +86,7 @@ export class AuthService {
                         .subscribe((result) => {
                                 localStorage.setItem('token', result.token);
                                 localStorage.setItem('userName', result.user.name);
-                                this.user = result.user;
+                                this.currentUser = result.user;
                                 this.authSuccess(result.user.permissionTag);
                                 this.utilityService.loadingStateChanged.next(false);
                                 this.shoppingCartLists.next(result.user.shoppingCartLists);
@@ -96,6 +96,35 @@ export class AuthService {
                     },
                     error => { this.handleError( error ); });
               }
+
+
+  sociaLogin(user: User) {
+
+    this.utilityService.loadingStateChanged.next(true);
+    this.http.post
+                  <{ message: string,
+                      token: string,
+                      user: User
+                      // userName: string,
+                      // permissionTag: string,
+                      // shoppingCartLists: Shoppingcart[],
+                      // paidToeflLists: PaidToeflList[]
+                    }>
+                    (this.urlConfig + '/user/sociaLogin', user)
+
+                    .subscribe((result) => {
+                            localStorage.setItem('token', result.token);
+                            localStorage.setItem('userName', result.user.name);
+                            this.currentUser = result.user;
+                            this.authSuccess(result.user.permissionTag);
+                            this.utilityService.loadingStateChanged.next(false);
+                            this.shoppingCartLists.next(result.user.shoppingCartLists);
+                            this.userInfoList.next(result.user);
+                            this.paidToeflLists.next(result.user.paidToeflLists);
+                            this.router.navigate(['/']);
+                },
+                error => { this.handleError( error ); });
+          }
 
   private handleError(error) {
     console.log('에러 메세지', error);
@@ -156,7 +185,7 @@ export class AuthService {
   }
 
   getUserInfo() {
-    return this.user;
+  return this.currentUser;
   }
 
 }

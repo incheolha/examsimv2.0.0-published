@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Shoppingcart } from '../model/shoppingcart.model';
 
-import { AuthService } from './../../auth/auth.service';
-import { ShoppingcartService } from '../shoppingcart.service'
+import { AuthService_Local } from './../../auth/auth.service';
+import { ShoppingcartService } from '../shoppingcart.service';
 
 import {Subject} from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
-
 @Component({
   selector: 'app-shoppingcart',
   templateUrl: './shoppingcart.component.html',
@@ -21,7 +19,7 @@ export class ShoppingcartComponent implements OnInit {
 
 
   constructor( private shoppingcartService: ShoppingcartService,
-               private authService: AuthService) {}
+               private authService: AuthService_Local) {}
 
   ngOnInit() {
           this.shoppingCartLists = this.shoppingcartService.getShoppingCartLists();

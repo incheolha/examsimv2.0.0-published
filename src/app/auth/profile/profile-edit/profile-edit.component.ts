@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { AuthService } from '../../auth.service';
+import { AuthService_Local } from '../../auth.service';
 import { ShoppingcartService } from '../../../payment/shoppingcart.service';
 import { PaidToeflList } from './../../../payment/model/paidToeflLists.model';
 
@@ -29,7 +29,7 @@ export class ProfileEditComponent implements OnInit {
 
   paidToeflLists: PaidToeflList[] = [];
 
-  constructor(private authService: AuthService,
+  constructor(private authService: AuthService_Local,
               private router: Router,
               private shoppingCartService: ShoppingcartService) { }
 

@@ -14,7 +14,7 @@
     많은 시간을 소비한 곳이므로 잘 기억해두기 바란다
 */
 
-import { AuthService } from './auth/auth.service';
+import { AuthService_Local } from './auth/auth.service';
 import { Component, OnInit, ChangeDetectorRef, AfterViewChecked, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { UtilityService } from './Utility-shared/utility.service';
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   utilitySubscription: Subscription;
 
   constructor(private utilityService: UtilityService,
-              private authService: AuthService,
+              private authService: AuthService_Local,
               private router: Router,
               private shoppingCartService: ShoppingcartService,
               private changeDetector: ChangeDetectorRef) {}

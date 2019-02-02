@@ -5,7 +5,7 @@ import { Payment } from './../model/payment.model';
 import { Injectable, OnInit} from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService_Local } from '../../auth/auth.service';
 
 @Injectable()
 export class PaypalPaymentService {
@@ -13,7 +13,7 @@ export class PaypalPaymentService {
     payment: Payment;
     urlConfig = GlobalConstantShare.httpUrl;     // url 실제 주소가 있는곳
     constructor(private http: Http,
-                private authService: AuthService,
+                private authService: AuthService_Local,
                 private shoppingCartService: ShoppingcartService) {}
 
 

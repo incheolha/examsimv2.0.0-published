@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { AuthService } from '../auth/auth.service';
+import { AuthService_Local } from '../auth/auth.service';
 
 import {Toefl} from '../toefl/models/toefl.model';
 import {ToeflExamService} from '../toefl/toeflExam/toeflexam.service';
@@ -64,7 +64,7 @@ export class WelcomeComponent implements OnInit, OnDestroy {
 
   constructor(
               private toeflExamService: ToeflExamService,
-              private authService: AuthService,
+              private authService: AuthService_Local,
               private shoppincartService: ShoppingcartService
               ) {}
 

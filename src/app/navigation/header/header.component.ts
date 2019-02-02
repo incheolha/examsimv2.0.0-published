@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService_Local } from '../../auth/auth.service';
 import { ShoppingcartService} from '../../payment/shoppingcart.service';
 import { Shoppingcart } from '../../payment/model/shoppingcart.model';
 import { ProfileInfo } from '../../auth/profile.model';
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     shoppingcartListCounter = 0;
     shoppingcartListSubscription: Subscription;
 
-constructor(private authService: AuthService,
+constructor(private authService: AuthService_Local,
             private shoppingcartService: ShoppingcartService) { }
 
   ngOnInit() {

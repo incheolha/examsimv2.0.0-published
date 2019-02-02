@@ -8,7 +8,7 @@ import { UtilityService } from '../../Utility-shared/utility.service';
 import { ShoppingcartService } from '../shoppingcart.service';
 import { Router } from '@angular/router';
 import { GlobalConstantShare } from '../../Utility-shared/globalConstantShare';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService_Local } from '../../auth/auth.service';
 
 @Injectable()
 export class StripePaymentService {
@@ -19,7 +19,7 @@ export class StripePaymentService {
   paidToeflLists = new Subject<PaidToeflList[]>();
     constructor(private http: Http,
                 private router: Router,
-                private authService: AuthService,
+                private authService: AuthService_Local,
                 private shoppingCartService: ShoppingcartService,
                 private utilityService: UtilityService) {}
 

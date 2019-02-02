@@ -3,7 +3,7 @@
 import { User } from './../user.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService_Local } from '../auth.service';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   pwdPattern = '^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$';
   constructor(private fb: FormBuilder,
-              private authServie: AuthService,
+              private authServie: AuthService_Local,
               private router: Router,
               private utilityService: UtilityService
             ) {}

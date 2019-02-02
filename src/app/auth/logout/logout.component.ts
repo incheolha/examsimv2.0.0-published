@@ -2,7 +2,7 @@ import { Router, ActivatedRoute, RoutesRecognized } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { AuthService } from '../auth.service';
+import { AuthService_Local } from '../auth.service';
 
 import { filter, pairwise } from 'rxjs/operators';
 import { UtilityService } from '../../Utility-shared/utility.service';
@@ -14,7 +14,7 @@ import { UtilityService } from '../../Utility-shared/utility.service';
 export class LogoutComponent {
 
   constructor(private location: Location,
-              private authService: AuthService,
+              private authService: AuthService_Local,
               private utilityService: UtilityService,
               private router: Router,
               private route: ActivatedRoute) { }

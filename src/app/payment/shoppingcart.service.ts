@@ -8,7 +8,7 @@ import { Subject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
 import { Shoppingcart } from './model/shoppingcart.model';
 
-import { AuthService } from '../auth/auth.service';
+import { AuthService_Local } from '../auth/auth.service';
 import { UtilityService } from '../Utility-shared/utility.service';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../auth/user.model';
@@ -35,7 +35,7 @@ export class ShoppingcartService {
     constructor (
         private http: Http,
         private router: Router,
-        private authService: AuthService,
+        private authService: AuthService_Local,
         private utilityService: UtilityService) {}
 
 

@@ -3,7 +3,6 @@ import { Component, OnInit,  ViewChild, HostListener, AfterViewInit, ChangeDetec
 import { Router } from '@angular/router';
 import { PaidToeflList } from './../../../payment/model/paidToeflLists.model';
 import { ShoppingcartService } from '../../../payment/shoppingcart.service';
-import { AuthService } from '../../auth.service';
 import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-purchased-history',
