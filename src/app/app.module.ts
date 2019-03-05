@@ -16,7 +16,6 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { SocialLoginModule, AuthServiceConfig } from 'angular-6-social-login';
 
 // http Module
-import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // component 모듈
@@ -53,7 +52,6 @@ import { getAuthServiceConfigs } from '../environments/environment';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
     HttpClientModule,
     AuthModule,
     ToeflExamModule,
