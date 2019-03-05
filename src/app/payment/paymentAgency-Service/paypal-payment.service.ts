@@ -1,19 +1,18 @@
 import { GlobalConstantShare } from '../../Utility-shared/globalConstantShare';
+import { Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { ShoppingcartService } from './../shoppingcart.service';
 import { Payment } from './../model/payment.model';
-import { Injectable, OnInit} from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { AuthService_Local } from '../../auth/auth.service';
+import { PaidToeflList } from '../model/paidToeflLists.model';
+import { User } from '../../auth/user.model';
 
 @Injectable()
 export class PaypalPaymentService {
 
     payment: Payment;
     urlConfig = GlobalConstantShare.httpUrl;     // url 실제 주소가 있는곳
-    constructor(private http: Http,
-                private authService: AuthService_Local,
+    constructor(private http: HttpClient,
                 private shoppingCartService: ShoppingcartService) {}
 
 
@@ -21,34 +20,25 @@ export class PaypalPaymentService {
 
       console.log('paypal click');
 
-        const body = JSON.stringify(payment);
-
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(this.urlConfig + '/paypal/createPayment', body, {headers: headers})
-                        .subscribe(data => {
-                            const paymentUrl = data.json();
-                            console.log(paymentUrl.url);
-                            window.location.href = paymentUrl.url;
-                        }),
-                        (error) => this.handleErrors(error);
+      return this.http.post<{ url: string }>(this.urlConfig + '/paypal/createPayment', payment)
+                      .subscribe(data => {
+                          window.location.href = data.url;
+                      }),
+                      (error) => console.log(error);
     }
 
     getPaypalResult() {
         const token = localStorage.getItem('token');
-        const header = new Headers({'Content-type': 'application/json'});
-        return this.http.get(this.urlConfig + '/paypal/paymentResult/' + '?token=' + token, {headers: header})
-                    .subscribe(
-                        (res: Response) => {
-                            const data = res.json();
+
+        return this.http.get<{ payPalResult: PaidToeflList[], paypalUserInfo: User}>
+                        (this.urlConfig + '/paypal/paymentResult/' + '?token=' + token)
+
+                        .subscribe( data => {
                             // tslint:disable-next-line:max-line-length
                             const reInitSuccess = this.shoppingCartService.reInitialShoppingCartLists(data.payPalResult, data.paypalUserInfo);
-                        }
+                        },
+                        error => console.log(error)
                     );
     }
 
-    handleErrors(error: Response) {
-        const err = error.json();
-        console.log(err);
-        return Observable.throw(error);
-    }
 }
