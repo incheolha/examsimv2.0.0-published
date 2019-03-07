@@ -19,18 +19,16 @@
     "express": "^4.16.3",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
-    "heroku": "^7.22.4",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.6",
     "morgan": "^1.9.0",
     "multer": "^1.3.1",
-    "ng-uikit-pro-standard": "git+https://oauth2:fWt5-u-Y3DuqsRHhyNYW@git.mdbootstrap.com/mdb/angular/ng-uikit-pro-standard.git",
+    "path": "^0.12.7",
     "ngx-stripe": "^0.8.2",
     "ngx-toastr": "^9.0.2",
-    "path": "^0.12.7",
     "paypal-rest-sdk": "^1.8.1",
     "serve-favicon": "^2.5.0",
-    "stripe": "^6.7.0"
-  },
-  "heroku-run-build-script": true
+    "stripe": "^6.7.0",
+    "ng-uikit-pro-standard": "git+https://oauth2:fWt5-u-Y3DuqsRHhyNYW@git.mdbootstrap.com/mdb/angular/ng-uikit-pro-standard.git"
+  }
 }
