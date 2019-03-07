@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node ./expressServer/www",
-    "build": "ng build && node ./expressServer/www",
+    "start": "node www.js",
+    "build": "ng build && node www.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
