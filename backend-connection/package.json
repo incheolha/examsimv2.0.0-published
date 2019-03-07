@@ -2,7 +2,7 @@
   "name": "examsimulatorv100",
   "version": "1.0.0",
   "scripts": {
-    "start": "node ./expressServer/www"
+    "start": "node www.js"
   },
   "private": true,
   "dependencies": {
