@@ -1,6 +1,10 @@
 {
   "name": "examsimulatorv100",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.11.1",
+    "npm": "6.x"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node ./expressServer/www",
